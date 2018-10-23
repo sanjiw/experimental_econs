@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Tahap Kontribusi
+{% endblock %}
+
+{% block content %}
+
+    <tr><td>Nilai poin awal:</td><td> {{ Constants.endowment }}</td></tr>
+
+    {% formfield player.choice label="Berapa poin yang anda kontribusikan untuk proyek bersama?:" %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

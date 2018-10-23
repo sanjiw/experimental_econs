@@ -1,0 +1,53 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Voting Decision
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        {% if subsession.d_impeach == True %}
+        Considering upon public concern, it has been decided by the Parliament that <strong>President {% if subsession.winning_cand == 'A' %}
+        A{% else %}B{% endif %} needs to be put into inactive status indefinitely</strong>, as he requires to follow further
+        investigations by the Public Attorney.
+
+        {% else %}
+
+        The Parliamentary assembly has decided that there is not enough support from public to impeach
+        the recently elected <strong>President {% if subsession.winning_cand == 'A' %}
+        A{% else %}B{% endif %}</strong>. He will remain in the office and proceed with his presidential duty.
+
+        {% endif %}
+    </p>
+
+    <p>The actual (Bayesian) probability of impeachment, <i>given the news is true</i>  is {{ bayes_prob }}.
+        <br> The actual (Bayesian) probability of impeachment, <i>given the candidate is guilty</i> is {{ impeach_prob }}.
+    </p>
+
+    <p>
+        Your final payoff is then:
+        <table>
+          <tr>
+            <td>Your endowment:</td>
+            <td>{{ Constants.endowment }} points.</td>
+          </tr>
+          <tr>
+            <td>Your payoff from election and impeachment:</td>
+            <td>{{ player.payoff_from_voting }} points.</td>
+          </tr>
+          <tr>
+            <td>Your payoff from your guess:</td>
+            <td>{{ acc_score }} points out of {{ Constants.accuracy_multiplier }} possible.</td>
+          </tr>
+          <tr>
+            <td>Your total payoff:</td>
+            <td>{{ player.payoff }}.</td>
+          </tr>
+        </table>
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

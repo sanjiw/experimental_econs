@@ -1,0 +1,46 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Voting Decision
+{% endblock %}
+
+{% block content %}
+
+
+    <p>
+        {% if subsession.winning_cand == 'A' %}
+        The winner of this voting session is <strong>candidate A</strong>.
+        {% else %}
+        The winner of this voting session is <strong>candidate B</strong>.
+        {% endif %}
+    </p>
+
+    <p>
+        {% if subsession.winning_cand == player.preferences and player.ballot == player.preferences %}
+        Congratulations! Soon he will enter the office and start tax cut policy soon. Your payoff is <b>{{Constants.payoff_win}}</b>.
+        Adding this to your endowment, now in total you would have <b>{{payoff_total_win}} points.</b>
+            {% else %}
+            {% if subsession.winning_cand != player.preferences and player.ballot == player.preferences %}
+                Unfortunately, your supported candidate lost the election. You gain <b>{{Constants.payoff_lost}} points</b>. Your total points now is still
+                <strong>{{payoff_total_lost}} points</strong>.
+                {% else %}
+                {% if subsession.winning_cand != player.preferences and player.ballot != player.preferences %}
+                    Despite the fact that you vote for this candidate, you do not belong to the segment for his tax reduction programme.
+                    You gain <b>{{Constants.payoff_lost}} points</b>. Your total points now is still
+                    <b>{{payoff_total_lost}} points</b>.
+                    {% else %}
+                    {% if subsession.winning_cand == player.preferences and player.ballot != player.preferences %}
+                        Despite the fact that you did <i>not</i> vote for this candidate, you still belong to the segment for his tax reduction programme.
+                        Your payoff is <strong>{{Constants.payoff_win}}</strong>.
+                        Adding this to your endowment, now in total you would have <b>{{payoff_total_win}} points.</b>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </p>
+
+    <p><font color="darkblue">You may press the next button whenever you ready.</font></p>
+    {% next_button %}
+
+{% endblock %}

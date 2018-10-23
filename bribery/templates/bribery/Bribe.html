@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pengambilan Proyek Bersama
+{% endblock %}
+
+{% block content %}
+
+    {% if player.training_round == True %}
+        <div class="alert alert-info">
+            <strong>Informasi:</strong> Ronde ini adalah ronde latihan. Hasil dari ronde ini <b>tidak</b> akan mempengaruhi pembayaran
+            anda. Silakan mempelajari instrumen ini secara seksama.
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <strong>Informasi:</strong> Ronde ini adalah <b>permainan riil</b>. Hasil dari ronde ini akan mempengaruhi pembayaran anda!
+        </div>
+    {% endif %}
+
+    <p>
+        Anda sudah menentukan jumlah pengambilan kontribusi total, selanjutnya anda akan menentukan nilai yang
+    akan dibagikan ke pihak ketiga.
+    </p>
+        <tr><td>Pengambilan:</td><td> {{ group.amt_embezzled_g }}</td></tr>
+
+    {% formfield player.bribe_pct label="Berapa persen <b>(%)</b> dari uang anda yang akan anda <b>berikan pada pihak ketiga</b>?" %}
+
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+    <br>
+    <button class="btn" onclick="myFunction()">Tampilkan Instruksi Permainan</button>
+
+        <div id="myDIV">
+        {% include Constants.instructions_template %}
+        </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
+{% endblock %}

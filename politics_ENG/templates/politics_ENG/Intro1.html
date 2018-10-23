@@ -1,0 +1,50 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Welcome!
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        You are participating on an election game. In this game, we are simulating a democratic voting situation.
+    </p>
+
+    <p>
+        As in politics, everyone have their own preferences. We will simulate that on this experiment.
+    </p>
+
+    <p>
+        In this election, there are two candidates, <strong>A</strong> and <strong>B</strong> that is competing for presidential
+        spot. Each candidate has their own policy ideas. After following their debates on media for months, you feel affiliated
+        with either one of the candidates.
+    </p>
+
+    <hr width="100%">
+    <p>Following are the rules of the game:</p>
+    {% if player.able_to_vote == 'yes' %}
+        <p>&bull; Initially, you have an endowment as much as <b>{{ Constants.endowment }} points</b>. This also applies for everyone else.
+        <br>&bull; The exact proportion of candidate A and B supporter is unknown, but close to equal.
+        <br>&bull; Voting follows the 50%+1 rule. Candidate with most vote wins the election.
+        <br>&bull; In the case of tie, winning candidate is determined randomly with equal chances. Think of a coin toss.</p>
+    {% else %}
+        <p>&bull; Initially, you have an endowment as much as <b>{{ Constants.endowment }} points</b>. This also applies for everyone else.
+        <br>&bull; The exact proportion of candidate A and B supporter is unknown, but close to equal.
+        <br>&bull; However, no one in this election can cast any vote.
+        <br>&bull; Winning candidate is determined randomly with equal chances. Think of a coin toss.</p>
+    {% endif %}
+    <hr width="100%">
+    <p>
+        From the election process, you can earn points. Each points is worth Rp {{ conversion }}. Your total earnings
+        will be the total points you earned, plus the participation fee.
+    </p>
+
+    <p>
+        <font color="darkred"><i>Please do not press this next button until explicitly instructed
+            by the experimenter!</i></font>
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

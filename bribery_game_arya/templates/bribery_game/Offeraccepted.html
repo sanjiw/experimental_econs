@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+        Tindakan atas tawaran
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Anda adalah pemain kedua, anda memiliki hak untuk menolak atau menerima tawaran dari pemain pertama.
+    </p>
+
+    <p>
+        Pemain pertama telah menawarkan anda sejumlah: {{ group.bribe_value2 }}.
+    </p>
+
+    <p><b>Apakah anda ingin menerima tawaran tersebut?</b></p>
+    <div>
+        <button name="bribe_accepted" value="True" class="btn btn-primary btn-large">
+            Yes
+        </button>
+        <button name="bribe_accepted" value="False" class="btn btn-primary btn-large">
+            No
+        </button>
+    </div>
+
+    <tr><td colspan="2"><hr/></td></tr>
+    {% include Constants.instructions_template %}
+
+{% endblock %}

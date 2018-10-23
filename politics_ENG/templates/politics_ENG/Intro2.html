@@ -1,0 +1,37 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Your Preferred Candidate
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Your endowment: <b>{{ Constants.endowment }} points.</b>
+    </p>
+
+    <p>
+        Let's suppose that you like the idea of {% if player.preferences == 'A' %}<b>candidate A</b>{% else %}<b>candidate B</b>.{% endif %}
+        He has some plans to deploy tax cut policy.
+    </p>
+
+    <p>
+        If {% if player.preferences == 'A' %}candidate A
+        {% else %}candidate B
+        {% endif %} wins the election, he promises to implement income tax cut policy on some income level bracket, that benefits you.
+        If this is the case, you will be able to save some money. You will have an addition of <b>{{ Constants.payoff_win }} points.</b>
+    </p>
+
+    <p>
+        On the other hand, if
+        {% if player.preferences == 'A' %}candidate B
+        {% else %}candidate A
+        {% endif %} wins the election, he will be obviously do another policy that does not benefit your income group.
+        You do not gain any money. Thus, you will receive <b>{{ Constants.payoff_lost }} points</b>.
+    </p>
+
+    <p><font color="darkblue">You may press the next button whenever you ready.</font></p>
+    {% next_button %}
+
+{% endblock %}

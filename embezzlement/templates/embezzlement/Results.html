@@ -1,0 +1,98 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil
+{% endblock %}
+
+{% block content %}
+
+    {% if player.training_round == True %}
+        <div class="alert alert-info">
+            <strong>Informasi:</strong> Ronde ini adalah ronde latihan. Hasil dari ronde ini <b>tidak</b> akan mempengaruhi pembayaran
+            anda. Silakan mempelajari instrumen ini secara seksama.
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <strong>Informasi:</strong> Ronde ini adalah <b>permainan riil</b>. Hasil dari ronde ini akan mempengaruhi pembayaran anda!
+        </div>
+    {% endif %}
+
+    <p>
+        {% if player.treatmentgroup == '0' %}
+            {% if group.amt_embezzled_g > 0 %}
+            <font color="darkred">Salah satu dari anggota kelompok anda melakukan penggelapan.</font>
+            {% else %}
+            <font color="darkblue">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
+            {% endif %}
+
+        {% elif player.treatmentgroup == '1' %}
+            {% if group.amt_embezzled_g > 0 %}
+                {% if group.amt_embezzled_g > 0 and group.punish == False %}
+                    <font color="darkred">Salah satu dari anggota kelompok anda <b>sukses</b> melakukan penggelapan.</font>
+                {% elif group.amt_embezzled_g > 0 and group.punish == True %}
+                    <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b> dan dikenai denda.</font>
+                {% endif %}
+            {% else %}
+                <font color="darkgreen">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
+            {% endif %}
+
+        {% elif player.treatmentgroup == '2' %}
+            {% if group.amt_embezzled_g > 0 %}
+                {% if group.amt_embezzled_g > 0 and group.punish == False %}
+                    <font color="darkred">Salah satu dari anggota kelompok anda <b>sukses</b> melakukan penggelapan.</font>
+                {% elif group.amt_embezzled_g > 0 and group.punish == True %}
+                    <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b>.
+                        Ia telah dihukum sebesar biaya sosial dari penggelapan tersebut.</font>
+                {% endif %}
+            {% else %}
+                 <font color="darkgreen">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
+            {% endif %}
+
+        {% endif %}
+    </p>
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>Kontribusi anda:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>Kontribusi pemain lain:</td><td></td></tr>
+        {% for p in player.get_others_in_group %}
+            <tr><td></td><td>{{ p.contribution }}</td></tr>
+        {% endfor %}
+
+        <tr><td>Kontribusi Total:</td><td>{{ group.total_contribution }}</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Kontribusi total yang disisakan:</td><td>{{ group.contribution_left }}</td></tr>
+        <tr><td>Kontribusi total yang digelapkan:</td><td>{{ group.amt_embezzled_g }}</td></tr>
+
+        <tr><td>Sisa nilai proyek bersama:</td><td>{{ group.social_welfare_embz }}</td></tr>
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Sehingga, pendapatan anda di ronde ini menjadi:</td><td>{{ player.payoff_thisround }}</td></tr>
+
+    </table>
+    <p></p>
+
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+    <br>
+    <button class="btn" type="button" onclick="myFunction()">Sembunyikan Instruksi Permainan</button>
+
+        <div id="myDIV">
+        {% include Constants.instructions_template %}
+        </div>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
+
+{% endblock %}

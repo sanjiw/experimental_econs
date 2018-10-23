@@ -1,0 +1,34 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Breaking News (1/2)
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.vignette %}
+
+    <p>
+        The investigation process is currently underway. We don't know yet whether the president would be impeached or not.
+        You would be informed on the outcome of the investigation later on.
+    </p>
+    <p>
+        If the president is impeached, then <b>{% if subsession.winning_cand == player.preferences %}you will lose all
+        {{payoff_win}} points {% else %}
+        you lose nothing{% endif %}</b> from what you obtained in the previous election. Other players whose supports
+        {% if subsession.winning_cand == 'A' %}
+                President A
+                {% else %}
+                President B
+                {% endif %} will lose their {{Constants.payoff_win}}. But, in turn, a temporary government will
+        take over and implement a middle point policy. This will make everyone obtains <b>{{Constants.payoff_impeach}}</b>
+        equally, including you.
+    </p>
+
+{% formfield player.opinion label="<b>Question (1/2)</b>: How likely do you think the president is guilty? We would like to know your opinion" %}
+
+    <p><font color="darkblue">You may press the next button whenever you are settled with your answer.</font></p>
+    {% next_button %}
+
+{% endblock %}

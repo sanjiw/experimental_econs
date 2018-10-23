@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pembagian Proyek Bersama
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Anda sudah menentukan jumlah pengambilan kontribusi total, selanjutnya anda akan menentukan nilai yang
+    akan dibagikan ke pihak ketiga.
+</p>
+    <tr><td>Jumlah bagian kontribusi total yang akan diambil: </td><td>{{ group.bribe_value1 }}</td></tr>
+
+    {% formfield group.bribe_value2 label="Berapa bagian total kontribusi yang anda berikan kepada pihak ketiga?" %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

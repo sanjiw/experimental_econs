@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pengambilan Proyek Bersama
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Anda memiliki kesempatan untuk mengambil kontribusi total yang sudah dikumpulkan. Kontribusi total akan diambil
+    dalam bentuk persentase.
+</p>
+    <tr><td>Kontribusi total:</td><td> {{ group.total_contribution }}</td></tr>
+
+    {% formfield group.bribe_value1 label="Berapa nilai bagian total kontribusi yang akan diambil?" %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

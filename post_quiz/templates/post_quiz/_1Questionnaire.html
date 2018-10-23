@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Kuisioner Pascastudi
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Silakan menjawab pertanyaan-pertanyaan berikut ini.
+    </p>
+
+    {% formfields %}
+
+    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

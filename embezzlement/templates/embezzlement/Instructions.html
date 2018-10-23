@@ -1,0 +1,69 @@
+{% load otree static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light instructions">
+        <div class="card-body">
+        <h3>
+            Instruksi
+        </h3>
+
+        <p>
+            Dalam eksperimen ini, anda akan berada di dalam kelompok dengan jumlah pemain
+            {{ Constants.players_per_group }} orang. Setiap pemain dalam kelompok memiliki poin
+            {{ Constants.endowment_high }}. Masing-masing kelompok memiliki proyek bersama yang dinikmati oleh
+            semua anggota di dalam kelompok. Seluruh pemain dalam kelompok memilih poin yang akan dikontribusikan ke
+            dalam proyek bersama. Pilihan kontribusi dalam permainan ini yakni {{ Constants.strategy_space }} persen
+            dari poin awal. Anda memiliki waktu 30 detik untuk menentukan kontribusi, apabila waktu habis, maka pilihan
+            anda merupakan hasil acak dari sistem komputer. Jumlah semua kontribusi dari masing-masing pemain disebut
+            dengan <strong>total kontribusi.</strong> Sedangkan <strong>proyek bersama</strong> adalah
+            nilai total kontribusi dikalikan sebuah faktor bernilai {{ subsession.multiplier }}.
+        </p>
+        <p>
+            Setelah tahap kontribusi, satu pemain acak dari setiap kelompok memiliki hak untuk mengambil
+            seluruh/sebagian dari proyek bersama atau tidak mengambil. Apabila pemain tersebut memilih untuk
+            mengambil proyek bersama, maka total kontribusi akan berkurang sejumlah nilai yang diambil. Pemain tersebut
+            memiliki waktu 30 detik untuk menentukan bagian total kontribusi yang akan diambil. Apabila waktu telah
+            habis maka tidak ada pengambilan total kontribusi. Pendapatan dari pemain ini adalah jumlah dari <strong>poin yang
+            tidak dialokasikan untuk proyek bersama</strong>, <strong>total kontribusi yang diambil</strong>, dan nilai akhir dari <strong>proyek bersama
+            yang sudah dikurangi</strong>. Pendapatan dari pemain lainnya adalah sisa <strong>poin yang tidak digunakan untuk proyek bersama</strong>
+            ditambah dengan nilai akhir dari <strong>proyek bersama yang sudah dikurangi</strong>.
+        </p>
+        <p>
+            Berikut adalah contoh ketika masing-masing pemain berkontribusi 100 poin dari 200 poin yang mereka punya,
+            dengan asumsi pemain A memiliki kesempatan untuk mengambil seluruh/sebagian dari total kontribusi. Sisa
+            poin yang tidak digunakan untuk kontribusi adalah 100 poin. Total kontribusi ketiga pemain adalah 3 x 100 yakni 300 poin.
+            Apabila pemain A mengambil 200 poin maka sisa total kontribusi adalah 100 poin. Nilai proyek bersama adalah
+            100 dikalikan dengan {{ subsession.multiplier }} yakni 150, sehingga masing-masing pemain mendapatkan 50
+            poin (150/3). Apabila pemain A tidak mengambil total kontribusi maka nilai proyek bersama adalah
+            300 dikalikan {{ subsession.multiplier }} yakni 450, sehingga masing-masing pemain mendapatkan 150 poin
+            (450/3). Berikut adalah pendapatan akhir masing-masing pemain.
+        </p>
+            <table style="width:100%">
+                <tr>
+                    <th>/--\</th>
+                    <th>Pendapatan Pemain A</th>
+                    <th>Pendapatan Pemain B</th>
+                    <th>Pendapatan Pemain C</th>
+                </tr>
+                <tr>
+                    <td>Apabila <strong>A</strong> mengambil 200 poin</td>
+                    <td>100 + 200 + 50 = 350 poin</td>
+                    <td>100 + 50 = 150 poin</td>
+                    <td>100 + 50 = 150 poin</td>
+                </tr>
+                <tr>
+                    <td>Apabila <strong>A</strong> tidak mengambil poin</td>
+                    <td>100 + 150 = 250 poin</td>
+                    <td>100 + 150 = 250 poin</td>
+                    <td>100 + 150 = 250 poin</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

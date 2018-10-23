@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Terima Kasih!
+{% endblock %}
+
+{% block content %}
+
+    <br>Terima kasih banyak atas partisipasi Anda dalam eksperimen ini.
+
+    <br>Sesuai prosedur eksperimen, uang yang Anda terima adalah pendapatan Anda dari salah satu ronde yang Anda mainkan.
+
+    <br>Berdasarkan randomisasi komputer, Anda akan menerima pembayaran dari hasil Anda di ronde ke-{{ payoff_round }}.
+
+    <hr width="100%">
+    <font size="5">Anda berhak menerima pembayaran sebesar <b>{{ total_earnings }}.</b></font>
+    <hr width="100%">
+
+    CATATAN: Jumlah di atas sudah termasuk uang kehadiran Anda. Anda dipersilakan meninggalkan ruangan dan menuju kasir di luar ruangan untuk pembayaran.
+
+    <br>Jikalau ada pertanyaan terkait eksperimen ini, silakan diajukan ke <b>putu.arya.w@ugm.ac.id</b>.
+
+{% endblock %}

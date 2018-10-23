@@ -1,0 +1,31 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    It is time for voting!
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Your endowment: <b>{{ Constants.endowment }} points.</b> Remember that, regardless of whom you vote for:
+    </p>
+    <hr width="100%">
+    <p>
+        &bull; If {% if player.preferences == 'A' %}candidate A
+        {% else %}candidate B
+        {% endif %} win, you gain {{ Constants.payoff_win }} points.
+        <br>&bull; If {% if player.preferences == 'A' %}candidate B
+        {% else %}candidate A
+        {% endif %} win, you do not win any additional points.
+    </p>
+    <hr width="100%">
+    <p>
+        Please indicate which candidate that you want to vote for. You can always vote for either candidate.
+    </p>
+
+    {% formfield player.ballot label='Tick one of the box. Press next to submit your vote. Once you clicked next, you are unable to change it.' %}
+
+    {% next_button %}
+
+{% endblock %}

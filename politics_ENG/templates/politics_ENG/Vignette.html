@@ -1,0 +1,41 @@
+{% load otree staticfiles %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        {% block styles %}
+        {% endblock %}
+
+        {% block title %}
+            <font face="Courier">
+                <p>
+                    {% if subsession.winning_cand == 'A' %}
+                    <strong>President A</strong>
+                    {% else %}
+                    <strong>President B</strong>
+                    {% endif %} is due to impeachment regarding public scandal!
+                </p>
+            </font>
+        {% endblock %}
+
+        {% block content %}
+            <font face="Courier">
+                <p>
+                    Hot rumor coming in! Following an investigation from the Public Attorney, several evidences have indicated that the current president
+                    is involved in a budget fraud for the massive tax cut plan. Our sources inform us that the elected president <b> will be impeached
+                    soon and taken off the office!</b>
+                </p>
+
+                <p>
+                    When asked for comments, the former candidate {% if subsession.winning_cand == 'A' %}
+                    <strong>B</strong>
+                    {% else %}
+                    <strong>A</strong>
+                    {% endif %} responds: <i>"I had some suspicion beforehand that this guy will have a major scandal on his time in the office.
+                    People should have known that he is not a clean person."</i>
+                </p>
+            </font>
+        {% endblock %}
+
+    </div>
+</div>

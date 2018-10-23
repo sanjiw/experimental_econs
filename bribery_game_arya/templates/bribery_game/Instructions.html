@@ -1,0 +1,39 @@
+{% load otree static %}
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Instruksi
+    </h3>
+
+    <div class="panel-body">
+
+        <p>
+            Dalam eksperimen ini, anda akan berada di dalam kelompok dengan jumlah pemain
+            {{ Constants.players_per_group }} orang. Anda mendapatkan poin awal sejumlah {{ Constants.endowment }}.
+            Masing-masing kelompok memiliki proyek Bersama. Seluruh pemain dalam kelompok memilih poin yang akan
+            dikontribusikan ke dalam proyek bersama. Pilihan kontribusi dalam permainan
+            ini yakni 25%, 20%, 15%, 10%, dan 5% dari poin awal.
+        </p>
+        <p>
+            Perolehan dari eksperimen ini dihitung berdasarkan jumlah kontribusi dari semua pemain
+            dikalikan sebuah faktor bernilai {{ Constants.multiplier }}. Nilai ini akan menjadi
+            pendapatan proyek bersama yang dinikmati oleh seluruh pemain dalam kelompok. Pendapatan
+            masing-masing pemain dalam eksperimen ini terdiri dari <strong> pendapatan proyek Bersama dan poin
+            yang tidak dialokasikan untuk proyek bersama </strong>.
+        </p>
+        <p>
+            Setelah tahap kontribusi, akan ada randomisasi untuk satu pemain dari setiap kelompok.
+            Permain ini memiliki hak untuk menentukan nilai total kontribusi yang akan dikurangi
+            dan menentukan tawaran sejumlah bagian dari total kontribusi yang akan dibagi untuk pihak ketiga. Pihak ketiga
+            berasal dari luar permainan.
+
+            Apabila pihak ketiga menerima bagian yang ditawarkan maka pendapatan pemain pertama adalah jumlah dari
+            <strong> poin yang tidak dikontribusikan untuk proyek bersama,
+            selisih antara total kontribusi yang dikurangi dan bagian untuk pihak ketiga, dan terakhir adalah
+            proyek bersama yang sudah di kurangi </strong>. Sebaliknya apabila pihak ketiga menolak tawaran dari pemain pertama maka
+            pendapatan akhir masing-masing pemain adalah jumlah dari sisa <strong> poin yang tidak dikontribusikan dan
+            proyek bersama </strong>.
+        </p>
+    </div>
+</div>

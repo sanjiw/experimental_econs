@@ -1,0 +1,47 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil
+{% endblock %}
+
+{% block content %}
+
+
+  
+
+    <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td>Kontribusi anda:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>Kontribusi pemain lain:</td><td></td></tr>
+        {% for p in player.get_others_in_group %}
+            <tr><td></td><td>{{ p.contribution }}</td></tr>
+        {% endfor %}
+
+        <tr><td>Kontribusi Total:</td><td>{{ group.total_contribution }}</td></tr>
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Penambahan pendapatan pemain pertama:</td><td>{{ group.bribe_value_player1 }}</td></tr>
+        <tr><td>Share untuk pemain ketiga:</td><td>{{ group.bribe_value2 }}</td></tr>
+
+        <tr><td>Proyek Bersama Setelah Pengambilan:</td><td>{{ group.amount_left }}</td></tr>
+        <tr><td>{{ group.offer }}</td></tr>
+        <tr><td colspan="2"><hr/></td></tr>
+
+        <tr><td>Sehingga pendapatan anda adalah:</td><td>{{ player.payoff }}</td></tr>
+
+        <tr><td colspan="2"><hr/></td></tr>
+    </table>
+
+
+    <p></p>
+
+    {% next_button %}
+
+
+
+
+
+    {% include Constants.instructions_template %}
+
+
+{% endblock %}

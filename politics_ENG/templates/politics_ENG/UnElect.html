@@ -1,0 +1,16 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Voting Decision
+{% endblock %}
+
+{% block content %}
+
+    <p>
+        Not everybody is eligible for voting. Unfortunately, you cannot vote. Please click the 'next' button to proceed.
+    </p>
+
+    {% next_button %}
+
+{% endblock %}

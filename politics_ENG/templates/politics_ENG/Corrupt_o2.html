@@ -1,0 +1,36 @@
+{% extends "politics/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Breaking News (2/2)
+{% endblock %}
+
+{% block content %}
+
+    {% include Constants.vignette %}
+    <p>Take notice on the following information:</p>
+    <p>
+        <br>&bull; The probability of {% if subsession.winning_cand == 'A' %}President A{% else %}President B{% endif %} <b>being guilty
+        is {{ guilty_prob }}% </b>.
+        <br>&bull; This news source is somehow known to be not fully accurate. You know that in the past, this newspaper claims are
+        only {{reliability}}% true. In other words, their predictions are only <b>correct at {{reliability}}% of the times</b>.
+        <br>&bull; You also know that the chance of justice system on sentencing punishment, <b>given someone is guilty
+        is only {{pct_impeach}}%</b>.
+    </p>
+    <hr width="100%">
+
+    <p>
+        Given the information above, please estimate the chance that {% if subsession.winning_cand == 'A' %}
+                President A
+                {% else %}
+                President B
+        {% endif %} will be impeached, <i>given this news is true</i>. Notice that there is one correct solution. The closer your estimate
+        to the correct solution, the higher will be your payoff from this task. You may win a <b>maximum of {{ Constants.accuracy_multiplier }} points</b>
+        on this task. No points will be deducted from any inaccurate answer.
+    </p>
+    {% formfield player.accuracy_est label="<b>Question (2/2)</b>: Now answer this question. How likely do you think the president would be impeached given this news is true?" %}
+
+    <p><font color="darkblue">You may press the next button whenever you are settled with your answer.</font></p>
+    {% next_button %}
+
+{% endblock %}
