@@ -1,1 +1,3 @@
-otree>=2.1.13
+otree>=2.1.21
+numpy
+pandas
