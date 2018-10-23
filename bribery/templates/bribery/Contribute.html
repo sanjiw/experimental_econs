@@ -24,9 +24,12 @@
 
     {% formfield player.choice label="Berapakah poin yang anda kontribusikan untuk proyek bersama?:" %}
 
+    <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.
+    <br>
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
     <br>
-    <button class="btn" onclick="myFunction()">Tampilkan Instruksi Permainan</button>
+    <br>
+    <button class="btn" type="button" onclick="myFunction()">Sembunyikan Instruksi Permainan</button>
 
         <div id="myDIV">
         {% include Constants.instructions_template %}

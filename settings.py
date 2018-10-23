@@ -16,7 +16,7 @@ SESSION_CONFIGS = [
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
         'num_demo_participants': 3,
-        'app_sequence': ['embezzlement', 'bribery', 'post_quiz'],
+        'app_sequence': ['intro_screen','embezzlement', 'bribery', 'post_quiz'],
         'treatment': '0',
         'social_cost_multiplier': 1,
         'punishment_prob': 0.5,
@@ -78,6 +78,16 @@ ROOMS = [
         'name': 'live_demo',
         'display_name': 'Room for live demo (no participant labels)',
     },
+    {
+        'name': 'pilot_n12',
+        'display_name': 'Pilot (n=12)',
+        'participant_label_file': '_rooms/pilot_n12.txt'
+    },
+    {
+        'name': 'econs_exp',
+        'display_name': 'Experiment (n=42)',
+        'participant_label_file': '_rooms/exp_n42.txt'
+    }
 ]
 
 
