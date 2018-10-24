@@ -15,7 +15,7 @@ SESSION_CONFIGS = [
     {
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
-        'num_demo_participants': 12,
+        'num_demo_participants': 3,
         'app_sequence': ['intro_screen','embezzlement', 'bribery', 'post_quiz'],
         'treatment': '0',
         'social_cost_multiplier': 1,
@@ -28,7 +28,7 @@ SESSION_CONFIGS = [
     {
         'name': 'embezzlement',
         'display_name': "PG Games with Embezzlement",
-        'num_demo_participants': 12,
+        'num_demo_participants': 3,
         'app_sequence': ['embezzlement'],
         'treatment': '0',
         'social_cost_multiplier': 1,
@@ -40,7 +40,7 @@ SESSION_CONFIGS = [
     {
         'name': 'bribery',
         'display_name': "PG Games with Bribery",
-        'num_demo_participants': 12,
+        'num_demo_participants': 3,
         'app_sequence': ['bribery'],
         'treatment': '2',
         'social_cost_multiplier': 1,
