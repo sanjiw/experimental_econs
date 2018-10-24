@@ -12,7 +12,8 @@ class _1Questionnaire(Page):
                    'gender',
                    'faculty',
                    'seasoned',
-                   'perceived_wealth']
+                   'perceived_wealth',
+                   'subjective_probability']
 
     def before_next_page(self):
         self.player.payoff_rand()

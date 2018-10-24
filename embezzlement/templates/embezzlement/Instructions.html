@@ -62,6 +62,24 @@
                     <td>100 + 150 = 250 poin</td>
                 </tr>
             </table>
+        <p>
+            {% if player.treatmentgroup == '0' %}
+            Di dalam eksperimen ini tidak ada hukuman kepada subyek yang melakukan pengambilan total kontribusi
+
+            {% elif player.treatmentgroup == '1' %}
+            Di dalam eksperimen ini terdapat hukuman tetap kepada subyek yang melakukan pengambilan total kontribusi.
+            Apabila dia mengambil total kontribusi, maka akan ada probabilitas pengurangan poin akhir untuk dia sebesar 5 poin.
+
+            {% elif player.treatmentgroup == '2' %}
+            Di dalam eksperimen ini terdapat hukuman biaya sosial kepada subyek yang melakukan pengambilan total kontribusi.
+            Apabila dia mengambil total kontribusi, maka akan ada probabilitas pengurangan poin akhir
+            untuk dia sebesar biaya sosial. Biaya sosial dihitung berdasarkan selisih antara <strong>proyek bersama</strong> tanpa
+            pengambilan total kontribusi dan dengan pengambilan total kontribusi. Sebagai contoh, apabila total kontribusi
+            adalah 100 dan anda mengambil sebanyak 50, maka biaya sosial adalah (100 x {{ subsession.multiplier }}) -
+            ((100 - 50) x {{ subsession.multiplier }}), yakni <strong>75</strong> poin.
+
+            {% endif %}
+            </p>
         </div>
 
     </div>

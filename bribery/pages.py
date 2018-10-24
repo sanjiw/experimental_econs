@@ -8,6 +8,10 @@ class Introduction(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == 1
+    def vars_for_template(self):
+        return {
+            'num_training_rounds': self.session.config['num_training_rounds'],
+        }
 
 
 class InitialWaitPage(WaitPage):
@@ -20,7 +24,7 @@ class Contribute(Page):
     form_model = 'player'
     form_fields = ['choice']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 30
+    timeout_seconds = 60
 
     def before_next_page(self):
         self.player.set_contribute()
@@ -40,7 +44,7 @@ class Embezzlement(Page):
     form_model = 'player'
     form_fields = ['amount_embezzled']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 30
+    timeout_seconds = 60
 
     def is_displayed(self):
         return self.player.briber == True
@@ -57,7 +61,7 @@ class Bribe(Page):
     form_model = 'player'
     form_fields = ['bribe_pct']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 30
+    timeout_seconds = 60
 
     def is_displayed(self):
         return self.player.briber == True
@@ -87,7 +91,7 @@ class Results(Page):
             'total_earnings': self.player.payoff,
         }
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 30
+    timeout_seconds = 60
 
     def before_next_page(self):
         return self.player.payoff_vector_storage()

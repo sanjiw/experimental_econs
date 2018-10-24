@@ -2,19 +2,19 @@
 {% load otree static %}
 
 {% block title %}
-    Pengambilan Proyek Bersama
+    Pengambilan Proyek Bersama - Bagian 2 - Ronde {{ subsession.round_number }}
 {% endblock %}
 
 {% block content %}
 
     {% if player.training_round == True %}
         <div class="alert alert-info">
-            <strong>Informasi:</strong> Ronde ini adalah ronde latihan. Hasil dari ronde ini <b>tidak</b> akan mempengaruhi pembayaran
-            anda. Silakan mempelajari instrumen ini secara seksama.
+            <strong>Informasi:</strong> Ronde ini adalah <b>ronde latihan</b>. Hasil dari ronde ini <i>tidak</i> akan mempengaruhi pembayaran
+            anda. Silakan gunakan waktu ini untuk mempelajari permainan secara seksama.
         </div>
     {% else %}
         <div class="alert alert-warning">
-            <strong>Informasi:</strong> Ronde ini adalah <b>permainan riil</b>. Hasil dari ronde ini akan mempengaruhi pembayaran anda!
+            <strong>Informasi:</strong> Ronde ini adalah <b>permainan riil</b>. Hasil dari ronde ini akan <i>mempengaruhi pembayaran anda</i>!
         </div>
     {% endif %}
 

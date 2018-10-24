@@ -23,7 +23,9 @@ SESSION_CONFIGS = [
         'soc_welf_multiplier': 1.5,
         'num_training_rounds': 1,
         'punish_fine': 5,
-        'bribe_threshold':28
+        'bribe_threshold':28,
+        'timeout_training_secs': 60,
+        'timeout_real_secs': 30,
     },
     {
         'name': 'embezzlement',
@@ -36,6 +38,8 @@ SESSION_CONFIGS = [
         'soc_welf_multiplier': 1.5,
         'num_training_rounds': 1,
         'punish_fine': 5,
+        'timeout_training_secs': 60,
+        'timeout_real_secs': 30,
     },
     {
         'name': 'bribery',
@@ -48,7 +52,9 @@ SESSION_CONFIGS = [
         'soc_welf_multiplier': 1.5,
         'num_training_rounds': 1,
         'punish_fine': 5,
-        'bribe_threshold': 28
+        'bribe_threshold': 28,
+        'timeout_training_secs': 60,
+        'timeout_real_secs': 30,
     },
     {
         'name': 'post_quiz',

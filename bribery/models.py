@@ -13,7 +13,7 @@ Bribery Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_penyuapan'
     players_per_group = 3
-    num_rounds = 8
+    num_rounds = 2
     instructions_template = 'bribery/Instructions.html'
     endowment_high = 40
     endowment_low = 40
@@ -25,7 +25,7 @@ class Subsession(BaseSubsession):
     multiplier = models.FloatField()
 
     def creating_session(self):
-        matrix = [[1, 2, 3]], [[3, 2, 1]], [[2, 3, 1]], [[3, 1, 2]], [[1, 2, 3]], [[3, 2, 1]], [[2, 3, 1]], [[3, 1, 2]]
+        matrix = [[1, 2, 3]], [[3, 2, 1]]
         matrix12 = [[2, 1, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]], \
                    [[8, 3, 10], [9, 5, 12], [7, 1, 4], [11, 2, 6]], \
                    [[5, 2, 10], [1, 9, 11], [6, 3, 7], [4, 12, 8]], \
