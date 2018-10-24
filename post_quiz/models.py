@@ -29,7 +29,7 @@ class Player(BasePlayer):
         ##### Exclude all training rounds
         pay_tup_only_paid = [i for i in pay_tup_all_rd if i[1]==False]
         ##### Randomizer local var
-        sel = np.random.randint(1, len(pay_tup_only_paid))
+        sel = np.random.randint(1, len(pay_tup_only_paid)) - 1
         ##### Payoff round number selector
         self.payround = pay_tup_only_paid[sel][2]
         ##### Payoff selector
