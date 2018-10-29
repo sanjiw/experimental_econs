@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pendahuluan
+{% endblock %}
+
+{% block content %}
+
+    Tugas Anda sederhana, Anda tinggal menggeser slider ke angka yang tertulis di instruksi
+    dalam kurun waktu yang terbatas. Anda akan mendapatkan<b> {{ points_high }} poin</b> jika Anda telah menaruh slider tepat di angka
+    yang ditentukan pada saat waktu habis. Anda akan mendapatkan<b> {{ points_low }} poin</b> jika Anda menaruh slider dalam rentang -3
+    atau 3 angka dari perintah di slider. Anda <b>tidak</b> mendapat poin jika Anda menaruh slider di luar rentang tersebut.
+    <br>
+    <br>
+    Total poin Anda akan ditampilkan setelah waktu habis.
+    <br>
+    <br>
+    Berikut adalah contoh dari slider yang akan anda mainkan.
+
+    {% formfields %}
+
+    {% next_button %}
+
+{% endblock %}

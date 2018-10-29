@@ -26,6 +26,14 @@ SESSION_CONFIGS = [
         'bribe_threshold':28,
     },
     {
+        'name': 'slider_effort',
+        'display_name': "Real Effort Task - Slider",
+        'num_demo_participants': 1,
+        'app_sequence': ['slider_effort'],
+        'points_exact':3,
+        'points_near':1,
+    },
+    {
         'name': 'embezzlement',
         'display_name': "PG Games with Embezzlement",
         'num_demo_participants': 3,
@@ -55,6 +63,12 @@ SESSION_CONFIGS = [
         'display_name': "Post Quiz",
         'num_demo_participants': 42,
         'app_sequence': ['post_quiz'],
+    },
+    {
+        'name': 'prisoner',
+        'display_name': "Prisoner's Dilemma",
+        'num_demo_participants': 2,
+        'app_sequence': ['prisoner', 'payment_info'],
     },
 ]
 # see the end of this file for the inactive session configs
