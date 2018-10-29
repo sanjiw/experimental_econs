@@ -29,7 +29,7 @@ SESSION_CONFIGS = [
         'name': 'slider_effort',
         'display_name': "Real Effort Task - Slider",
         'num_demo_participants': 1,
-        'app_sequence': ['slider_effort'],
+        'app_sequence': ['intro_screen','slider_effort'],
         'points_exact':3,
         'points_near':1,
     },
