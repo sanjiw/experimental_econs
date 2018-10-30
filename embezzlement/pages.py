@@ -77,6 +77,9 @@ class Results(Page):
     def get_timeout_seconds(self):
         return self.group.timeout
 
+    def before_next_page(self):
+        return self.player.payoff_vector_storage()
+
 
 page_sequence = [
     Introduction,
