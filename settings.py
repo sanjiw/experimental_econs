@@ -24,6 +24,8 @@ SESSION_CONFIGS = [
         'num_training_rounds': 1,
         'punish_fine': 5,
         'bribe_threshold':28,
+        'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
+        'timeout_real': 30
     },
     {
         'name': 'slider_effort',
@@ -44,6 +46,8 @@ SESSION_CONFIGS = [
         'soc_welf_multiplier': 1.5,
         'num_training_rounds': 1,
         'punish_fine': 5,
+        'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
+        'timeout_real': 30
     },
     {
         'name': 'bribery',
@@ -57,6 +61,8 @@ SESSION_CONFIGS = [
         'num_training_rounds': 1,
         'punish_fine': 5,
         'bribe_threshold': 28,
+        'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
+        'timeout_real': 30
     },
     {
         'name': 'post_quiz',
@@ -67,7 +73,7 @@ SESSION_CONFIGS = [
     {
         'name': 'prisoner',
         'display_name': "Prisoner's Dilemma",
-        'num_demo_participants': 2,
+        'num_demo_participants': 4,
         'app_sequence': ['prisoner', 'payment_info'],
     },
 ]

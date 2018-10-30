@@ -24,7 +24,9 @@ class Contribute(Page):
     form_model = 'player'
     form_fields = ['choice']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 60
+
+    def get_timeout_seconds(self):
+        return self.group.timeout
 
     def before_next_page(self):
         self.player.set_contribute()
@@ -44,7 +46,9 @@ class Embezzlement(Page):
     form_model = 'player'
     form_fields = ['amount_embezzled']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 60
+
+    def get_timeout_seconds(self):
+        return self.group.timeout
 
     def is_displayed(self):
         return self.player.briber == True
@@ -61,7 +65,9 @@ class Bribe(Page):
     form_model = 'player'
     form_fields = ['bribe_pct']
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 60
+
+    def get_timeout_seconds(self):
+        return self.group.timeout
 
     def is_displayed(self):
         return self.player.briber == True
@@ -91,7 +97,9 @@ class Results(Page):
             'total_earnings': self.player.payoff,
         }
     timer_text = "Waktu yang tersisa di halaman ini:"
-    timeout_seconds = 60
+
+    def get_timeout_seconds(self):
+        return self.group.timeout
 
     def before_next_page(self):
         return self.player.payoff_vector_storage()

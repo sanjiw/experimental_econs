@@ -13,7 +13,7 @@ Embezzlement Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penggelapan_Mod'
     players_per_group = 3
-    num_rounds = 2
+    num_rounds = 3
     instructions_template = 'embezzlement/Instructions.html'
     endowment_high = 40
     endowment_low = 40
@@ -25,7 +25,7 @@ class Subsession(BaseSubsession):
     multiplier = models.FloatField()
 
     def creating_session(self):
-        matrix = [[1, 2, 3]], [[3, 2, 1]]
+        matrix = [[1, 2, 3]], [[3, 2, 1]], [[2, 3, 1]]
         matrix12 = [[2, 1, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]],\
                  [[8, 3, 10], [9, 5, 12], [7, 1, 4], [11, 2, 6]],\
                  [[5, 2, 10], [1, 9, 11], [6, 3, 7], [4, 12, 8]],\
@@ -58,12 +58,19 @@ class Subsession(BaseSubsession):
                 p.embezzler = True
             else:
                 p.embezzler = False
+
         self.multiplier = self.session.config['soc_welf_multiplier']
         for p in self.get_players():
             if self.round_number <= self.session.config['num_training_rounds']:
                 p.training_round = True
             else:
                 p.training_round = False
+
+        for g in self.get_groups():
+            if self.round_number <= self.session.config['num_training_rounds']:
+                g.timeout = self.session.config['timeout_practice']
+            else:
+                g.timeout = self.session.config['timeout_real']
 
     def vars_for_admin_report(self):
         contributions = [p.contribution for p in self.get_players() if p.contribution != None]
@@ -95,6 +102,7 @@ class Group(BaseGroup):
     contribution_left = models.FloatField()
     amt_embezzled_g = models.FloatField()
     punish = models.BooleanField()
+    timeout = models.IntegerField()
 
     def prob_punishment(self):
         punish_prob = self.session.config['punishment_prob']

@@ -79,23 +79,5 @@
 
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Mainkan Ronde Berikutnya</button>
 
-    <br>
-    <button class="btn" type="button" onclick="myFunction()">Sembunyikan Instruksi Permainan</button>
-
-        <div id="myDIV">
-        {% include Constants.instructions_template %}
-        </div>
-
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>
-
 
 {% endblock %}
