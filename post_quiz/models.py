@@ -113,8 +113,5 @@ class Player(BasePlayer):
         label='Anggap seluruh mahasiswa UGM diwakilkan dalam 100 orang, dari yang paling tidak mampu (0) hingga paling mampu (100).'
               'Jika Anda adalah salah satu dari mahasiswa tersebut, peringkat berapakah Anda?'
     )
-    subjective_probability = models.IntegerField(
-        widget=widgets.Slider, min=0, max=100,
-        label='Menurut anda, berapa peluang (peluang) anda untuk ditangkap'
-    )
+
 

@@ -67,7 +67,7 @@ SESSION_CONFIGS = [
     {
         'name': 'post_quiz',
         'display_name': "Post Quiz",
-        'num_demo_participants': 42,
+        'num_demo_participants': 1,
         'app_sequence': ['post_quiz'],
     },
     {

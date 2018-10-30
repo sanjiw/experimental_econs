@@ -12,6 +12,11 @@ class _1Questionnaire(Page):
                    'gender',
                    'faculty',
                    'seasoned',
+                   'dwellings',
+                   'work_status',
+                   'pocket_money',
+                   'faith','moral',
+                   'brothers_rank','brothers_sum',
                    'perceived_wealth',
                    'subjective_probability']
 
