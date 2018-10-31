@@ -11,14 +11,10 @@ Bribery Game dengan 3 pemain per grup per ronde
 """
 
 class Constants(BaseConstants):
-    name_in_url = 'Eksperimen_penyuapan'
+    name_in_url = 'Eksperimen_Penyuapan_Mod'
     players_per_group = 3
     num_rounds = 3
     instructions_template = 'bribery/Instructions.html'
-    endowment_high = 40
-    endowment_low = 40
-    timeout_practice = 60
-    timeout_real = 30
     strategy_space = [50, 40, 30, 20, 10]
 
 
@@ -109,10 +105,7 @@ class Subsession(BaseSubsession):
 
     def endowment_rule(self):
         for p in self.get_players():
-            if p.id_in_group == 3:
-                p.endowment = Constants.endowment_high
-            else:
-                p.endowment = Constants.endowment_low
+            p.endowment = self.session.config['endowment']
 
 
 class Group(BaseGroup):
@@ -124,6 +117,10 @@ class Group(BaseGroup):
     punish = models.BooleanField()
     bribe_acc = models.BooleanField()
     timeout = models.IntegerField()
+    endowment = models.IntegerField()
+
+    def endow_group(self):
+        self.endowment = self.session.config['endowment']
 
     def set_payoffs1(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
@@ -207,19 +204,29 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
-    choice = models.StringField(
-        widget=widgets.RadioSelect,
-        choices=[str(i) + '%' for i in Constants.strategy_space]
+    choice = models.IntegerField(
+        widget=widgets.Slider, default=0,
+        min=0, max=Group.endowment,
+        label="Berapa poin dari poin Anda yang ingin dikontribusikan pada proyek bersama?"
     )
+
     bribe_pct = models.IntegerField(default=0,
         widget=widgets.Slider,
-        min=0, max=100
+        min=0, max=100,
+        label = "Berapa persen (%) dari total dana yang Anda ambil yang ingin Anda berikan pada pihak ketiga?"
     )
+
     contribution = models.FloatField()
     endowment = models.FloatField()
     treatmentgroup = models.StringField()
     briber = models.BooleanField()
-    amount_embezzled = models.FloatField(default=0, min=0, max=Group.total_contribution)
+
+    amount_embezzled = models.IntegerField(
+        widget=widgets.Slider, default=0,
+        min=0, max=Group.total_contribution,
+        label="Berapa poin dari total kontribusi yang ingin Anda ambil?"
+    )
+
     bribe_self = models.FloatField(default=0)
     bribe_AI = models.FloatField(default=0)
     payoff_thisround = models.FloatField()
@@ -245,21 +252,11 @@ class Player(BasePlayer):
         self.dump3 = str(self.participant.vars['round_all_vct'])
 
     def money_alloc(self):
-        self.bribe_self = float((100 - self.bribe_pct)/100) * self.amount_embezzled
-        self.bribe_AI = float(self.bribe_pct/100) * self.amount_embezzled
+        self.bribe_self = float((100 - self.bribe_pct)/100) * float(self.amount_embezzled)
+        self.bribe_AI = float(self.bribe_pct/100) * float(self.amount_embezzled)
 
     def set_contribute(self):
-        choice = [str(i) + '%' for i in Constants.strategy_space]
-        if self.choice == choice[0]:
-            self.contribution = (Constants.strategy_space[0] * self.endowment / 100)
-        elif self.choice == choice[1]:
-            self.contribution = (Constants.strategy_space[1] * self.endowment / 100)
-        elif self.choice == choice[2]:
-            self.contribution = (Constants.strategy_space[2] * self.endowment / 100)
-        elif self.choice == choice[3]:
-            self.contribution = (Constants.strategy_space[3] * self.endowment / 100)
-        else:
-            self.contribution = (Constants.strategy_space[4] * self.endowment / 100)
+        self.contribution = round(self.choice)
 
     def role(self):
         if self.briber == True:

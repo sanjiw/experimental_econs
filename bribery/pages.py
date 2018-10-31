@@ -11,12 +11,14 @@ class Introduction(Page):
     def vars_for_template(self):
         return {
             'num_training_rounds': self.session.config['num_training_rounds'],
+            'endowment': self.session.config['endowment']
         }
 
 
 class InitialWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.subsession.endowment_rule()
+        self.group.endow_group()
 
 
 class Contribute(Page):
@@ -28,17 +30,20 @@ class Contribute(Page):
     def get_timeout_seconds(self):
         return self.group.timeout
 
+    def choice_max(self):
+        return self.group.endowment
+
     def before_next_page(self):
         self.player.set_contribute()
         if self.timeout_happened:
-            self.player.choice = np.random.choice([str(i) + '% dari endowment' for i in Constants.strategy_space])
+            self.player.choice = np.random.randint(0, self.session.config['endowment'])
 
 
 class ContributionWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs1()
 
-    body_text = "Waiting for the other participants to contribute"
+    body_text = "Menunggu peserta lainnya..."
 
 
 class Embezzlement(Page):
@@ -82,7 +87,7 @@ class PostWaitPage(WaitPage):
         self.group.prob_punishment()
         self.group.set_payoffs2()
 
-    body_text = "Waiting for the other participants to contribute"
+    body_text = "Menunggu peserta lainnya..."
 
 
 class  ResultsWaitPage(WaitPage):

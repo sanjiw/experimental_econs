@@ -17,8 +17,7 @@ class _1Questionnaire(Page):
                    'pocket_money',
                    'faith','moral',
                    'brothers_rank','brothers_sum',
-                   'perceived_wealth',
-                   'subjective_probability']
+                   'perceived_wealth']
 
     def before_next_page(self):
         self.player.payoff_rand()

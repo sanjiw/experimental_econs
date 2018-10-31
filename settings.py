@@ -25,7 +25,8 @@ SESSION_CONFIGS = [
         'punish_fine': 5,
         'bribe_threshold':28,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30
+        'timeout_real': 30,
+        'endowment': 40,
     },
     {
         'name': 'slider_effort',
@@ -47,7 +48,8 @@ SESSION_CONFIGS = [
         'num_training_rounds': 1,
         'punish_fine': 5,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30
+        'timeout_real': 30,
+        'endowment': 40,
     },
     {
         'name': 'bribery',
@@ -62,7 +64,8 @@ SESSION_CONFIGS = [
         'punish_fine': 5,
         'bribe_threshold': 28,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30
+        'timeout_real': 30,
+        'endowment': 40,
     },
     {
         'name': 'post_quiz',
