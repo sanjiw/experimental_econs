@@ -11,16 +11,51 @@
 
     <br>Sesuai prosedur eksperimen, uang yang Anda terima adalah pendapatan Anda dari salah satu ronde yang Anda mainkan.
 
-    <br>Berdasarkan randomisasi komputer, Anda akan menerima pembayaran dari hasil Anda di ronde ke-{{ payoff_round }}.
+    <br>Berdasarkan randomisasi komputer, Anda akan menerima pembayaran dari hasil Anda di ronde ke-{{ payoff_round }}. Anda
+    tercatat mendapatkan {{ points }} poin pada ronde tersebut.
 
     <hr width="100%">
-    <font size="5">Anda berhak menerima pembayaran sebesar <b>{{ total_earnings }}.</b></font>
+    <font size="5">Anda berhak menerima total pembayaran sebesar <b>{{ total_earnings }}.</b></font>
     <hr width="100%">
 
-    <b>CATATAN:</b> Jumlah di atas sudah termasuk uang kehadiran Anda.
+    CATATAN: Jumlah di atas sudah termasuk uang kehadiran Anda.
+    <br>
     Anda dipersilakan meninggalkan ruangan dan menuju kasir di luar ruangan untuk pembayaran.
     Jangan lupa untuk mengembalikan kartu peserta Anda. <b>Anda tidak berhak menerima pembayaran tanpa pengembalian kartu peserta!</b>
 
     <br>Jikalau ada pertanyaan terkait eksperimen ini, silakan diajukan ke <b>putu.arya.w@ugm.ac.id</b>.
+    <br>
+    <br>
+    <br>
+    <b>Tabel hasil permainan Anda dari seluruh ronde:</b>
+    <br>
+    <br>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 5px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <table>
+             <tr>
+                <th>Ronde</th>
+                <th>Poin Akhir</th>
+             </tr>
+    {% for i in payoff_matrix %}
+             <tr>
+                 <th>{{ i.2 }}</th>
+                 <th>{{ i.0 }}</th>
+             </tr>
+    {% endfor %}
+    </table>
+    CATATAN: Hasil dari ronde latihan tidak ditampilkan dalam tabel ini.
 
 {% endblock %}

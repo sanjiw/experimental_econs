@@ -25,8 +25,8 @@ SESSION_CONFIGS = [
         'punish_fine': 5,
         'bribe_threshold':28,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30,
-        'endowment': 40,
+        'timeout_real': 45,
+        'endowment': 100,
     },
     {
         'name': 'slider_effort',

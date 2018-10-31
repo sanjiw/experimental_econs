@@ -3,6 +3,7 @@ from otree.api import (
     Currency as c, currency_range
 )
 import numpy as np
+import json
 
 author = 'Sanjiwacika Wibisana - UGM'
 
@@ -28,18 +29,23 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     payround = models.IntegerField()
+    points = models.IntegerField()
+    result_matrix = models.StringField()
 
     def payoff_rand(self):
         ##### Tuple conversion for all data
         pay_tup_all_rd = list(zip(self.participant.vars['payoff_vct'],self.participant.vars['training'],self.participant.vars['round_all_vct']))
         ##### Exclude all training rounds
         pay_tup_only_paid = [i for i in pay_tup_all_rd if i[1]==False]
+        self.result_matrix = json.dumps(pay_tup_only_paid)
         ##### Randomizer local var
         sel = np.random.randint(1, len(pay_tup_only_paid)) - 1
         ##### Payoff round number selector
         self.payround = pay_tup_only_paid[sel][2]
+        self.points = int(pay_tup_only_paid[sel][0])
         ##### Payoff selector
         self.participant.payoff = pay_tup_only_paid[sel][0]
+
 
     fullname = models.StringField(
         label='Nama Lengkap:'

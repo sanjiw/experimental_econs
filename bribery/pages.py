@@ -15,6 +15,10 @@ class Introduction(Page):
             'timeout': self.session.config['timeout_real']
         }
 
+class RealGameWarning(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == (self.session.config['num_training_rounds'] + 1)
 
 class InitialWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -119,6 +123,7 @@ class Results(Page):
 
 page_sequence = [
     Introduction,
+    RealGameWarning,
     InitialWaitPage,
     Contribute,
     ContributionWaitPage,

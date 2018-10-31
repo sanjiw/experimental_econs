@@ -68,6 +68,8 @@
 
         <tr><td colspan="2"><hr/></td></tr>
 
+        <tr><td><font size="5"><b>Kalkulasi poin Anda:</b></font></td></tr>
+
         <tr><td>Sisa poin Anda ({{ player.endowment }} - <font color="green">{{player.contribution}}</font>):</td><td><b>+{{ point_left }}</b></td></tr>
 
         {% if player.embezzler == True %}
@@ -86,7 +88,7 @@
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Total poin Anda di Ronde ini (Ronde {{subsession.round_number}}):</td><td><b>{{ player.payoff_thisround }}</b></td></tr>
+        <tr><td>Total poin Anda di Ronde ini (Ronde {{subsession.round_number}}):</td><td><font size="5"><b>{{ player.payoff_thisround }}</b></font></td></tr>
 
     </table>
     <p></p>
