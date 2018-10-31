@@ -21,9 +21,9 @@
     <p>
         {% if player.treatmentgroup == '0' %}
             {% if group.amt_embezzled_g > 0 %}
-            <font color="darkred">Salah satu dari anggota kelompok anda melakukan penggelapan.</font>
+            <font color="darkred"><b>Salah satu dari anggota kelompok anda melakukan penggelapan.</b></font>
             {% else %}
-            <font color="darkblue">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
+            <font color="darkblue"><b>Tidak ada anggota kelompok anda yang melakukan penggelapan.</b></font>
             {% endif %}
 
         {% elif player.treatmentgroup == '1' %}
@@ -53,30 +53,47 @@
     </p>
 
     <table class="table-condensed" style="width:500px; margin-top:20px;">
-        <tr><td>Kontribusi anda:</td><td>{{ player.contribution }}</td></tr>
+        <tr><td>Kontribusi Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
         <tr><td>Kontribusi pemain lain:</td><td></td></tr>
         {% for p in player.get_others_in_group %}
             <tr><td></td><td>{{ p.contribution }}</td></tr>
         {% endfor %}
 
         <tr><td>Kontribusi Total:</td><td>{{ group.total_contribution }}</td></tr>
+        <tr><td>Kontribusi total yang diambil:</td><td>-{{ group.amt_embezzled_g }}</td></tr>
+        <tr><td colspan="2"><hr/></td></tr>
+        <tr><td>Kontribusi total yang tersisa:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+        <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
+            :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Kontribusi total yang disisakan:</td><td>{{ group.contribution_left }}</td></tr>
-        <tr><td>Kontribusi total yang digelapkan:</td><td>{{ group.amt_embezzled_g }}</td></tr>
+        <tr><td>Sisa poin Anda ({{ player.endowment }} - <font color="green">{{player.contribution}}</font>):</td><td><b>+{{ point_left }}</b></td></tr>
 
-        <tr><td>Sisa nilai proyek bersama:</td><td>{{ group.social_welfare_embz }}</td></tr>
+        {% if player.embezzler == True %}
+            <tr><td>Kontribusi total yang Anda ambil:</td><td><b>+{{ group.amt_embezzled_g }}</b></td></tr>
+            {% if group.punish == True and group.social_welfare_embz < group.social_welfare %}
+                {% if player.treatmentgroup == '1' %}
+                    <tr><td>Denda:</td><td><b>-{{ fine }}</b></td></tr>
+                {% elif player.treatmentgroup == '2' %}
+                    <tr><td>Denda:</td><td><b>-{{ social_cost }}</b></td></tr>
+                {% else %}{% endif %}
+            {% else %}{% endif %}
+        {% else %}{% endif %}
+
+        <tr><td>Jatah individu dari proyek bersama (<font color="chocolate">{{group.social_welfare_embz }}</font> / {{Constants.players_per_group}} pemain):
+            </td><td><b>+{{ indv_share_project }}</b></td></tr>
+
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Sehingga, pendapatan anda di ronde ini menjadi:</td><td>{{ player.payoff_thisround }}</td></tr>
+        <tr><td>Total poin Anda di Ronde ini (Ronde {{subsession.round_number}}):</td><td><b>{{ player.payoff_thisround }}</b></td></tr>
 
     </table>
     <p></p>
 
     <br>Tekan tombol di bawah untuk melanjutkan ke ronde berikutnya.
     <br>
-
+    <br>
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Mainkan Ronde Berikutnya</button>
 
 

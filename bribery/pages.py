@@ -11,7 +11,8 @@ class Introduction(Page):
     def vars_for_template(self):
         return {
             'num_training_rounds': self.session.config['num_training_rounds'],
-            'endowment': self.session.config['endowment']
+            'endowment': self.session.config['endowment'],
+            'timeout': self.session.config['timeout_real']
         }
 
 
@@ -100,7 +101,13 @@ class Results(Page):
     def vars_for_template(self):
         return {
             'total_earnings': self.player.payoff,
+            'indv_share_project': self.group.social_welfare_embz / Constants.players_per_group,
+            'indv_share_project_full': self.group.social_welfare / Constants.players_per_group,
+            'point_left': self.player.endowment - self.player.contribution,
+            'fine': self.session.config['punish_fine'],
+            'social_cost': (self.group.social_welfare - self.group.social_welfare_embz) * self.session.config['social_cost_multiplier'],
         }
+
     timer_text = "Waktu yang tersisa di halaman ini:"
 
     def get_timeout_seconds(self):

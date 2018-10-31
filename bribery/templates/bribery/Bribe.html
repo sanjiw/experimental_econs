@@ -19,13 +19,13 @@
     {% endif %}
 
     <p>
-        Anda sudah menentukan jumlah pengambilan kontribusi total, selanjutnya anda akan menentukan nilai yang
+        Anda telah mengambil sebanyak {{ group.amt_embezzled_g }} dari total kontribusi, selanjutnya Anda akan menentukan nilai yang
     akan dibagikan ke pihak ketiga.
     </p>
-        <tr><td>Pengambilan:</td><td> {{ group.amt_embezzled_g }}</td></tr>
 
     {% formfield player.bribe_pct %}
     <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.
+    <br>
     <br>
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
 

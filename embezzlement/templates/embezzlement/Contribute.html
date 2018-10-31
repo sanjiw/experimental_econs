@@ -18,13 +18,14 @@
         </div>
     {% endif %}
 
-    Nilai <i>endowment</i> anda: {{ player.endowment }}
+    Poin awal Anda: {{ player.endowment }}
 
-    <br><tr><td>Angka pengganda:</td><td> {{ subsession.multiplier }}</td></tr>
+    <br><tr><td>Angka pengganda proyek bersama:</td><td> {{ subsession.multiplier }}</td></tr>
 
     {% formfield player.choice %}
 
     <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.
+    <br>
     <br>
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
 

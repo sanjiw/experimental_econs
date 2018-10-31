@@ -19,12 +19,13 @@
     {% endif %}
 
     <p>
-        Anda memiliki kesempatan untuk mengambil sebagian/seluruh kontribusi total yang telah dikumpulkan.
+        Anda telah terpilih secara acak untuk mengambil sebagian/seluruh kontribusi total yang telah dikumpulkan.
     </p>
-        <tr><td>Kontribusi total:</td><td> {{ group.total_contribution }}</td></tr>
+        <tr><td>Total poin terkumpul dari 3 pemain:</td><td> {{ group.total_contribution }}</td></tr>
 
     {% formfield player.amount_embezzled %}
     <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.
+    <br>
     <br>
     <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
 

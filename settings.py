@@ -41,7 +41,7 @@ SESSION_CONFIGS = [
         'display_name': "PG Games with Embezzlement",
         'num_demo_participants': 3,
         'app_sequence': ['embezzlement'],
-        'treatment': '0',
+        'treatment': '2',
         'social_cost_multiplier': 1,
         'punishment_prob': 0.5,
         'soc_welf_multiplier': 1.5,
