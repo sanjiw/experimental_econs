@@ -20,7 +20,7 @@ based on
 class Constants(BaseConstants):
     name_in_url = 'lemon_market'
     players_per_group = 3
-    num_rounds = 3
+    num_rounds = 10
 
     instructions_template = 'lemon_market/Instructions.html'
 

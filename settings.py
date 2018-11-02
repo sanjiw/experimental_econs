@@ -79,12 +79,6 @@ SESSION_CONFIGS = [
         'num_demo_participants': 4,
         'app_sequence': ['prisoner', 'payment_info'],
     },
-    {
-         'name': 'lemon_market',
-         'display_name': "Lemon Market Game",
-         'num_demo_participants': 3,
-         'app_sequence': ['lemon_market', 'payment_info'],
-    },
 ]
 # see the end of this file for the inactive session configs
 
