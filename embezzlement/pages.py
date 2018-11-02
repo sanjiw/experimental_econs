@@ -3,6 +3,8 @@ from .models import Constants, Player, Group
 from otree.api import (Currency as c)
 import numpy as np
 
+from otreeutils.pages import AllGroupsWaitPage, ExtendedPage, UnderstandingQuestionsPage
+
 
 class Introduction(Page):
 
@@ -14,6 +16,57 @@ class Introduction(Page):
             'endowment': self.session.config['endowment'],
             'timeout': self.session.config['timeout_real']
         }
+
+class TestQ(UnderstandingQuestionsPage):
+
+    def is_displayed(self):
+        return self.round_number == (self.session.config['num_training_rounds'] + 1)
+
+    page_title = 'Uji Pemahaman Instrumen'
+    set_correct_answers = False
+    form_model = 'player'
+    questions = [
+        {
+            'question': 'Anda punya poin awal 100. Anda menyumbang 10 poin, pemain lainnya masing-masing menyumbang'
+                        ' 10 poin. Tidak ada pemain yang mengambil poin. Berapakah total nilai sumbangan?',
+            'options': [10, 20, 30, 40],
+            'correct': 30,
+            'hint': 'Ingat, total sumbangan adalah jumlah poin yang disumbangkan seluruh pemain, dikurangi pengambilan'
+                    '(jika ada pemain yang mengambil, siapapun itu)!'
+        },
+        {
+            'question': 'Anda punya poin awal 100. Anda menyumbang 10 poin, pemain lainnya masing-masing menyumbang'
+                        ' 10 poin. Salah satu pemain mengambil 15 poin. Berapakah total nilai sumbangan?',
+            'options': [0, 5, 15, 25, 30],
+            'correct': 15,
+            'hint': 'Ingat, total sumbangan adalah jumlah poin yang disumbangkan seluruh pemain, dikurangi pengambilan'
+                    '(jika ada pemain yang mengambil, siapapun itu)!'
+        },
+        {
+            'question': 'Anda punya poin awal 100. Anda menyumbang 20, pemain lainnya menyumbang masing-masing'
+                        ' 10 dan 20 poin. Anda mengambil 5 poin. Berapakah total nilai sumbangan?',
+            'options': [0, 15, 25, 35, 45],
+            'correct': 45,
+            'hint': 'Ingat, total sumbangan adalah jumlah poin yang disumbangkan seluruh pemain, dikurangi pengambilan'
+                    '(jika ada pemain yang mengambil, siapapun itu)!'
+        },
+        {
+            'question': 'Anda punya poin awal 100. Anda menyumbang 20, pemain lainnya menyumbang masing-masing'
+                        ' 10 dan 20 poin. Tidak ada yang mengambil poin. Angka pengganda adalah 1.5. Berapakah total nilai proyek bersama?',
+            'options': [0, 25, 40, 75, 100],
+            'correct': 75,
+            'hint': 'Ingat, total proyek bersama adalah jumlah poin yang disumbangkan seluruh pemain setelah dikurangi pengambilan'
+                    'dan dikalikan dengan angka pengganda ((20+10+20)*1.5=75)'
+        },
+        {
+            'question': 'Anda punya poin awal 100. Anda menyumbang 20, pemain lainnya menyumbang masing-masing'
+                        ' 10 dan 20 poin. Salah satu pemain mengambil 20 poin. Angka pengganda adalah 1.5. Berapakah total nilai proyek bersama?',
+            'options': [0, 20, 45, 70, 95],
+            'correct': 70,
+            'hint': 'Ingat, total proyek bersama adalah jumlah poin yang disumbangkan seluruh pemain setelah dikurangi pengambilan'
+                    'dan dikalikan dengan angka pengganda ((20+10+20-20)*1.5=45)'
+        }
+    ]
 
 class RealGameWarning(Page):
 
@@ -104,6 +157,7 @@ class Results(Page):
 
 page_sequence = [
     Introduction,
+    TestQ,
     RealGameWarning,
     InitialWaitPage,
     Contribute,
