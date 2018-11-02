@@ -54,15 +54,16 @@
 
     <table class="table-condensed" style="width:500px; margin-top:20px;">
         <tr><td>Kontribusi Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
-        <tr><td>Kontribusi pemain lain:</td><td></td></tr>
-        {% for p in player.get_others_in_group %}
-            <tr><td></td><td>{{ p.contribution }}</td></tr>
-        {% endfor %}
 
-        <tr><td>Kontribusi Total:</td><td>{{ group.total_contribution }}</td></tr>
-        <tr><td>Kontribusi total yang diambil:</td><td>-{{ group.amt_embezzled_g }}</td></tr>
         <tr><td colspan="2"><hr/></td></tr>
-        <tr><td>Kontribusi total yang tersisa:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+        <tr><td>Kontribusi total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+            {% if group.punish == True %}
+                {% if player.treatmentgroup == '1' %}
+                <tr><td>Salah satu pemain gagal mengambil total kontribusi sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
+                {% elif player.treatmentgroup == '2' %}
+                <tr><td>Salah satu pemain gagal mengambil total kontribusi sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
+                {% else %}{% endif %}
+            {% else %}{% endif %}
         <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
             :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
 
