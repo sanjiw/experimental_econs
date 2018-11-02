@@ -35,6 +35,11 @@ class Subsession(BaseSubsession):
             'name': 'Social Welfare after Embezzlement',
             'data': soc_welfare_embz})
 
+        tot_contribution = [g.total_contribution for g in group.in_all_rounds()]
+        series.append({
+            'name': 'Total Contribution',
+            'data': tot_contribution})
+
         for player in group.get_players():
             payoffs = [p.payoff_thisround for p in player.in_all_rounds()]
             series.append(
