@@ -67,7 +67,6 @@ class Subsession(BaseSubsession):
         }
 
 
-
 class Group(BaseGroup):
     sale_price = models.CurrencyField()
     sale_quality = models.StringField()

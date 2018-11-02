@@ -20,6 +20,32 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
 
+    def vars_for_admin_report(self):
+        group = self.get_groups()[0]
+
+        series = []
+
+        soc_welfare = [g.social_welfare for g in group.in_all_rounds()]
+        series.append({
+            'name': 'Social Welfare without Embezzlement',
+            'data': soc_welfare})
+
+        soc_welfare_embz = [g.social_welfare_embz for g in group.in_all_rounds()]
+        series.append({
+            'name': 'Social Welfare after Embezzlement',
+            'data': soc_welfare_embz})
+
+        for player in group.get_players():
+            payoffs = [p.payoff_thisround for p in player.in_all_rounds()]
+            series.append(
+                {'name': 'Earnings for {}'.format(player.role()),
+                 'data': payoffs})
+
+        return {
+            'highcharts_series': series,
+            'round_numbers': list(range(1, Constants.num_rounds + 1))
+        }
+
     multiplier = models.FloatField()
 
     def creating_session(self):
@@ -70,21 +96,6 @@ class Subsession(BaseSubsession):
                 g.timeout = self.session.config['timeout_practice']
             else:
                 g.timeout = self.session.config['timeout_real']
-
-    def vars_for_admin_report(self):
-        contributions = [p.contribution for p in self.get_players() if p.contribution != None]
-        if contributions:
-            return {
-                'avg_contribution': sum(contributions)/len(contributions),
-                'min_contribution': min(contributions),
-                'max_contribution': max(contributions),
-            }
-        else:
-            return {
-                'avg_contribution': '(no data)',
-                'min_contribution': '(no data)',
-                'max_contribution': '(no data)',
-            }
 
     def endowment_rule(self):
         for p in self.get_players():
@@ -203,10 +214,4 @@ class Player(BasePlayer):
         self.contribution = round(self.choice)
 
     def role(self):
-        if self.id_in_group == 1:
-            return 'Player 1'
-        elif self.id_in_group == 2:
-            return 'Player 2'
-        else:
-            return 'Player 3'
-
+        return 'Player {}'.format(self.participant.label)
