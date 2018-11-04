@@ -222,13 +222,13 @@ class Player(BasePlayer):
     choice = models.IntegerField(
         widget=widgets.Slider, default=0,
         min=0, max=Group.endowment,
-        label="Berapa poin dari poin Anda yang ingin dikontribusikan pada proyek bersama?"
+        label="Berapa poin yang ingin anda sumbangkan untuk proyek bersama?"
     )
 
     bribe_pct = models.IntegerField(default=0,
         widget=widgets.Slider,
         min=0, max=100,
-        label = "Berapa persen (%) dari total dana yang Anda ambil yang ingin Anda berikan pada pihak ketiga?"
+        label = "Berapa persen (%) dari sumbangan total yang Anda ambil yang ingin Anda berikan pada pihak ketiga?"
     )
 
     contribution = models.FloatField()
@@ -239,7 +239,7 @@ class Player(BasePlayer):
     amount_embezzled = models.IntegerField(
         widget=widgets.Slider, default=0,
         min=0, max=Group.total_contribution,
-        label="Berapa poin dari total kontribusi yang ingin Anda ambil?"
+        label="Berapa poin dari sumbangan total yang ingin anda ambil?"
     )
 
     bribe_self = models.FloatField(default=0)

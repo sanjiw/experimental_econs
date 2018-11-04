@@ -23,70 +23,70 @@
         {% if player.treatmentgroup == '0' %}
             {% if group.amt_embezzled_g > 0 %}
                 {% if group.bribe_acc == False%}
-                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian kontribusi dan membaginya ke pihak ketiga,
+                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian sumbangan total dan membaginya ke pihak ketiga,
                     namun <i>ditolak dan gagal.</i></b></font>
                 {% else %}
-                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian kontribusi dan membaginya ke pihak ketiga.</b></font>
+                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian sumbangan total dan membaginya ke pihak ketiga.</b></font>
                 {% endif %}
             {% else %}
-                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil kontribusi.</font>
+                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil sumbangan total.</font>
             {% endif %}
 
         {% elif player.treatmentgroup == '1' %}
             {% if group.amt_embezzled_g > 0 %}
                 {% if group.bribe_acc == True and group.punish == False %}
-                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian kontribusi dan membaginya ke pihak ketiga.</b></font>
+                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian sumbangan total dan membaginya ke pihak ketiga.</b></font>
                 {% elif group.bribe_acc == True and group.punish == True %}
-                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian kontribusi dan membaginya ke pihak ketiga,
+                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian sumbangan total dan membaginya ke pihak ketiga,
                     namun diketahui dan telah dikenakan denda.</b></font>
                 {% elif group.bribe_acc == False%}
-                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mengambil sebagian kontribusi dan membaginya ke pihak ketiga,
+                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mengambil sebagian sumbangan total dan membaginya ke pihak ketiga,
                     namun ditolak. Seluruh poin yang telah diambil dikembalikan ke proyek bersama.</b></font>
                 {% endif %}
             {% else %}
-                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil kontribusi.</font>
+                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil sumbangan total.</font>
             {% endif %}
 
         {% elif player.treatmentgroup == '2' %}
             {% if group.amt_embezzled_g > 0 %}
                 {% if group.bribe_acc == True and group.punish == False %}
-                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian kontribusi dan membaginya ke pihak ketiga.</b></font>
+                <font color="darkred"><b>Salah satu dari anggota kelompok Anda mengambil sebagian sumbangan total dan membaginya ke pihak ketiga.</b></font>
                 {% elif group.bribe_acc == True and group.punish == True %}
-                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian kontribusi dan membaginya ke pihak ketiga,
+                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mencoba mengambil sebagian sumbangan total dan membaginya ke pihak ketiga,
                     namun diketahui dan telah dikenakan pengurangan poin.</b></font>
                 {% elif group.bribe_acc == False%}
-                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mengambil sebagian kontribusi dan membaginya ke pihak ketiga,
+                <font color="darkmagenta"><b>Salah satu dari anggota kelompok Anda mengambil sebagian sumbangan total dan membaginya ke pihak ketiga,
                     namun ditolak. Seluruh poin yang telah diambil dikembalikan ke proyek bersama.</b></font>
                 {% endif %}
             {% else %}
-                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil kontribusi.</font>
+                <font color="darkblue">Tidak ada anggota kelompok Anda yang mengambil sumbangan total.</font>
             {% endif %}
 
         {% endif %}
     </p>
 
     <table class="table-condensed" style="width:500px; margin-top:20px;">
-        <tr><td>Kontribusi Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
+        <tr><td>Sumbangan Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
         <tr><td colspan="2"><hr/></td></tr>
 
         {% if group.bribe_acc == True %}
-            <tr><td>Kontribusi total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+            <tr><td>Sumbangan total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
             <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
                 :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
             {% if group.punish == True %}
                 {% if player.treatmentgroup == '1' %}
-                <tr><td>Salah satu pemain gagal mengambil total kontribusi sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
+                <tr><td>Salah satu pemain gagal mengambil sumbangan total sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
                 {% elif player.treatmentgroup == '2' %}
-                <tr><td>Salah satu pemain gagal mengambil total kontribusi sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
+                <tr><td>Salah satu pemain gagal mengambil total sumbangan total sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
                 {% else %}{% endif %}
             {% else %}{% endif %}
         {% elif group.bribe_acc == False and group.social_welfare_embz < group.social_welfare %}
-            <tr><td>Kontribusi yang diambil telah dikembalikan ke proyek bersama:</td></tr>
-            <tr><td>Kontribusi total:</td><td><font color="blue">{{ group.total_contribution }}</font></td></tr>
+            <tr><td>Sumbangan total yang diambil telah dikembalikan ke proyek bersama:</td></tr>
+            <tr><td>Sumbangan total:</td><td><font color="blue">{{ group.total_contribution }}</font></td></tr>
             <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.total_contribution }}</font> x multiplier {{ subsession.multiplier}})
                 :</td><td><font color="chocolate">{{ group.social_welfare }}</font></td></tr>
         {% else %}
-            <tr><td>Kontribusi total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
+            <tr><td>Sumbangan total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
             <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
                 :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
         {% endif %}
@@ -100,7 +100,7 @@
 
         {% if player.briber == True %}
             {% if group.bribe_acc == True %}
-            <tr><td>Kontribusi total yang Anda ambil:</td><td><b>+{{ group.amt_embezzled_g }}</b></td></tr>
+            <tr><td>Sumbangan total yang Anda ambil:</td><td><b>+{{ group.amt_embezzled_g }}</b></td></tr>
             <tr><td>Poin yang Anda beri pada pihak ketiga:</td><td><b>-{{ player.bribe_AI }}</b></td></tr>
                 {% if group.punish == True %}
                     {% if player.treatmentgroup == '1' %}
@@ -110,7 +110,7 @@
                     {% else %}{% endif %}
                 {% else %}{% endif %}
             {% elif group.bribe_acc == False and group.social_welfare_embz < group.social_welfare %}
-            <tr><td><s>Kontribusi total yang Anda ambil:</s></td><td><s>{{ group.amt_embezzled_g }}</s></td></tr>
+            <tr><td><s>Sumbangan total yang Anda ambil:</s></td><td><s>{{ group.amt_embezzled_g }}</s></td></tr>
             <tr><td><s>Poin yang Anda coba beri pada pihak ketiga:</s></td><td><s>{{ player.bribe_AI }}</s></td></tr>
             {% else %}
             {% endif %}

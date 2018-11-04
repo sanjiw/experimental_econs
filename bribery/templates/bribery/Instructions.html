@@ -15,33 +15,32 @@
             Dalam eksperimen ini, anda akan berada di dalam kelompok dengan jumlah pemain
             {{ Constants.players_per_group }} orang. Setiap pemain dalam kelompok memiliki poin
             {{ endowment }}. Masing-masing kelompok memiliki proyek bersama yang dinikmati oleh
-            semua anggota di dalam kelompok. Seluruh pemain dalam kelompok memilih poin yang akan dikontribusikan ke
-            dalam proyek bersama. Anda dapat memilih antara tidak berkontribusi hingga menyumbang seluruh poin Anda. persen
-            dari poin awal. Anda memiliki waktu {{ timeout }} detik untuk menentukan kontribusi, apabila waktu habis, maka pilihan
-            anda merupakan hasil acak dari sistem komputer. Jumlah semua kontribusi dari masing-masing pemain disebut
-            dengan <strong>total kontribusi.</strong> Sedangkan <strong>proyek bersama</strong> adalah
-            nilai total kontribusi dikalikan sebuah faktor bernilai {{ subsession.multiplier }}.
+            semua anggota di dalam kelompok. Seluruh pemain dalam kelompok memilih poin yang akan disumbangkan ke
+            dalam proyek bersama. Anda dapat memilih antara tidak menyumbang hingga menyumbang seluruh poin Anda. Anda memiliki waktu {{ timeout }} detik untuk menentukan sumbangan, apabila waktu habis, maka pilihan
+            anda merupakan hasil acak dari sistem komputer. Jumlah semua sumbangan dari masing-masing pemain disebut
+            dengan <strong>total sumbangan.</strong> Sedangkan <strong>proyek bersama</strong> adalah
+            nilai total sumbangan dikalikan sebuah faktor bernilai {{ subsession.multiplier }}.
         </p>
         <p>
-            Setelah tahap kontribusi, akan ada randomisasi untuk satu pemain dari setiap kelompok.
-            Permain ini memiliki kesempatan untuk menentukan nilai total kontribusi yang akan diambil
-            dan menentukan tawaran sejumlah bagian dari total kontribusi yang sudah diambil untuk pihak ketiga. Pihak ketiga
-            berasal dari luar permainan. Waktu untuk menentukan nilai total kontribusi yang diambil adalah 30 detik.
-            Apabila waktu sudah habis, maka tidak ada pengambilan total kontribusi. Apabila pihak ketiga menerima bagian
-            yang ditawarkan maka pendapatan pemain pertama adalah jumlah dari<strong> poin yang tidak dikontribusikan
-            untuk proyek bersama, selisih antara total kontribusi yang dikurangi dan bagian untuk pihak ketiga</strong>, dan
+            Setelah tahap sumbangan, akan ada randomisasi untuk satu pemain dari setiap kelompok.
+            Permain ini memiliki kesempatan untuk menentukan nilai total sumbangan yang akan diambil
+            dan menentukan tawaran sejumlah bagian dari total sumbangan yang sudah diambil untuk pihak ketiga. Pihak ketiga
+            berasal dari luar permainan. Waktu untuk menentukan nilai total sumbangan yang diambil adalah 30 detik.
+            Apabila waktu sudah habis, maka tidak ada pengambilan total sumbangan. Apabila pihak ketiga menerima bagian
+            yang ditawarkan maka pendapatan pemain pertama adalah jumlah dari<strong> poin yang tidak disumbangkan
+            untuk proyek bersama, selisih antara total sumbangan yang dikurangi dan bagian untuk pihak ketiga</strong>, dan
             <strong> terakhir adalah proyek bersama yang sudah dikurangi</strong>. Sebaliknya apabila pihak ketiga menolak
             tawaran dari pemain pertama maka pendapatan akhir masing-masing pemain adalah jumlah dari sisa <strong>poin
-            yang tidak dikontribusikan</strong> dan<strong> proyek bersama</strong>.
+            yang tidak disumbangkan</strong> dan<strong> proyek bersama</strong>.
         </p>
         <p>
-            Berikut adalah contoh ketika masing-masing pemain berkontribusi 100 poin dari 200 poin yang mereka punya,
-            dengan asumsi pemain A memiliki kesempatan untuk mengambil seluruh/sebagian dari total kontribusi. Sisa
-            poin yang tidak digunakan untuk kontribusi adalah 100 poin. Total kontribusi ketiga pemain adalah 3 x 100 yakni 300 poin.
+            Berikut adalah contoh ketika masing-masing pemain menyumbang 100 poin dari 200 poin yang mereka punya,
+            dengan asumsi pemain A memiliki kesempatan untuk mengambil seluruh/sebagian dari total sumbangan. Sisa
+            poin yang tidak digunakan untuk sumbangan adalah 100 poin. Total sumbangan ketiga pemain adalah 3 x 100 yakni 300 poin.
             Apabila pemain A mengambil 200 poin dan membagikannya kepada pihak ketiga sebesar 50 poin maka sisa total
-            kontribusi adalah 100 poin (300 - 200) dan tambahan pendapatan untuk pemain A adalah 150 poin (200 - 50). Nilai proyek bersama adalah
+            sumbangan adalah 100 poin (300 - 200) dan tambahan pendapatan untuk pemain A adalah 150 poin (200 - 50). Nilai proyek bersama adalah
             100 dikalikan dengan {{ subsession.multiplier }} yakni 150, sehingga masing-masing pemain mendapatkan 50
-            poin (150/3). Apabila pemain A tidak mengambil total kontribusi maka nilai proyek bersama adalah
+            poin (150/3). Apabila pemain A tidak mengambil total sumbangan maka nilai proyek bersama adalah
             300 dikalikan {{ subsession.multiplier }} yakni 450, sehingga masing-masing pemain mendapatkan 150 poin
             (450/3). Berikut adalah pendapatan akhir masing-masing pemain dengan asumsi pihak ketiga menerima tawaran
             dari pemain A.
@@ -68,17 +67,17 @@
             </table>
         <p>
             {% if player.treatmentgroup == '0' %}
-            Di dalam eksperimen ini tidak ada hukuman kepada subyek yang melakukan pengambilan total kontribusi
+            Di dalam eksperimen ini tidak ada hukuman kepada subyek yang melakukan pengambilan total sumbangan
 
             {% elif player.treatmentgroup == '1' %}
-            Di dalam eksperimen ini terdapat hukuman tetap kepada subyek yang melakukan pengambilan total kontribusi.
+            Di dalam eksperimen ini terdapat hukuman tetap kepada subyek yang melakukan pengambilan total sumbangan.
             Apabila pihak ketiga menerima tawaran, maka akan ada probabilitas pengurangan poin akhir untuk dia sebesar 5 poin.
 
             {% elif player.treatmentgroup == '2' %}
-            Di dalam eksperimen ini terdapat hukuman biaya sosial kepada subyek yang melakukan pengambilan total kontribusi.
+            Di dalam eksperimen ini terdapat hukuman biaya sosial kepada subyek yang melakukan pengambilan total sumbangan.
             Apabila pihak ketiga menerima tawaran, maka akan ada probabilitas pengurangan poin akhir
             untuk dia sebesar biaya sosial. Biaya sosial dihitung berdasarkan selisih antara <strong>proyek bersama</strong> tanpa
-            pengambilan total kontribusi dan dengan pengambilan total kontribusi. Sebagai contoh, apabila total kontribusi
+            pengambilan total sumbangan dan dengan pengambilan total sumbangan. Sebagai contoh, apabila total sumbangan
             adalah 100 dan anda mengambil sebanyak 50, maka biaya sosial adalah (100 x {{ subsession.multiplier }}) -
             ((100 - 50) x {{ subsession.multiplier }}), yakni <strong>75</strong> poin.
 

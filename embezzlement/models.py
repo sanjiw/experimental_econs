@@ -180,7 +180,7 @@ class Player(BasePlayer):
     choice = models.IntegerField(
         widget=widgets.Slider, default=0,
         min=0, max=Group.endowment,
-        label="Berapa poin dari poin Anda yang ingin dikontribusikan pada proyek bersama?"
+        label="Berapa poin yang ingin anda sumbangkan proyek bersama?"
     )
     contribution = models.FloatField()
     endowment = models.FloatField()
@@ -190,7 +190,7 @@ class Player(BasePlayer):
     amount_embezzled = models.IntegerField(
         widget=widgets.Slider, default=0,
         min=0, max=Group.total_contribution,
-        label="Berapa poin dari total kontribusi yang ingin Anda ambil?"
+        label="Berapa poin dari total sumbangan yang ingin Anda ambil?"
     )
 
     payoff_thisround = models.FloatField()
