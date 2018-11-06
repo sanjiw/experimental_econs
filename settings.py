@@ -15,7 +15,7 @@ SESSION_CONFIGS = [
     {
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
-        'num_demo_participants': 3,
+        'num_demo_participants': 6,
         'app_sequence': ['intro_screen','embezzlement', 'bribery', 'post_quiz'],
         'treatment': '0',
         'social_cost_multiplier': 1,
@@ -25,7 +25,7 @@ SESSION_CONFIGS = [
         'punish_fine': 5,
         'bribe_threshold':28,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30,
+        'timeout_real': 1,
         'endowment': 100,
     },
     {

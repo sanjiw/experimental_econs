@@ -41,6 +41,7 @@ class Contribute(Page):
         self.player.set_contribute()
         if self.timeout_happened:
             self.player.choice = np.random.randint(0, self.session.config['endowment'])
+            self.player.contribution = self.player.choice
 
 
 class ContributionWaitPage(WaitPage):
@@ -94,11 +95,6 @@ class PostWaitPage(WaitPage):
     body_text = "Menunggu peserta lainnya..."
 
 
-class  ResultsWaitPage(WaitPage):
-    def after_all_players_arrive(self):
-        pass
-
-
 class Results(Page):
     """Players payoff: How much each has earned"""
     def vars_for_template(self):
@@ -120,6 +116,14 @@ class Results(Page):
         return self.player.payoff_vector_storage()
 
 
+class  ResultsWaitPage(WaitPage):
+    def after_all_players_arrive(self):
+        self.subsession.supplement()
+
+    body_text = "Menunggu peserta lainnya..."
+
+
+
 page_sequence = [
     Introduction,
     RealGameWarning,
@@ -129,6 +133,6 @@ page_sequence = [
     Embezzlement,
     Bribe,
     PostWaitPage,
-    ###CaughtPage,
-    Results
+    Results,
+    ResultsWaitPage
 ]

@@ -20,31 +20,30 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
 
+    avg_soc_welfare = models.FloatField()
+    avg_contribution = models.FloatField()
+    embezzlement_amt = models.FloatField()
+
     def vars_for_admin_report(self):
-        group = self.get_groups()[0]
 
         series = []
 
-        soc_welfare = [g.social_welfare for g in group.in_all_rounds()]
+        soc_welfare = [r.avg_soc_welfare for r in self.in_all_rounds()]
         series.append({
             'name': 'Social Welfare without Embezzlement',
             'data': soc_welfare})
 
-        soc_welfare_embz = [g.social_welfare_embz for g in group.in_all_rounds()]
+        avg_cont = [r.avg_contribution for r in self.in_all_rounds()]
         series.append({
-            'name': 'Social Welfare after Embezzlement',
-            'data': soc_welfare_embz})
+            'name': 'Average Contribution',
+            'data': avg_cont})
 
-        tot_contribution = [g.total_contribution for g in group.in_all_rounds()]
+        avg_embz = [r.embezzlement_amt for r in self.in_all_rounds()]
         series.append({
-            'name': 'Total Contribution',
-            'data': tot_contribution})
+            'name': 'Average Embezzlement',
+            'data': avg_embz})
 
-        for player in group.get_players():
-            payoffs = [p.payoff_thisround for p in player.in_all_rounds()]
-            series.append(
-                {'name': 'Earnings for {}'.format(player.role()),
-                 'data': payoffs})
+        self.session.vars['series_embz'] = series
 
         return {
             'highcharts_series': series,
@@ -54,7 +53,7 @@ class Subsession(BaseSubsession):
     multiplier = models.FloatField()
 
     def creating_session(self):
-        matrix = [[1, 2, 3]], [[3, 2, 1]], [[2, 3, 1]]
+        matrix = [[1, 2, 3],[4, 5, 6]], [[3, 2, 1],[6, 4, 5]], [[2, 3, 1],[5, 6, 4]]
         matrix12 = [[2, 1, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]],\
                  [[8, 3, 10], [9, 5, 12], [7, 1, 4], [11, 2, 6]],\
                  [[5, 2, 10], [1, 9, 11], [6, 3, 7], [4, 12, 8]],\
@@ -106,6 +105,14 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             p.endowment = self.session.config['endowment']
 
+    def supplement(self):
+        self.avg_soc_welfare = sum([g.social_welfare for g in self.get_groups()])/len(
+            [g.social_welfare for g in self.get_groups()])
+        self.avg_contribution = sum([g.total_contribution for g in self.get_groups()])/len(
+            [g.total_contribution for g in self.get_groups()])
+        self.embezzlement_amt = sum([g.amt_embezzled_g for g in self.get_groups()])/len(
+            [g.amt_embezzled_g for g in self.get_groups()])
+
 
 class Group(BaseGroup):
     total_contribution = models.FloatField()
@@ -116,6 +123,9 @@ class Group(BaseGroup):
     punish = models.BooleanField()
     timeout = models.IntegerField()
     endowment = models.IntegerField()
+    ### for supplement
+    avg_soc_welfare = models.FloatField()
+    avg_contribution = models.FloatField()
 
     def endow_group(self):
         self.endowment = self.session.config['endowment']
