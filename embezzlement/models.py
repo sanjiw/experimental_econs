@@ -13,7 +13,7 @@ Embezzlement Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penggelapan_Mod'
     players_per_group = 3
-    num_rounds = 10
+    num_rounds = 3
     instructions_template = 'embezzlement/Instructions.html'
     strategy_space = [50, 40, 30, 20, 10]
 
@@ -58,16 +58,6 @@ class Subsession(BaseSubsession):
                  [[8, 3, 10], [9, 5, 12], [7, 1, 4], [11, 2, 6]],\
                  [[5, 2, 10], [1, 9, 11], [6, 3, 7], [4, 12, 8]],\
                  [[3, 5, 11], [12, 2, 7], [8, 6, 1], [10, 4, 9]]
-        matrix15 = [[4, 11, 13], [5, 9, 3], [12, 7, 15], [14, 1, 8], [2, 10, 6]],\
-                   [[4, 10, 7], [14, 5, 12], [2, 8, 11], [1, 13, 9], [6, 15, 3]],\
-                   [[6, 11, 14], [9, 2, 4], [3, 8, 12], [5, 13, 7], [15, 1, 10]],\
-                   [[1, 2, 3], [4, 5, 6], [7, 8, 9], [11, 10, 12], [13, 14, 15]],\
-                   [[11, 1, 4], [10, 13, 3], [8, 4, 15], [9, 12, 6], [7, 2, 14]],\
-                   [[3, 7, 11], [12, 4, 1], [14, 9, 10], [15, 5, 2], [8, 6, 13]],\
-                   [[15, 9, 11], [10, 6, 5], [13, 12, 2], [3, 14, 4], [7, 6, 1]],\
-                   [[4, 11, 13], [5, 9, 3], [12, 7, 15], [14, 1, 8], [2, 10, 6]],\
-                   [[4, 10, 7], [14, 5, 12], [2, 8, 11], [1, 13, 9], [6, 15, 3]],\
-                   [[6, 11, 14], [9, 2, 4], [3, 8, 12], [5, 13, 7], [15, 1, 10]]
         matrix42 =[[[1, 2, 3], [4, 5, 6], [9, 8, 7], [11, 10, 12], [13, 14, 15], [16, 17, 18], [19, 20, 21], [24, 23, 22], [25, 26, 27], [30, 29, 28], [32, 31, 33], [34, 35, 36], [37, 38, 39], [40, 41, 42]],
                   [[26, 22, 42], [35, 32, 16], [6, 12, 24], [38, 34, 31], [14, 10, 5], [11, 33, 25], [20, 1, 7], [4, 37, 40], [39, 29, 17], [8, 3, 28], [15, 19, 30], [2, 41, 36], [23, 21, 13], [27, 18, 9]],
                   [[35, 11, 20], [7, 41, 10], [37, 15, 3], [30, 39, 18], [23, 27, 12], [1, 4, 36], [34, 19, 17], [25, 8, 31], [40, 33, 24], [6, 26, 29], [2, 16, 9], [14, 28, 21], [32, 42, 38], [22, 13, 5]],
@@ -83,9 +73,8 @@ class Subsession(BaseSubsession):
                   [[13, 2, 20], [17, 31, 42], [24, 5, 30], [16, 15, 12], [33, 34, 22], [18, 10, 19], [35, 23, 9], [11, 41, 39], [14, 36, 26], [32, 40, 28], [27, 21, 29], [6, 37, 1], [8, 4, 38], [25, 7, 3]],
                   [[39, 26, 33], [7, 27, 24], [22, 10, 9], [38, 28, 11], [36, 3, 5], [18, 6, 15], [29, 35, 8], [31, 20, 30], [4, 42, 13], [40, 1, 12], [17, 41, 21], [2, 14, 32], [37, 19, 25], [16, 23, 34]],
                   [[14, 39, 31], [3, 10, 6], [27, 34, 20], [24, 4, 35], [28, 22, 7], [12, 38, 26], [36, 16, 19], [13, 30, 11], [23, 8, 1], [21, 2, 5], [32, 37, 17], [41, 15, 25], [42, 18, 33], [29, 9, 40]]]
-        # self.set_group_matrix(matrix[self.round_number - 1])
-        # self.get_group_matrix()
-        self.group_randomly()
+        self.set_group_matrix(matrix[self.round_number - 1])
+        self.get_group_matrix()
         for p in self.get_players():
             p.treatmentgroup = self.session.config['treatment']
             ### Treatment group: Control (0), Treatment 1 (1), Treatment 2 (2)
@@ -199,6 +188,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     choice = models.IntegerField(
+        widget=widgets.Slider, default=0,
         min=0, max=Group.endowment,
         label="Berapa poin yang ingin anda sumbangkan proyek bersama?"
     )
@@ -208,6 +198,7 @@ class Player(BasePlayer):
     embezzler = models.BooleanField()
 
     amount_embezzled = models.IntegerField(
+        widget=widgets.Slider, default=0,
         min=0, max=Group.total_contribution,
         label="Berapa poin dari total sumbangan yang ingin Anda ambil?"
     )
