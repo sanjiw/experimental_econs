@@ -238,7 +238,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     choice = models.IntegerField(
-        widget=widgets.Slider, default=0,
+        widget=widgets.Slider, default=50,
         min=0, max=Group.endowment,
         label="Berapa poin yang ingin anda sumbangkan untuk proyek bersama?"
     )
