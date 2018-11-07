@@ -199,7 +199,6 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     choice = models.IntegerField(
-        widget=widgets.Slider, default=50,
         min=0, max=Group.endowment,
         label="Berapa poin yang ingin anda sumbangkan proyek bersama?"
     )
@@ -209,7 +208,6 @@ class Player(BasePlayer):
     embezzler = models.BooleanField()
 
     amount_embezzled = models.IntegerField(
-        widget=widgets.Slider, default=0,
         min=0, max=Group.total_contribution,
         label="Berapa poin dari total sumbangan yang ingin Anda ambil?"
     )
