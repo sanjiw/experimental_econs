@@ -13,7 +13,7 @@ Embezzlement Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penggelapan_Mod'
     players_per_group = 3
-    num_rounds = 3
+    num_rounds = 10
     instructions_template = 'embezzlement/Instructions.html'
     strategy_space = [50, 40, 30, 20, 10]
 
