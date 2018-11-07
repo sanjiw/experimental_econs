@@ -16,7 +16,7 @@ SESSION_CONFIGS = [
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
         'num_demo_participants': 6,
-        'app_sequence': ['intro_screen','embezzlement', 'bribery', 'post_quiz'],
+        'app_sequence': ['intro_screen','embezzlement', 'post_quiz'],
         'treatment': '0',
         'social_cost_multiplier': 1,
         'punishment_prob': 0.5,
