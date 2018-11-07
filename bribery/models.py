@@ -13,7 +13,7 @@ Bribery Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penyuapan_Mod'
     players_per_group = 3
-    num_rounds = 3
+    num_rounds = 10
     instructions_template = 'bribery/Instructions.html'
     strategy_space = [50, 40, 30, 20, 10]
 
@@ -96,8 +96,9 @@ class Subsession(BaseSubsession):
              [4, 42, 13], [40, 1, 12], [17, 41, 21], [2, 14, 32], [37, 19, 25], [16, 23, 34]],
             [[14, 39, 31], [3, 10, 6], [27, 34, 20], [24, 4, 35], [28, 22, 7], [12, 38, 26], [36, 16, 19], [13, 30, 11],
              [23, 8, 1], [21, 2, 5], [32, 37, 17], [41, 15, 25], [42, 18, 33], [29, 9, 40]]]
-        self.set_group_matrix(matrix[self.round_number - 1])
-        self.get_group_matrix()
+        # self.set_group_matrix(matrix[self.round_number - 1])
+        # self.get_group_matrix()
+        self.group_randomly()
         for p in self.get_players():
             p.treatmentgroup = self.session.config['treatment']
             ### Treatment group: Control (0), Treatment 1 (1), Treatment 2 (2)
