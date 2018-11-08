@@ -18,10 +18,9 @@
         </div>
     {% endif %}
 
-    Poin awal Anda: {{ player.endowment }}
+    Anda memiliki poin awal sebesar <b>{{ player.endowment }} poin</b>.
 
-    <br><tr><td>Angka pengganda proyek bersama:</td><td> {{ subsession.multiplier }}</td></tr>
-
+    <br>Total sumbangan akan dikalikan pengganda sebesar <b>{{ subsession.multiplier }}</b>.
     <div align="center">{% formfield player.choice %}</div>
 
     <br>Tekan tombol 'lanjut' jika Anda telah yakin pada pilihan Anda.

@@ -23,47 +23,35 @@
             {% if group.amt_embezzled_g > 0 %}
             <font color="darkred"><b>Salah satu dari anggota kelompok anda melakukan penggelapan.</b></font>
             {% else %}
-            <font color="darkblue"><b>Tidak ada anggota kelompok anda yang melakukan penggelapan.</b></font>
             {% endif %}
 
         {% elif player.treatmentgroup == '1' %}
             {% if group.amt_embezzled_g > 0 %}
                 {% if group.amt_embezzled_g > 0 and group.punish == False %}
-                    <font color="darkred">Salah satu dari anggota kelompok anda <b>sukses</b> melakukan penggelapan.</font>
                 {% elif group.amt_embezzled_g > 0 and group.punish == True %}
                     <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b> dan dikenai denda.</font>
                 {% endif %}
             {% else %}
-                <font color="darkgreen">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
             {% endif %}
 
         {% elif player.treatmentgroup == '2' %}
             {% if group.amt_embezzled_g > 0 %}
                 {% if group.amt_embezzled_g > 0 and group.punish == False %}
-                    <font color="darkred">Salah satu dari anggota kelompok anda <b>sukses</b> melakukan penggelapan.</font>
                 {% elif group.amt_embezzled_g > 0 and group.punish == True %}
                     <font color="darkblue">Salah satu dari anggota kelompok anda mencoba melakukan penggelapan namun <b>gagal</b>.
                         Ia telah dihukum sebesar biaya sosial dari penggelapan tersebut.</font>
                 {% endif %}
             {% else %}
-                 <font color="darkgreen">Tidak ada anggota kelompok anda yang melakukan penggelapan.</font>
             {% endif %}
 
         {% endif %}
     </p>
 
-    <table class="table-condensed" style="width:500px; margin-top:20px;">
+    <table class="table-condensed" style="width:450px; margin-top:20px;">
         <tr><td>Sumbangan Anda:</td><td><font color="green">{{ player.contribution }}</font></td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
-        <tr><td>Sumbangan total:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
-            {% if group.punish == True %}
-                {% if player.treatmentgroup == '1' %}
-                <tr><td>Salah satu pemain gagal mengambil sumbangan total sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
-                {% elif player.treatmentgroup == '2' %}
-                <tr><td>Salah satu pemain gagal mengambil sumbangan total sebesar:</td><td><font color="red">{{ group.amt_embezzled_g }}</font></td></tr>
-                {% else %}{% endif %}
-            {% else %}{% endif %}
+        <tr><td>Sumbangan terkumpul:</td><td><font color="blue">{{ group.contribution_left }}</font></td></tr>
         <tr><td>Nilai proyek bersama: (<font color="blue">{{ group.contribution_left }}</font> x multiplier {{ subsession.multiplier}})
             :</td><td><font color="chocolate">{{ group.social_welfare_embz }}</font></td></tr>
 
@@ -84,12 +72,13 @@
             {% else %}{% endif %}
         {% else %}{% endif %}
 
-        <tr><td>Jatah individu dari proyek bersama (<font color="chocolate">{{group.social_welfare_embz }}</font> / {{Constants.players_per_group}} pemain):
+        <tr><td>Jatah individu dari proyek bersama
+            <br>(<font color="chocolate">{{group.social_welfare_embz }}</font> / {{Constants.players_per_group}} pemain):
             </td><td><b>+{{ indv_share_project }}</b></td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Total poin Anda di Ronde ini (Ronde {{subsession.round_number}}):</td><td><font size="5"><b>{{ player.payoff_thisround }}</b></font></td></tr>
+        <tr><td>Poin Ronde ini ({{subsession.round_number}}):</td><td><font size="5"><b>{{ player.payoff_thisround }}</b></font></td></tr>
 
     </table>
     <p></p>
