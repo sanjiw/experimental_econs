@@ -13,7 +13,7 @@ Bribery Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penyuapan_Mod'
     players_per_group = 3
-    num_rounds = 10
+    num_rounds = 5
     instructions_template = 'bribery/Instructions.html'
     strategy_space = [50, 40, 30, 20, 10]
 
@@ -267,22 +267,33 @@ class Player(BasePlayer):
     dump = models.StringField()
     dump2 = models.StringField()
     dump3 = models.StringField()
+    dump4 = models.StringField()
 
     def payoff_vector_storage(self):
         #### Cross-app data collection protocol
-        if self.round_number == 1 and len(self.participant.vars['payoff_vct']) == 0:
-            self.participant.vars['payoff_vct'] = [self.payoff_thisround]
-            self.participant.vars['training'] = [self.training_round]
-            self.participant.vars['round_all_vct'] = [1]
+        if self.round_number == 1:
+            self.participant.vars['payoff_vct'].append(self.payoff_thisround)
+            self.participant.vars['training'].append(self.training_round)
+            self.participant.vars['round_all_vct'].append(1)
+            self.participant.vars['game'].append('Latihan')
         else:
             self.participant.vars['payoff_vct'].append(self.payoff_thisround)
             self.participant.vars['training'].append(self.training_round)
             vct = self.participant.vars['round_all_vct']
             self.participant.vars['round_all_vct'].append(vct[-1] + 1)
+            if self.participant.vars['training'][-1] == True:
+                self.participant.vars['game'].append('Latihan')
+            elif self.participant.vars['training'][-1] == False and self.participant.vars['round_all_vct'][-1] == \
+                    (self.session.config['num_training_rounds'] + 1):
+                self.participant.vars['game'].append('B1')
+            elif self.participant.vars['training'][-1] == False and self.participant.vars['round_all_vct'][-1] != \
+                    (self.session.config['num_training_rounds'] + 1):
+                self.participant.vars['game'].append('B2')
         #### dumps are for debugging purposes. No real use
         self.dump = str(self.participant.vars['payoff_vct'])
         self.dump2 = str(self.participant.vars['training'])
         self.dump3 = str(self.participant.vars['round_all_vct'])
+        self.dump4 = str(self.participant.vars['game'])
 
     def money_alloc(self):
         self.bribe_self = float((100 - self.bribe_pct)/100) * float(self.amount_embezzled)

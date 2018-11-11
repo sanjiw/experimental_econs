@@ -6,7 +6,7 @@ from os import environ
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = {
-    'real_world_currency_per_point': 1000.00,
+    'real_world_currency_per_point': 400.00,
     'participation_fee': 20000.00,
     'doc': "",
 }
@@ -16,16 +16,16 @@ SESSION_CONFIGS = [
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
         'num_demo_participants': 3,
-        'app_sequence': ['intro_screen','embezzlement', 'post_quiz'],
+        'app_sequence': ['intro_screen','embezzlement','bribery', 'post_quiz'],
         'treatment': '0',
         'social_cost_multiplier': 1,
         'punishment_prob': 0.5,
         'soc_welf_multiplier': 1.5,
         'num_training_rounds': 1,
         'punish_fine': 5,
-        'bribe_threshold':28,
+        'bribe_threshold': 5,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 20,
+        'timeout_real': 1,
         'endowment': 100,
     },
     {
@@ -88,7 +88,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'IDR'
+REAL_WORLD_CURRENCY_CODE = 'Rp'
 USE_POINTS = True
 
 ROOMS = [

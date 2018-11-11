@@ -6,19 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    Selamat datang di bagian kedua dari eksperimen ini. Anda akan memainkan permainan ini beberapa kali. Sebelumnya,
-    anda akan mendapatkan kesempatan untuk <i>berlatih</i> sebanyak <b>{{ num_training_rounds }}</b> ronde. <i>Hasil di ronde latihan
-    tidak akan mempengaruhi pembayaran akhir Anda.</i>
+    Selamat datang di bagian kedua dari eksperimen ini. Anda akan memainkan bagian kedua permainan ini sebanyak
+    <b>{{ Constants.num_rounds }} ronde</b>. Sebelumnya,
+    anda akan mendapatkan kesempatan untuk <i>berlatih</i> sebanyak <b>{{ num_training_rounds }}</b> kali untuk memahami bagaimana
+    permainan ini bekerja. Permainan di bagian kedua sedikit berbeda dengan bagian pertama.
     <br>
     <br>
-    Silakan menyimak instruksi di bawah ini sebelum memulai permainan. Anda juga dapat mengakses instruksi ini di dalam permainan.
+    Silakan menunggu sejenak. Anda akan segera mendapatkan video terkait instruksi permainan di bagian kedua ini.
     <br>
     <br>
-    {% include Constants.instructions_template %}
 
-    Jika Anda sudah merasa benar-benar paham atas instruksi tersebut, silakan klik 'lanjut'.
-    <br>
-    <br>
-    <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
 
 {% endblock %}

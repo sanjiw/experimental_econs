@@ -14,6 +14,16 @@ class Introduction(Page):
             'timeout': self.session.config['timeout_real']
         }
 
+class IntroWaitPage(WaitPage):
+
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
+class Instructions(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
 class RealGameWarning(Page):
 
     def is_displayed(self):
@@ -126,6 +136,8 @@ class  ResultsWaitPage(WaitPage):
 
 page_sequence = [
     Introduction,
+    IntroWaitPage,
+    Instructions,
     RealGameWarning,
     InitialWaitPage,
     Contribute,

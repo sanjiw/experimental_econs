@@ -8,11 +8,21 @@
 {% block content %}
 
     <br>Terima kasih atas partisipasi Anda dalam eksperimen ini.
-
-    <br>Sesuai prosedur eksperimen, uang yang Anda terima adalah pendapatan Anda dari salah satu ronde yang Anda mainkan.
-
-    <br>Berdasarkan randomisasi komputer, Anda akan menerima pembayaran dari hasil Anda di ronde ke-{{ payoff_round }}. Anda
-    tercatat mendapatkan {{ points }} poin pada ronde tersebut.
+    <br>
+    <br>Sesuai prosedur eksperimen, poin yang Anda terima adalah berupa 25% dari hasil A1, 25% dari hasil B1 dan 50% dari hasil
+    acakan salah satu ronde dari A2 atau B2.
+    <br>
+    <br>
+    Hasil acakan komputer memutuskan bahwa ronde {{payoff_round}} akan menjadi pembayaran Anda. Berikut adalah rinciannya:
+    <br>
+    <br>
+    <table>
+        <tr><th>Rincian</th><th>Poin</th></tr>
+        <tr><td>Poin A1 (25% dari {{player.points_A1}}):</td><td>{{ points_a1 }}</td></tr>
+        <tr><td>Poin B1 (25% dari {{player.points_B1}}):</td><td>{{ points_b1 }}</td></tr>
+        <tr><td>Acakan A2 atau B2: Ronde {{payoff_round}} (50% dari {{player.points_rand}}):</td><td>{{ points_rand }}</td></tr>
+        <tr><td>Total Poin</td><td><b><font size="5">{{points_total}}</font></b></td></tr>
+    </table>
 
     <hr width="100%">
     <font size="5">Anda berhak menerima total pembayaran sebesar <b>{{ total_earnings }}.</b></font>
@@ -22,9 +32,8 @@
     <br>
     Anda dipersilakan meninggalkan ruangan dan menuju kasir di luar ruangan untuk pembayaran.
     Jangan lupa untuk mengembalikan kartu peserta Anda. <b>Anda tidak berhak menerima pembayaran tanpa pengembalian kartu peserta!</b>
-
-    <br>Jikalau ada pertanyaan terkait eksperimen ini, silakan diajukan ke <b>putu.arya.w@ugm.ac.id</b>.
     <br>
+    <br>Jikalau ada pertanyaan terkait eksperimen ini, silakan diajukan ke <b>putu.arya.w@ugm.ac.id</b>.
     <br>
     <br>
     <b>Tabel hasil permainan Anda dari seluruh ronde:</b>
@@ -35,27 +44,32 @@
             border-collapse: collapse;
             width: 100%;
         }
-        td, th {
-            border: 2px solid #dddddd;
+
+        th, td {
             text-align: left;
-            padding: 5px;
+            padding: 8px;
         }
-        tr:nth-child(even) {
-            background-color: #dddddd;
+
+        tr:nth-child(even){background-color: #f2f2f2}
+
+        th {
+            background-color: #fff4be;
+            color: black;
         }
     </style>
     <table>
              <tr>
+                <th>Kode </th>
                 <th>Ronde</th>
-                <th>Poin Akhir</th>
+                <th>Poin Ronde Ini</th>
              </tr>
     {% for i in payoff_matrix %}
              <tr>
-                 <th>{{ i.2 }}</th>
-                 <th>{{ i.0 }}</th>
+                 <td>{{ i.3 }}</td>
+                 <td>{{ i.2 }}</td>
+                 <td>{{ i.0 }}</td>
              </tr>
     {% endfor %}
     </table>
-    CATATAN: Hasil dari ronde latihan tidak ditampilkan dalam tabel ini.
 
 {% endblock %}
