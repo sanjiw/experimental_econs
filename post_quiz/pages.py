@@ -33,7 +33,9 @@ class _2ThankYou(Page):
             'points_a1': self.player.points_A1 * 0.25,
             'points_b1': self.player.points_B1 * 0.25,
             'payoff_matrix': json.loads(self.player.result_matrix),
-            'points_total': (self.player.points_rand * 0.5) + (self.player.points_A1 * 0.25) + (self.player.points_B1 * 0.25)
+            'points_total': (self.player.points_rand * 0.5) + (self.player.points_A1 * 0.25) + (self.player.points_B1 * 0.25),
+            'currency': self.session.config['real_world_currency_per_point'],
+            'showup': self.session.config['participation_fee'],
         }
 
 page_sequence = [
