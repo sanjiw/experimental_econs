@@ -29,6 +29,7 @@ class _2ThankYou(Page):
         return {
             'total_earnings': self.participant.payoff_plus_participation_fee(),
             'payoff_round': self.player.payround,
+            'payoff_game': self.player.paygame,
             'points_rand': self.player.points_rand * 0.5,
             'points_a1': self.player.points_A1 * 0.25,
             'points_b1': self.player.points_B1 * 0.25,

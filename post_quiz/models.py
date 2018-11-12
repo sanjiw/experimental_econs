@@ -47,6 +47,7 @@ class Player(BasePlayer):
         sel = np.random.randint(1, len(pay_tup_rand)) - 1
         ##### Payoff round number selector
         self.payround = pay_tup_rand[sel][2]
+        self.paygame = pay_tup_rand[sel][3]
         self.points_rand = int(pay_tup_rand[sel][0])
         self.points_A1 = int(oneshot[0][0])
         self.points_B1 = int(oneshot[1][0])
