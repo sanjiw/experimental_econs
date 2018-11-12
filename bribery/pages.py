@@ -16,6 +16,9 @@ class Introduction(Page):
 
 class IntroWaitPage(WaitPage):
 
+    title_text = "Mohon menunggu:"
+    body_text = "Menunggu peserta lainnya..."
+
     def is_displayed(self):
         return self.subsession.round_number == 1
 
@@ -30,6 +33,10 @@ class RealGameWarning(Page):
         return self.subsession.round_number == (self.session.config['num_training_rounds'] + 1)
 
 class InitialWaitPage(WaitPage):
+
+    title_text = "Mohon menunggu:"
+    body_text = "Menunggu peserta lainnya..."
+
     def after_all_players_arrive(self):
         self.subsession.endowment_rule()
         self.group.endow_group()
@@ -58,6 +65,7 @@ class ContributionWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs1()
 
+    title_text = "Mohon menunggu:"
     body_text = "Menunggu peserta lainnya..."
 
 
@@ -102,6 +110,7 @@ class PostWaitPage(WaitPage):
         self.group.prob_punishment()
         self.group.set_payoffs2()
 
+    title_text = "Mohon menunggu:"
     body_text = "Menunggu peserta lainnya..."
 
 
@@ -130,6 +139,7 @@ class  ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.subsession.supplement()
 
+    title_text = "Mohon menunggu:"
     body_text = "Menunggu peserta lainnya..."
 
 

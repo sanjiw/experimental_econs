@@ -93,8 +93,13 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             if self.round_number <= self.session.config['num_training_rounds']:
                 p.training_round = True
+                p.gametype = "Training"
             else:
                 p.training_round = False
+                if self.round_number == (self.session.config['num_training_rounds']+1):
+                    p.gametype = "A1"
+                elif self.round_number > (self.session.config['num_training_rounds']+1):
+                    p.gametype = "A2"
 
         for g in self.get_groups():
             if self.round_number <= self.session.config['num_training_rounds']:
@@ -206,6 +211,7 @@ class Player(BasePlayer):
 
     payoff_thisround = models.FloatField()
     training_round = models.BooleanField()
+    gametype = models.StringField()
     dump = models.StringField()
     dump2 = models.StringField()
     dump3 = models.StringField()

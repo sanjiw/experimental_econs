@@ -2,19 +2,23 @@
 {% load otree static %}
 
 {% block title %}
-    Pengambilan Proyek Bersama - Bagian 2 - Ronde {{ subsession.round_number }}
+    Pengambilan Proyek Bersama - Bagian B - Game {{ player.gametype }} - Ronde {{ subsession.round_number }}
 {% endblock %}
 
 {% block content %}
 
-    {% if player.training_round == True %}
+    {% if player.gametype == "Training" %}
         <div class="alert alert-info">
             <strong>Informasi:</strong> Ronde ini adalah <b>ronde latihan</b>. Hasil dari ronde ini <i>tidak</i> akan mempengaruhi pembayaran
             anda. Silakan gunakan waktu ini untuk mempelajari permainan secara seksama.
         </div>
-    {% else %}
+    {% elif player.gametype == "B1" %}
+        <div class="alert alert-danger">
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, 25% dari poin akhir Anda</font>
+        </div>
+    {% elif player.gametype == "B2" %}
         <div class="alert alert-warning">
-            <strong>Informasi:</strong> Ronde ini adalah <b>permainan riil</b>. Hasil dari ronde ini akan <i>mempengaruhi pembayaran anda</i>!
+            <font size="4"><b>Informasi: Game {{ player.gametype }}</b>, akan diacak untuk 50% dari poin akhir Anda</font>
         </div>
     {% endif %}
 
