@@ -21,7 +21,7 @@ SESSION_CONFIGS = [
         'social_cost_multiplier': 1,
         'punishment_prob': 0.5,
         'soc_welf_multiplier': 1.5,
-        'num_training_rounds': 3,
+        'num_training_rounds': 1,
         'punish_fine': 5,
         'bribe_threshold': 5,
         'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.

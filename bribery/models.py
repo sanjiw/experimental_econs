@@ -13,7 +13,7 @@ Bribery Game dengan 3 pemain per grup per ronde
 class Constants(BaseConstants):
     name_in_url = 'Eksperimen_Penyuapan_Mod'
     players_per_group = 3
-    num_rounds = 10
+    num_rounds = 5
     instructions_template = 'bribery/Instructions.html'
     strategy_space = [50, 40, 30, 20, 10]
 
