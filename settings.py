@@ -82,7 +82,7 @@ SESSION_CONFIGS = [
     {
         'name': 'belief',
         'display_name': "Some Utility Elicitation",
-        'num_demo_participants': 1,
+        'num_demo_participants': 500,
         'app_sequence': ['utility_elicitation'],
         'PE_prospect_max': 100,
         'PE_prospect_min': 0,
