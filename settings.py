@@ -79,6 +79,19 @@ SESSION_CONFIGS = [
         'num_demo_participants': 4,
         'app_sequence': ['prisoner', 'payment_info'],
     },
+    {
+        'name': 'belief',
+        'display_name': "Some Utility Elicitation",
+        'num_demo_participants': 1,
+        'app_sequence': ['utility_elicitation'],
+        'PE_prospect_max': 100,
+        'PE_prospect_min': 0,
+        'PE_certainamount': [90, 50, 60, 40, 10, 80, 20, 30, 70],
+        'CE_max': 100,
+        'CE_prob_P': [0.3, 0.9, 0.2, 0.6, 0.5, 0.8, 0.1, 0.7, 0.4],
+        'CE_P_points': 100,
+        'CE_cP_points': 0,
+    },
 ]
 # see the end of this file for the inactive session configs
 
