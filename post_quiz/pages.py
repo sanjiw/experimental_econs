@@ -21,6 +21,9 @@ class _1Questionnaire(Page):
                    'brothers_rank','brothers_sum',
                    'perceived_wealth']
 
+    def before_next_page(self):
+        self.player.table()
+
 class _1Dice(Page):
     form_model = 'player'
     form_fields = ['rand_selector']
@@ -28,7 +31,8 @@ class _1Dice(Page):
     def vars_for_template(self):
         return {
             'rand_range': max(self.participant.vars['round_cut']),
-            'round_range': random.shuffle([i for i in range(1,max(self.participant.vars['round_cut'])+1)])
+            'round_range': random.shuffle([i for i in range(1,max(self.participant.vars['round_cut'])+1)]),
+            'payoff_matrix': json.loads(self.player.result_matrix),
         }
 
     def before_next_page(self):
@@ -41,7 +45,8 @@ class _1Roulette(Page):
     def vars_for_template(self):
         return {
             'rand_range': max(self.participant.vars['round_cut']),
-            'round_range': [j+i for i, j in zip(range(1,max(self.participant.vars['round_cut'])+1), ['A2', 'B2'])]
+            'round_range': [j+i for i, j in zip(range(1,max(self.participant.vars['round_cut'])+1), ['A2', 'B2'])],
+            'payoff_matrix': json.loads(self.player.result_matrix),
         }
 
     def before_next_page(self):

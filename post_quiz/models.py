@@ -36,6 +36,12 @@ class Player(BasePlayer):
     result_matrix = models.StringField()
     rand_selector = models.StringField()
 
+    def table(self):
+        pay_tup_all_rd = list(zip(self.participant.vars['payoff_vct'], self.participant.vars['training'],
+                                  self.participant.vars['round_all_vct'], self.participant.vars['game'],
+                                  self.participant.vars['round_cut']))
+        self.result_matrix = json.dumps(pay_tup_all_rd)
+
     def payoff_rand(self):
         ##### Tuple conversion for all data
         pay_tup_all_rd = list(zip(self.participant.vars['payoff_vct'],self.participant.vars['training'],
