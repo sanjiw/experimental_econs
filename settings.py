@@ -24,8 +24,8 @@ SESSION_CONFIGS = [
         'num_training_rounds': 3,
         'punish_fine': 25,
         'bribe_threshold': 5,
-        'timeout_practice': 1, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 1,
+        'timeout_practice': 15, ### Set to 'None' if you desire the game without any timeout.
+        'timeout_real': 15,
         'endowment': 100,
     },
     {
