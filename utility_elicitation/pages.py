@@ -8,7 +8,7 @@ class _1Introduction(Page):
         return self.subsession.round_number == 1
 
     form_model = 'player'
-    form_fields = ['choosePEorCE']
+    form_fields = ['choosePECETO']
 
     def before_next_page(self):
         return self.player.ExtendOptions()
@@ -23,7 +23,8 @@ class _2PE(Page):
 
     def vars_for_template(self):
         return {
-            'E_range': list(zip(list(range(len(self.session.vars['prob_E_range']))),self.session.vars['prob_E_range'],
+            'round': self.round_number,
+            'E_range': list(zip(list(range(1,len(self.session.vars['prob_E_range'])+1)),self.session.vars['prob_E_range'],
                                 self.session.vars['prob_cE_range'])),
             'prospect_max': self.session.config['PE_prospect_max'],
             'prospect_min': self.session.config['PE_prospect_min'],
@@ -44,7 +45,8 @@ class _3CE(Page):
 
     def vars_for_template(self):
         return {
-            'E_range': list(zip(list(range(len(self.session.vars['CE_range']))),(self.session.vars['CE_range']))),
+            'round': self.round_number,
+            'E_range': list(zip(list(range(1,len(self.session.vars['CE_range'])+1)),(self.session.vars['CE_range']))),
             'CE_P': round((self.session.config['CE_prob_P'][self.subsession.round_number-1])*100, 2),
             'CE_cP': round((1 - self.session.config['CE_prob_P'][self.subsession.round_number-1])*100, 2),
             'CE_P_pts': self.session.config['CE_P_points'],
@@ -54,8 +56,30 @@ class _3CE(Page):
     def before_next_page(self):
         return self.player.compile()
 
+class _4TO(Page):
 
-class _4Results(Page):
+    def is_displayed(self):
+        return self.participant.vars['elic_type'][self.subsession.round_number - 1] == "TO"
+
+    form_model = 'player'
+    form_fields = ['TOIndifference']
+
+    def vars_for_template(self):
+        return {
+            'round': self.round_number,
+            'Pe': self.session.config['TO_P'],
+            'cPe': 100 - self.session.config['TO_P'],
+            'rmin': self.session.config['TO_Rmin'],
+            'rmax': self.session.config['TO_Rmax'],
+            'base': self.session.config['TO_Base'],
+            'x1': self.participant.vars['prev_TO'],
+        }
+
+    def before_next_page(self):
+        return self.player.compile()
+
+
+class _5Results(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -64,6 +88,12 @@ class _4Results(Page):
         return {
             'data': self.session.vars['series'],
             'elic_type': self.participant.vars['elic_type'][self.round_number == 1],
+            'CE_max': self.session.config['CE_max'],
+            'CE_min': self.session.config['CE_min'],
+            'prospect_max': self.session.config['PE_prospect_max'],
+            'prospect_min': self.session.config['PE_prospect_min'],
+            'TO_max': max(self.participant.vars['TO_Series']),
+            'base': self.session.config['TO_Base'],
         }
 
 
@@ -71,5 +101,6 @@ page_sequence = [
     _1Introduction,
     _2PE,
     _3CE,
-    _4Results,
+    _4TO,
+    _5Results,
 ]

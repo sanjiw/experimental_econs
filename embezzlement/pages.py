@@ -3,7 +3,6 @@ from .models import Constants, Player, Group
 from otree.api import (Currency as c)
 import numpy as np
 
-
 class Introduction(Page):
 
     def is_displayed(self):
@@ -11,10 +10,12 @@ class Introduction(Page):
 
     def vars_for_template(self):
         return {
+            'num_rounds': Constants.num_rounds - self.session.config['num_training_rounds'] - 1,
             'num_training_rounds': self.session.config['num_training_rounds'],
             'endowment': self.session.config['endowment'],
             'timeout': self.session.config['timeout_real']
         }
+
 
 class IntroWaitPage(WaitPage):
 
@@ -130,7 +131,6 @@ class  ResultsWaitPage(WaitPage):
 page_sequence = [
     Introduction,
     IntroWaitPage,
-    Instructions,
     RealGameWarning,
     InitialWaitPage,
     Contribute,

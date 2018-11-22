@@ -20,6 +20,15 @@ class _1Questionnaire(Page):
                    'brothers_rank','brothers_sum',
                    'perceived_wealth']
 
+class _1Dice(Page):
+    form_model = 'player'
+    form_fields = ['rand_selector']
+
+    def vars_for_template(self):
+        return {
+            'rand_range': max(self.participant.vars['round_cut']),
+        }
+
     def before_next_page(self):
         self.player.payoff_rand()
 
@@ -28,8 +37,8 @@ class _2ThankYou(Page):
     def vars_for_template(self):
         return {
             'total_earnings': self.participant.payoff_plus_participation_fee(),
-            'payoff_round': self.player.payround,
-            'payoff_game': self.player.paygame,
+            'payoff_game': self.player.rand_selector[0] + "2",
+            'payoff_round': self.player.rand_selector[-1],
             'points_rand': self.player.points_rand * 0.5,
             'points_a1': self.player.points_A1 * 0.25,
             'points_b1': self.player.points_B1 * 0.25,
@@ -41,5 +50,6 @@ class _2ThankYou(Page):
 
 page_sequence = [
     _1Questionnaire,
+    _1Dice,
     _2ThankYou
 ]

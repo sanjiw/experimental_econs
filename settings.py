@@ -21,11 +21,11 @@ SESSION_CONFIGS = [
         'social_cost_multiplier': 1,
         'punishment_prob': 0.15,
         'soc_welf_multiplier': 1.5,
-        'num_training_rounds': 1,
+        'num_training_rounds': 3,
         'punish_fine': 25,
         'bribe_threshold': 5,
-        'timeout_practice': None, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 15,
+        'timeout_practice': 1, ### Set to 'None' if you desire the game without any timeout.
+        'timeout_real': 1,
         'endowment': 100,
     },
     {
@@ -80,17 +80,22 @@ SESSION_CONFIGS = [
         'app_sequence': ['prisoner', 'payment_info'],
     },
     {
-        'name': 'belief',
-        'display_name': "Some Utility Elicitation",
-        'num_demo_participants': 500,
+        'name': 'utility_elicitation',
+        'display_name': "Utility Elicitation",
+        'num_demo_participants': 1,
         'app_sequence': ['utility_elicitation'],
         'PE_prospect_max': 100,
         'PE_prospect_min': 0,
         'PE_certainamount': [90, 50, 60, 40, 10, 80, 20, 30, 70],
         'CE_max': 100,
+        'CE_min': 0,
         'CE_prob_P': [0.3, 0.9, 0.2, 0.6, 0.5, 0.8, 0.1, 0.7, 0.4],
         'CE_P_points': 100,
         'CE_cP_points': 0,
+        'TO_P': 70,
+        'TO_Rmin': 20,
+        'TO_Rmax': 80,
+        'TO_Base': 0,
     },
 ]
 # see the end of this file for the inactive session configs

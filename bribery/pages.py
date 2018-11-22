@@ -7,12 +7,15 @@ class Introduction(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == 1
+
     def vars_for_template(self):
         return {
+            'num_rounds': Constants.num_rounds - self.session.config['num_training_rounds'] - 1,
             'num_training_rounds': self.session.config['num_training_rounds'],
             'endowment': self.session.config['endowment'],
             'timeout': self.session.config['timeout_real']
         }
+
 
 class IntroWaitPage(WaitPage):
 
@@ -147,7 +150,6 @@ class  ResultsWaitPage(WaitPage):
 page_sequence = [
     Introduction,
     IntroWaitPage,
-    Instructions,
     RealGameWarning,
     InitialWaitPage,
     Contribute,

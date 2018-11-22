@@ -34,26 +34,24 @@ class Player(BasePlayer):
     points_A1 = models.IntegerField()
     points_B1 = models.IntegerField()
     result_matrix = models.StringField()
+    rand_selector = models.StringField()
 
     def payoff_rand(self):
         ##### Tuple conversion for all data
         pay_tup_all_rd = list(zip(self.participant.vars['payoff_vct'],self.participant.vars['training'],
-                                  self.participant.vars['round_all_vct'],self.participant.vars['game']))
+                                  self.participant.vars['round_all_vct'],self.participant.vars['game'],
+                                  self.participant.vars['round_cut']))
         ##### Exclude all training rounds and oneshots
         pay_tup_rand = [i for i in pay_tup_all_rd if (i[3]=='B2' or i[3]=='A2')]
         ##### Only the oneshots
         oneshot = [i for i in pay_tup_all_rd if (i[3]=='B1' or i[3]=='A1')]
         self.result_matrix = json.dumps(pay_tup_all_rd)
-        ##### Randomizer local var
-        sel = np.random.randint(1, len(pay_tup_rand)) - 1
         ##### Payoff round number selector
-        self.payround = pay_tup_rand[sel][2]
-        self.paygame = str(pay_tup_rand[sel][3])
-        self.points_rand = int(pay_tup_rand[sel][0])
+        self.points_rand = int([i[0] for i in pay_tup_rand if i[3][0]==self.rand_selector[0] and i[4]==int(self.rand_selector[-1])][0])
         self.points_A1 = int(oneshot[0][0])
         self.points_B1 = int(oneshot[1][0])
         ##### Payoff selector
-        self.participant.payoff = 0.5*(pay_tup_rand[sel][0]) + 0.25*(oneshot[0][0]) + 0.25*(oneshot[1][0])
+        self.participant.payoff = 0.5*(self.points_rand) + 0.25*(oneshot[0][0]) + 0.25*(oneshot[1][0])
 
 
     fullname = models.StringField(

@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Probability Equivalent Method
+    <i>Probability Equivalent Method</i> - Ronde {{ round }}
 {% endblock %}
 
 {% block content %}
@@ -10,12 +10,14 @@
 Silakan mengklik opsi-opsi di bawah dan sesuaikan dengan preferensi Anda. <br>
 
 <table>
-  <tr style="background:#3a3a3a;color:#ffffff"><td><b>Option A</b></td><td><b>A</b></td><td><b>B</b></td><td><b>Option B</b></td></tr>
+  <tr style="background:#3a3a3a;color:#ffffff"><td>No</td><td><b>Option A</b></td><td><b>A</b></td><td><b>B</b></td><td><b>Option B</b></td></tr>
   {% for i in E_range %}
-  <tr><td>Uang pasti sebesar {{ CE }}</td>
+    <tr><td>{{i.0}}</td>
+        <td>Uang pasti sebesar <b>{{ CE }}</b></td>
     <td><input type="radio" id="{{i.0}}" value="1" name="PEchoice{{i.0}}" onClick="left_click(this.id)" required></td>
     <td><input type="radio" id="{{i.0}}" value="2" name="PEchoice{{i.0}}" onClick="right_click(this.id)" required></td>
-    <td>{{i.1}}% peluang mendapatkan {{ prospect_max }}, {{i.2}}% peluang mendapatkan {{ prospect_min }}</td></tr>
+    <td><font color="blue">{{i.1}}%</font> peluang mendapatkan <b>{{ prospect_max }}</b>, <font color="red">{{i.2}}%</font>
+        peluang mendapatkan <b>{{ prospect_min }}</b></td></tr>
   {% endfor %}
 </table>
 <br><br>
@@ -54,7 +56,7 @@ th, td {
             i++;
         }
         i = varId;
-        while(i < 21){
+        while(i < 22){
             var but = [':radio[id=',i,'][value=2]'];
             var but = but.join("");
             $(but).prop('checked',true);
@@ -74,7 +76,7 @@ th, td {
             i++;
         }
         i = varId++;
-        while(i < 21){
+        while(i < 22){
             var but = [':radio[id=',i,'][value=1]'];
             var but = but.join("");
             $(but).prop('checked',true);

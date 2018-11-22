@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Certainty Equivalent Method
+    <i>Certainty Equivalent Method</i> - Ronde {{ round }}
 {% endblock %}
 
 {% block content %}
@@ -10,12 +10,14 @@
 Silakan mengklik opsi-opsi di bawah dan sesuaikan dengan preferensi Anda. <br>
 
 <table>
-  <tr style="background:#3a3a3a;color:#ffffff"><td><b>Option A</b> </td><td><b>A</b></td><td><b>B</b></td><td><b>Option B</b></td></tr>
+  <tr style="background:#3a3a3a;color:#ffffff"><td>No</td><td><b>Option A</b> </td><td><b>A</b></td><td><b>B</b></td><td><b>Option B</b></td></tr>
   {% for i in E_range %}
-  <tr><td>Uang pasti sebesar {{i.1}}</td>
+    <tr><td>{{i.0}}</td>
+        <td>Uang pasti sebesar <b>{{i.1}}</b></td>
     <td><input type="radio" id="{{i.0}}" value="1" name="CEchoice{{i.0}}" onClick="left_click(this.id)" required></td>
     <td><input type="radio" id="{{i.0}}" value="2" name="CEchoice{{i.0}}" onClick="right_click(this.id)" required></td>
-    <td>{{ CE_P }}% peluang mendapatkan {{ CE_P_pts }}, {{ CE_cP }}% peluang mendapatkan {{ CE_cP_pts }}</td></tr>
+        <td><font color="blue">{{ CE_P }}%</font> peluang mendapatkan <b>{{ CE_P_pts }}</b>,
+            <font color="red">{{ CE_cP }}%</font> peluang mendapatkan <b>{{ CE_cP_pts }}</b></td></tr>
   {% endfor %}
 </table>
 <br><br>
