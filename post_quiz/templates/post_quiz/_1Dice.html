@@ -7,20 +7,31 @@
 
 {% block content %}
 
+    Hasil game A1 dan B1 sudah langsung dihitung ke total poin Anda. Silakan mainkan instrumen di bawah
+    untuk menentukan sisa 50% dari total poin Anda dari game A2 atau B2. Semua ronde punya peluang yang sama untuk terpilih.
+    <br>
+    <br>
+    <div class="card bg-light text-dark">
+    <div class="card-body">
     <div align="center">
-        <div style="border:4px solid #f2f2f2; width:100px; height:100px text-align:center;padding:0">
-            <p id="dice2" style="font-size:300%">??</p>
-            <p id="dice" style="font-size:300%">??</p>
-        </div>
+
+            <tr><td><img width="60" height="46" src="{% static "dice.png" %}"/></td><td>Game:  </td><td><b>
+                <text id="dice2" style="font-size:300%">???</text></b></td><td>   Round:  </td>
+            <td><b><text id="dice" style="font-size:300%">???</text></b></td></tr><td><img width="60" height="46" src="{% static "dice.png" %}"/></td>
+
         <br>
         <button id="roll" onclick="AniDice()" type="button">Mulai Mengacak!</button>
-        <br>
-        <button id="stop" onclick="stopDice()" type="button" style="visibility:hidden">Berhenti</button>
+        <button id="stop" onclick="stopDice()" type="button">Hentikan!</button>
     </div>
 
     <input type="hidden" name="rand_selector" id="var" value="">
-
+    </div>
+    </div>
+    <br>
+    <p id="result0" style="visibility:hidden">Anda akan menerima poin dari hasil di game dan nomor ronde di atas.</p>
+    <br>
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Hasil</button>
+
 
 
 {% endblock %}
@@ -29,22 +40,23 @@
 
     <script type="text/javascript">
         function AniDice(){
-            document.getElementById("roll").style.visibility = "hidden";
-            document.getElementById("stop").style.visibility = "visible";
+            document.getElementById("roll").disabled = true;
+            document.getElementById("stop").disabled = false;
             MyVar=setInterval(rolldice,20);
         }
 
         function rolldice(){
-            var alphabet = "AB";
+            var ranArray = ['A2', 'B2'];
             var ranNum = Math.floor( 1 + Math.random() * {{rand_range}} );
-            var ranLet = alphabet[Math.floor(Math.random() * alphabet.length)];
+            var ranLet = ranArray[Math.floor(Math.random() * ranArray.length)];
             document.getElementById("dice").innerHTML = ranNum;
             document.getElementById("dice2").innerHTML = ranLet;
-            document.getElementById("var").value = ranLet + ranNum;
+            document.getElementById("var").value = ranLet.charAt(0) + ranNum;
         }
 
         function stopDice(){
             document.getElementById("next").style.visibility = "visible";
+            document.getElementById("result0").style.visibility = "visible";
             clearInterval(MyVar);
         }
 

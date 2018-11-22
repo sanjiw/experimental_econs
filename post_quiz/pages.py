@@ -3,6 +3,7 @@ from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
 import json
+import random
 
 
 class _1Questionnaire(Page):
@@ -27,6 +28,20 @@ class _1Dice(Page):
     def vars_for_template(self):
         return {
             'rand_range': max(self.participant.vars['round_cut']),
+            'round_range': random.shuffle([i for i in range(1,max(self.participant.vars['round_cut'])+1)])
+        }
+
+    def before_next_page(self):
+        self.player.payoff_rand()
+
+class _1Roulette(Page):
+    form_model = 'player'
+    form_fields = ['rand_selector']
+
+    def vars_for_template(self):
+        return {
+            'rand_range': max(self.participant.vars['round_cut']),
+            'round_range': [j+i for i, j in zip(range(1,max(self.participant.vars['round_cut'])+1), ['A2', 'B2'])]
         }
 
     def before_next_page(self):
