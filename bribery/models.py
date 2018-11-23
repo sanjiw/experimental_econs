@@ -98,7 +98,7 @@ class Subsession(BaseSubsession):
             else:
                 self.set_group_matrix(matrix[self.round_number - self.session.config['num_training_rounds'] - 1])
                 self.get_group_matrix()
-        else: self.group_randomly()
+        elif len(self.get_players()) != 42: self.group_randomly()
         for p in self.get_players():
             p.treatmentgroup = self.session.config['treatment']
             ### Treatment group: Control (0), Treatment 1 (1), Treatment 2 (2)

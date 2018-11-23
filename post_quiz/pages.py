@@ -24,7 +24,7 @@ class _1Questionnaire(Page):
     def before_next_page(self):
         self.player.table()
 
-class _1Dice(Page):
+class _2Dice(Page):
     form_model = 'player'
     form_fields = ['rand_selector']
 
@@ -38,7 +38,7 @@ class _1Dice(Page):
     def before_next_page(self):
         self.player.payoff_rand()
 
-class _1Roulette(Page):
+class _2Roulette(Page):
     form_model = 'player'
     form_fields = ['rand_selector']
 
@@ -52,7 +52,7 @@ class _1Roulette(Page):
     def before_next_page(self):
         self.player.payoff_rand()
 
-class _2ThankYou(Page):
+class _3ThankYou(Page):
 
     def vars_for_template(self):
         return {
@@ -70,6 +70,6 @@ class _2ThankYou(Page):
 
 page_sequence = [
     _1Questionnaire,
-    _1Dice,
-    _2ThankYou
+    _2Dice,
+    _3ThankYou
 ]

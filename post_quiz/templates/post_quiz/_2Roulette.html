@@ -7,12 +7,13 @@
 
 {% block content %}
     <canvas id="canvas" width="500" height="500"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
     <input type="button" value="spin" style="float:left;" id='spin' />
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript">
-        var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"];
+        var options = [1, 2, 3, 4];
 
         var startAngle = 0;
         var arc = Math.PI / (options.length / 2);
@@ -32,7 +33,7 @@
         }
 
         function RGB2Color(r,g,b) {
-            return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+            return '#ffffff';
         }
 
         function getColor(item, maxitem) {
@@ -52,8 +53,8 @@
           var canvas = document.getElementById("canvas");
           if (canvas.getContext) {
             var outsideRadius = 200;
-            var textRadius = 160;
-            var insideRadius = 125;
+            var textRadius = 120;
+            var insideRadius = 80;
 
             ctx = canvas.getContext("2d");
             ctx.clearRect(0,0,500,500);
@@ -61,7 +62,7 @@
             ctx.strokeStyle = "black";
             ctx.lineWidth = 2;
 
-            ctx.font = 'bold 12px Helvetica, Arial';
+            ctx.font = 'bold 20px Helvetica, Helvetica';
 
             for(var i = 0; i < options.length; i++) {
               var angle = startAngle + i * arc;

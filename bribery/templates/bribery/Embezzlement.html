@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Pengambilan Proyek Bersama - Game {{ player.gametype }} - Ronde {{ subsession.round_number }}
+    Pengambilan Proyek Bersama - Game {{ player.gametype }} {% if player.gametype == 'B2' %}- Ronde {{ round }} {% else %}{% endif %}
 {% endblock %}
 
 {% block content %}

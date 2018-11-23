@@ -2,7 +2,7 @@
 {% load otree static %}
 
 {% block title %}
-    Tahap Sumbangan - Game {{ player.gametype }} - Ronde {{ subsession.round_number }}
+    Tahap Sumbangan - Game {{ player.gametype }} {% if player.gametype == 'A2' %}- Ronde {{ round }} {% else %}{% endif %}
 {% endblock %}
 
 {% block content %}

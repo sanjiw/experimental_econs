@@ -63,6 +63,11 @@ class Contribute(Page):
             self.player.choice = np.random.randint(0,self.session.config['endowment'])
             self.player.contribution = self.player.choice
 
+    def vars_for_template(self):
+        return {
+            'round': self.round_number - self.session.config['num_training_rounds'] - 1,
+        }
+
 
 class ContributionWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -91,6 +96,11 @@ class Embezzlement(Page):
     def before_next_page(self):
         self.group.set_payoffs1()
 
+    def vars_for_template(self):
+        return {
+            'round': self.round_number - self.session.config['num_training_rounds'] - 1,
+        }
+
 
 class EmbezzlementWaitPage(WaitPage):
     def after_all_players_arrive(self):
@@ -111,7 +121,7 @@ class Results(Page):
             'fine': self.session.config['punish_fine'],
             'social_cost': (self.group.social_welfare - self.group.social_welfare_embz) * self.session.config[
                 'social_cost_multiplier'],
-
+            'round': self.round_number - self.session.config['num_training_rounds'] - 1
         }
 
     def get_timeout_seconds(self):
