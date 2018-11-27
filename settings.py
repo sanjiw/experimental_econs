@@ -25,7 +25,7 @@ SESSION_CONFIGS = [
         'punish_fine': 25,
         'bribe_threshold': 5,
         'timeout_practice': 15, ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 15,
+        'timeout_real': 30,
         'endowment': 100,
     },
     {
