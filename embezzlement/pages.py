@@ -132,7 +132,8 @@ class Results(Page):
 
 class  ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
-        self.subsession.supplement()
+        pass
+        #self.subsession.supplement()
 
     title_text = "Mohon menunggu:"
     body_text = "Menunggu peserta lainnya..."
