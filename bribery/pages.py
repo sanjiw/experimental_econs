@@ -59,9 +59,9 @@ class Contribute(Page):
 
     def before_next_page(self):
         self.player.set_contribute()
-        if self.timeout_happened:
-            self.player.choice = np.random.randint(0, self.session.config['endowment'])
-            self.player.contribution = self.player.choice
+        #if self.timeout_happened:
+        #    self.player.choice = np.random.randint(0, self.session.config['endowment'])
+        #    self.player.contribution = self.player.choice
 
     def vars_for_template(self):
         return {
