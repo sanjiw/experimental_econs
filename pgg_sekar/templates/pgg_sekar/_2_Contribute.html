@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Contribute - Round {{ round }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light instructions">
+        <div class="card-body">
+        <p>
+            You have {{ Constants.endowment }} tokens as endowment.
+        </p>
+
+        {% formfield player.token_contributed %}
+
+        {% next_button %}
+        </div>
+    </div>
+
+{% endblock %}

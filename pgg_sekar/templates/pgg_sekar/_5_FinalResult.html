@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Final Results
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light instructions">
+        <div class="card-body">
+        <p>
+            Your final payoff is the sum of all payoff on each rounds you played.
+        <p>
+            Your total final payoff is: <b>{{ final_payoff }}</b>
+        </p>
+        </div>
+    </div>
+
+{% endblock %}

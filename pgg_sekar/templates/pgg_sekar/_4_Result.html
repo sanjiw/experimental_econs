@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results - Round {{ round }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light instructions">
+        <div class="card-body">
+        <br>You contributed: <b>{{ token_contributed }} token(s).</b>
+        <br>
+        <br>Your payoff for this round is <b>{{ payoff_thisround }} token(s)</b>.
+        <br>
+        <br>
+
+        <button class="otree-btn-next btn btn-primary next-button otree-next-button">Proceed to the Next round</button>
+        </div>
+    </div>
+
+{% endblock %}

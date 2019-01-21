@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Guess - Round {{ round }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="card bg-light instructions">
+        <div class="card-body">
+        <p>
+            You have chosen to contribute {{ player.token_contributed }} token(s).
+        </p>
+
+        {% formfield player.guess_total_token %}
+
+        {% next_button %}
+        </div>
+    </div>
+
+{% endblock %}
