@@ -1,0 +1,124 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Ronde ke-{{round}}
+{% endblock %}
+
+{% block content %}
+
+Di dalam ronde {{round}} ini, Anda akan menghadapi kemungkinan bahwa:
+<ul>
+  <li>Mendapatkan sebesar {{ x1G }} kali lipat G dalam 9 bulan ke depan, atau </li>
+  <li>Mendapatkan sebesar {{ x2G }} kali lipat G dalam 4 bulan ke depan.</li>
+</ul>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-c3ow" rowspan="2">No.</th>
+    <th class="tg-c3ow" colspan="2">Opsi G</th>
+    <th class="tg-c3ow" rowspan="2">Jumlah alokasi Anda di G</th>
+    <th class="tg-c3ow" rowspan="2">Uang yang tersisa yang Anda bisa terima saat ini:</th>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x1G }}<br>kali lipat G dalam 9 bulan ke depan</td>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x2G }}<br>kali lipat G dalam 4 bulan ke depan</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">{% formfield player.a1 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">2</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">{% formfield player.a2 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">3</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">{% formfield player.a3 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">4</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">{% formfield player.a4 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">5</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">{% formfield player.a5 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">6</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">{% formfield player.a6 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">7</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">{% formfield player.a7 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">8</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">{% formfield player.a8 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">9</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">{% formfield player.a9 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">10</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">{% formfield player.a10 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">11</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">{% formfield player.a11 %}</td>
+    <td class="tg-c3ow"></td>
+  </tr>
+</tbody>
+</table>
+<br>
+<br>
+Tekan tombol berikut jika sudah yakin dengan jawaban Anda.
+<br>
+<br>
+    {% next_button %}
+
+{% endblock %}

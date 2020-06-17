@@ -13,13 +13,20 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
+        'name': 'bi_risky_setup_1',
+        'display_name': "BI - Risky Setup 1",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_risky_setup_1'],
+        'use_browser_bots': False
+    },
+    {
         'name': 'pgg_sekar',
         'display_name': "PG Games - Sekar Utami Setiastuti",
         'num_demo_participants': 5,
         'app_sequence': ['pgg_sekar'],
         'use_browser_bots': False
     },
-{
+    {
         'name': 'embezzlement_bribery',
         'display_name': "PG Games with Embezzlement and Bribery",
         'num_demo_participants': 3,
