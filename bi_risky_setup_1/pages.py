@@ -3,7 +3,7 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class Introduction(Page):
+class Instruction(Page):
 
     def is_displayed(self):
         return self.subsession.round_number == 1
@@ -49,7 +49,7 @@ class Results(Page):
         }
 
 
-page_sequence = [Introduction,
+page_sequence = [Instruction,
                  wait1,
                  Mpl,
                  wait2,
