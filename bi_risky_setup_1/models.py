@@ -18,7 +18,6 @@ doc = """
 Risky Setup - Green Only
 """
 
-
 class Constants(BaseConstants):
     name_in_url = 'experiment_1'
     players_per_group = None
