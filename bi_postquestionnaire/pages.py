@@ -14,7 +14,8 @@ class Results(Page):
 
     def vars_for_template(self):
         return {
-            "payoff_list": self.participant.vars['payoff_vector_s1']
+            "payoff_list": self.participant.vars['payoff_vector_s1'],
+            "tes": "tes"
         }
 
 
