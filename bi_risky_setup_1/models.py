@@ -56,10 +56,8 @@ class Subsession(BaseSubsession):
             p.xG_select = np.random.choice([self.x1G, self.x2G],
                                          p=[prob[choice_randomizer-1], 1-prob[choice_randomizer-1]])
             p.payoff = (p.a_select * p.xG_select) + (Constants.endowment - p.a_select)
-            if self.round_number == 1:
-                self.participant.vars['payoff_vector_s1'] = p.payoff
-            else:
-                self.participant.vars['payoff_vector_s1'].append(p.payoff)
+            p.participant.vars['payoff_vector_s1'].append(p.payoff)
+
 
 class Group(BaseGroup):
     pass
