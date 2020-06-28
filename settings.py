@@ -16,7 +16,14 @@ SESSION_CONFIGS = [
         'name': 'bi_experiment',
         'display_name': "BI - Experiment",
         'num_demo_participants': 1,
-        'app_sequence': ['bi_introduction','bi_risky_setup_1'],
+        'app_sequence': ['bi_introduction','bi_risky_setup_1','bi_postquestionnaire'],
+        'use_browser_bots': False
+    },
+    {
+        'name': 'bi_experiment_questionnaire',
+        'display_name': "BI - Experiment (Questionnaire Only)",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_postquestionnaire'],
         'use_browser_bots': False
     },
     {

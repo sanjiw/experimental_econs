@@ -3,9 +3,9 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
+class Initiation(Page):
 
     def before_next_page(self):
         self.subsession.cross_app_vars()
 
-page_sequence = [MyPage]
+page_sequence = [Initiation]
