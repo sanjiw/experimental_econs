@@ -28,12 +28,6 @@ class Mpl(Page):
             'x2G': self.subsession.x2G,
         }
 
-    def js_vars(self):
-        return dict(
-            endowment = Constants.endowment,
-        )
-
-
 class wait2(WaitPage):
 
     def after_all_players_arrive(self):
