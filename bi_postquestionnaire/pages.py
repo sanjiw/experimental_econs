@@ -11,7 +11,11 @@ class Questionnaire(Page):
                    "q4_a","q4_b","q4_c","q4_d","q4_e"]
 
 class Results(Page):
-    pass
+
+    def vars_for_template(self):
+        return {
+            "payoff_list": self.participant.vars['payoff_vector_s1']
+        }
 
 
 page_sequence = [Questionnaire, Results]

@@ -5,10 +5,14 @@
     Terima kasih!
 {% endblock %}
 
-    Terima kasih atas partisipasi Anda dalam survey ini.
+
 
 {% block content %}
 
+    Terima kasih atas partisipasi Anda dalam eksperimen ini. Berikut adalah daftar payoff Anda di masing-masing periode:
+    {{ payoff_list }}.
+    <br>
+    <br>
     <button id="lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Selesai</button>
 
 {% endblock %}

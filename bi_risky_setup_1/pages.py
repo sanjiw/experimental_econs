@@ -23,7 +23,7 @@ class Mpl(Page):
 
     def vars_for_template(self):
         return {
-            'round': self.subsession.round_number,
+            'round': self.subsession.round_number if (self.subsession.training_round == True) else self.subsession.round_number - 2,
             'x1G': self.subsession.x1G,
             'x2G': self.subsession.x2G,
         }

@@ -21,20 +21,30 @@ Risky Setup - Green Only
 class Constants(BaseConstants):
     name_in_url = 'experiment_1'
     players_per_group = None
-    num_rounds = 10
+    num_rounds = 12
+    num_training_rounds = 2
     endowment = c(25)
 
 
 class Subsession(BaseSubsession):
 
+    training_round = models.BooleanField()
     x1G = models.FloatField()
     x2G = models.FloatField()
 
     def parameter_set(self):
+        x1Gs_training = [1.5, 2]
+        x2Gs_training = [0.5, 0.4]
         x1Gs = [1.5, 2, 2.5, 3, 3.5, 1.5, 2, 2.5, 3, 3.5]
         x2Gs = [0.5, 0.4, 0.3, 0.2, 0.1, 0.5, 0.4, 0.3, 0.2, 0.1]
-        self.x1G = x1Gs[self.round_number-1]
-        self.x2G = x2Gs[self.round_number-1]
+        if self.round_number <= Constants.num_training_rounds:
+            self.x1G = x1Gs_training[self.round_number - 1]
+            self.x2G = x2Gs_training[self.round_number - 1]
+            self.training_round = True
+        elif self.round_number > Constants.num_training_rounds:
+            self.x1G = x1Gs[self.round_number - (1+Constants.num_training_rounds)]
+            self.x2G = x2Gs[self.round_number - (1+Constants.num_training_rounds)]
+            self.training_round = False
 
     def payoff_realization(self):
         for p in self.get_players():
@@ -56,12 +66,13 @@ class Subsession(BaseSubsession):
             p.xG_select = np.random.choice([self.x1G, self.x2G],
                                          p=[prob[choice_randomizer-1], 1-prob[choice_randomizer-1]])
             p.payoff = (p.a_select * p.xG_select) + (Constants.endowment - p.a_select)
-            p.participant.vars['payoff_vector_s1'].append(p.payoff)
-
+            if self.round_number <= Constants.num_training_rounds:
+                pass
+            elif self.round_number > Constants.num_training_rounds:
+                p.participant.vars['payoff_vector_s1'].append(p.payoff)
 
 class Group(BaseGroup):
     pass
-
 
 class Player(BasePlayer):
 
