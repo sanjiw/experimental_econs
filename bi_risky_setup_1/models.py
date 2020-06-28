@@ -24,6 +24,7 @@ class Constants(BaseConstants):
     num_rounds = 12
     num_training_rounds = 2
     endowment = c(25)
+    endo = 25
 
 
 class Subsession(BaseSubsession):
@@ -33,6 +34,8 @@ class Subsession(BaseSubsession):
     x2G = models.FloatField()
 
     def parameter_set(self):
+        for p in self.get_players():
+            p.endowment = Constants.endo
         x1Gs_training = [1.5, 2]
         x2Gs_training = [0.5, 0.4]
         x1Gs = [1.5, 2, 2.5, 3, 3.5, 1.5, 2, 2.5, 3, 3.5]
@@ -76,6 +79,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
+    endowment = models.IntegerField()
     a_select = models.IntegerField()
     xG_select = models.FloatField()
     selector = models.IntegerField()
