@@ -13,10 +13,20 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'bi_experiment',
+        'name': 'bi_experiment_1',
         'display_name': "BI - Experiment",
         'num_demo_participants': 1,
-        'app_sequence': ['bi_introduction','bi_risky_setup_1','bi_postquestionnaire'],
+        'app_sequence': ['bi_introduction',
+                         'bi_risky_setup_1',
+                         'bi_risky_setup_2',
+                         'bi_postquestionnaire'],
+        'use_browser_bots': False
+    },
+    {
+        'name': 'bi_experiment_2',
+        'display_name': "BI - Experiment (Risky Setup 2 Only)",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_risky_setup_2'],
         'use_browser_bots': False
     },
     {

@@ -1,0 +1,402 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if subsession.training_round == True %}
+    Ronde latihan ke-{{round}}
+    {% elif subsession.training_round == False %}
+    Ronde riil ke-{{round}}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+Di dalam ronde {{round}} ini, Anda akan menghadapi kemungkinan bahwa:
+<ul>
+  <li>Mendapatkan sebesar {{ x1G }} kali lipat G dalam 9 bulan ke depan, atau </li>
+  <li>Mendapatkan sebesar {{ x2G }} kali lipat G dalam 4 bulan ke depan.</li>
+</ul>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-pb0m{border-color:inherit;text-align:center;vertical-align:bottom}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+</style>
+<table class="tg" style="undefined;table-layout: fixed; width: 952px">
+<colgroup>
+<col style="width: 38px">
+<col style="width: 74px">
+<col style="width: 74px">
+<col style="width: 74px">
+<col style="width: 74px">
+<col style="width: 95px">
+<col style="width: 95px">
+<col style="width: 95px">
+<col style="width: 300px">
+</colgroup>
+<thead>
+  <tr>
+    <th class="tg-c3ow" rowspan="2">No.</th>
+    <th class="tg-c3ow" colspan="2">Opsi G</th>
+    <th class="tg-c3ow" colspan="2">Opsi B</th>
+    <th class="tg-c3ow" rowspan="2">Jumlah alokasi Anda di G</th>
+    <th class="tg-c3ow" rowspan="2">Jumlah alokasi Anda di B</th>
+    <th class="tg-c3ow" rowspan="2">Uang yang tersisa dari alokasi di G + B:</th>
+    <th class="tg-c3ow" rowspan="2"></th>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x1G }}<br>kali lipat G dalam 9 bulan ke depan</td>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x2G }}<br>kali lipat G dalam 4 bulan ke depan</td>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x1B }}<br>kali lipat B dalam 12 bulan ke depan</td>
+    <td class="tg-c3ow">Peluang untuk mendapat {{ x2B }}<br>kali lipat B dalam 1 bulan ke depan</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">{% formfield player.a1 %}</td>
+    <td class="tg-pb0m">{% formfield player.b1 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_1'></p></td>
+    <td class="tg-c3ow" rowspan="11">
+      <img src="{% static "bi_experiment/treatment_1.jpg" %}" alt="Snow" style="width:100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">2</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">{% formfield player.a2 %}</td>
+    <td class="tg-pb0m">{% formfield player.b2 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_2'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">3</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">{% formfield player.a3 %}</td>
+    <td class="tg-pb0m">{% formfield player.b3 %}   </td>
+    <td class="tg-c3ow"><p id='remainder_3'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">4</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">{% formfield player.a4 %}</td>
+    <td class="tg-pb0m">{% formfield player.b4 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_4'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">5</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">{% formfield player.a5 %}</td>
+    <td class="tg-pb0m">{% formfield player.b5 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_5'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">6</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">50%</td>
+    <td class="tg-c3ow">{% formfield player.a6 %}</td>
+    <td class="tg-pb0m">{% formfield player.b6 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_6'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">7</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">40%</td>
+    <td class="tg-c3ow">60%</td>
+    <td class="tg-c3ow">{% formfield player.a7 %}</td>
+    <td class="tg-pb0m">{% formfield player.b7 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_7'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">8</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">30%</td>
+    <td class="tg-c3ow">70%</td>
+    <td class="tg-c3ow">{% formfield player.a8 %}</td>
+    <td class="tg-pb0m">{% formfield player.b8 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_8'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">9</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">20%</td>
+    <td class="tg-c3ow">80%</td>
+    <td class="tg-c3ow">{% formfield player.a9 %}</td>
+    <td class="tg-pb0m">{% formfield player.b9 %}   </td>
+    <td class="tg-c3ow"><p id='remainder_9'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">10</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">10%</td>
+    <td class="tg-c3ow">90%</td>
+    <td class="tg-c3ow">{% formfield player.a10 %}</td>
+    <td class="tg-pb0m">{% formfield player.b10 %}   </td>
+    <td class="tg-c3ow"><p id='remainder_10'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">11</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">0%</td>
+    <td class="tg-c3ow">100%</td>
+    <td class="tg-c3ow">{% formfield player.a11 %}</td>
+    <td class="tg-pb0m">{% formfield player.b11 %}   <br></td>
+    <td class="tg-c3ow"><p id='remainder_11'></p></td>
+  </tr>
+</tbody>
+</table>
+
+
+<br>
+<br>
+Tekan tombol berikut jika sudah yakin dengan jawaban Anda. Setelah Anda menekan tombol "Lanjut ke halaman berikutnya", Anda
+tidak dapat mengubah pilihan Anda pada ronde ini.
+<br>
+<br>
+
+<p>
+  Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">5</span> detik. Sembari menunggu, pastikan
+  kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.
+</p>
+<button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+    setTimeout(function() {
+        document.getElementById('lanjut').disabled = false;
+    }, 5000);
+    var seconds = document.getElementById("countdown").textContent;
+    var countdown = setInterval(function() {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+
+    $("#id_a1").focusout(function() {
+      $("#remainder_1").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a1").val();
+        var num2 = $("#id_b1").val();
+        var y = x - num1 - num2;
+      $("#remainder_1").html(y);
+    });
+
+    $("#id_a2").focusout(function() {
+      $("#remainder_2").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a2").val();
+        var num2 = $("#id_b2").val();
+        var y = x - num1 - num2;
+      $("#remainder_2").html(y);
+    });
+
+    $("#id_a3").focusout(function() {
+      $("#remainder_3").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a3").val();
+        var num2 = $("#id_b3").val();
+        var y = x - num1 - num2;
+      $("#remainder_3").html(y);
+    });
+
+    $("#id_a4").focusout(function() {
+      $("#remainder_4").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a4").val();
+        var num2 = $("#id_b4").val();
+        var y = x - num1 - num2;
+      $("#remainder_4").html(y);
+    });
+
+    $("#id_a5").focusout(function() {
+      $("#remainder_5").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a5").val();
+        var num2 = $("#id_b5").val();
+        var y = x - num1 - num2;
+      $("#remainder_5").html(y);
+    });
+
+    $("#id_a6").focusout(function() {
+      $("#remainder_6").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a6").val();
+        var num2 = $("#id_b6").val();
+        var y = x - num1 - num2;
+      $("#remainder_6").html(y);
+    });
+
+    $("#id_a7").focusout(function() {
+      $("#remainder_7").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a7").val();
+        var num2 = $("#id_b7").val();
+        var y = x - num1 - num2;
+      $("#remainder_7").html(y);
+    });
+
+    $("#id_a8").focusout(function() {
+      $("#remainder_8").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a8").val();
+        var num2 = $("#id_b8").val();
+        var y = x - num1 - num2;
+      $("#remainder_8").html(y);
+    });
+
+    $("#id_a9").focusout(function() {
+      $("#remainder_9").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a9").val();
+        var num2 = $("#id_b9").val();
+        var y = x - num1 - num2;
+      $("#remainder_9").html(y);
+    });
+
+    $("#id_a10").focusout(function() {
+      $("#remainder_10").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a10").val();
+        var num2 = $("#id_b10").val();
+        var y = x - num1 - num2;
+      $("#remainder_10").html(y);
+    });
+
+    $("#id_a11").focusout(function() {
+      $("#remainder_11").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a11").val();
+        var num2 = $("#id_b11").val();
+        var y = x - num1 - num2;
+      $("#remainder_11").html(y);
+    });
+
+    $("#id_b1").focusout(function() {
+      $("#remainder_1").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a1").val();
+        var num2 = $("#id_b1").val();
+        var y = x - num1 - num2;
+      $("#remainder_1").html(y);
+    });
+
+    $("#id_b2").focusout(function() {
+      $("#remainder_2").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a2").val();
+        var num2 = $("#id_b2").val();
+        var y = x - num1 - num2;
+      $("#remainder_2").html(y);
+    });
+
+    $("#id_b3").focusout(function() {
+      $("#remainder_3").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a3").val();
+        var num2 = $("#id_b3").val();
+        var y = x - num1 - num2;
+      $("#remainder_3").html(y);
+    });
+
+    $("#id_b4").focusout(function() {
+      $("#remainder_4").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a4").val();
+        var num2 = $("#id_b4").val();
+        var y = x - num1 - num2;
+      $("#remainder_4").html(y);
+    });
+
+    $("#id_b5").focusout(function() {
+      $("#remainder_5").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a5").val();
+        var num2 = $("#id_b5").val();
+        var y = x - num1 - num2;
+      $("#remainder_5").html(y);
+    });
+
+    $("#id_b6").focusout(function() {
+      $("#remainder_6").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a6").val();
+        var num2 = $("#id_b6").val();
+        var y = x - num1 - num2;
+      $("#remainder_6").html(y);
+    });
+
+    $("#id_b7").focusout(function() {
+      $("#remainder_7").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a7").val();
+        var num2 = $("#id_b7").val();
+        var y = x - num1 - num2;
+      $("#remainder_7").html(y);
+    });
+
+    $("#id_b8").focusout(function() {
+      $("#remainder_8").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a8").val();
+        var num2 = $("#id_b8").val();
+        var y = x - num1 - num2;
+      $("#remainder_8").html(y);
+    });
+
+    $("#id_b9").focusout(function() {
+      $("#remainder_9").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a9").val();
+        var num2 = $("#id_b9").val();
+        var y = x - num1 - num2;
+      $("#remainder_9").html(y);
+    });
+
+    $("#id_b10").focusout(function() {
+      $("#remainder_10").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a10").val();
+        var num2 = $("#id_b10").val();
+        var y = x - num1 - num2;
+      $("#remainder_10").html(y);
+    });
+
+    $("#id_b11").focusout(function() {
+      $("#remainder_11").html("");
+        let x = {{ player.endowment|json }};
+        var num1 = $("#id_a11").val();
+        var num2 = $("#id_b11").val();
+        var y = x - num1 - num2;
+      $("#remainder_11").html(y);
+    });
+
+
+    </script>
+{% endblock %}

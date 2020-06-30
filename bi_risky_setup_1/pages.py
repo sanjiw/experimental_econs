@@ -16,6 +16,11 @@ class wait1(WaitPage):
     def after_all_players_arrive(self):
         self.subsession.parameter_set()
 
+class WarningPage(Page):
+
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_training_rounds + 1
+
 class Mpl(Page):
 
     form_model = 'player'
@@ -34,8 +39,10 @@ class wait2(WaitPage):
         pass
         self.subsession.payoff_realization()
 
+class TrainingResults(Page):
 
-class Results(Page):
+    def is_displayed(self):
+        return self.subsession.round_number <= Constants.num_training_rounds
 
     def vars_for_template(self):
         return {
@@ -50,6 +57,7 @@ class Results(Page):
 
 page_sequence = [Instruction,
                  wait1,
+                 WarningPage,
                  Mpl,
                  wait2,
-                 Results]
+                 TrainingResults]

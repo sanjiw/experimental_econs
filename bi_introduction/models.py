@@ -28,6 +28,7 @@ class Subsession(BaseSubsession):
     def cross_app_vars(self):
         for p in self.get_players():
             p.participant.vars['payoff_vector_s1'] = []
+            p.participant.vars['game_type'] = []
 
 
 class Group(BaseGroup):
