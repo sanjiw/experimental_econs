@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instruksi Permainan
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc fermentum placerat augue in imperdiet. Praesent dictum est
+eget urna porta, in rutrum ligula tempus. Morbi rutrum gravida euismod. Cras eu enim nec ipsum porta rutrum at semper ligula.
+Phasellus rhoncus eu neque at consectetur. Morbi a tellus velit. Nullam neque quam, scelerisque in vestibulum id, efficitur
+quis sem. Integer ut ligula ante. Nunc feugiat, mi quis sagittis mollis, massa lectus interdum orci, at malesuada quam velit
+at dui. Curabitur porta sem ac magna mattis, eu vehicula metus fermentum. Suspendisse tristique congue magna et semper.
+In eu ex neque. Integer sit amet tempor odio.
+</p>
+
+<p>
+    Nullam tincidunt urna sed tincidunt facilisis. Duis quis ligula suscipit, varius ligula non, porttitor lorem. Fusce
+convallis vehicula eros nec mattis. Aliquam eget convallis purus, ut dictum dolor. Sed auctor enim sollicitudin nulla
+luctus vulputate. Curabitur aliquet libero a aliquam lacinia. Praesent a purus pretium, porttitor dui a, gravida lectus.
+
+</p>
+
+<p>
+    Quisque sapien dolor, commodo sagittis imperdiet nec, bibendum at magna. Proin nulla lectus, aliquet at sagittis sit amet,
+bibendum quis lacus. Integer lacinia, orci eu porta sodales, nulla arcu ornare metus, vitae tincidunt lorem turpis a turpis.
+Ut id sapien id nisi cursus lobortis. Integer tempor lacus vitae metus tempor, iaculis vestibulum tellus placerat. Pellentesque
+suscipit porttitor sapien, at pulvinar purus feugiat et. Duis vulputate interdum nunc sed volutpat. Nunc porttitor convallis
+ex, nec viverra nulla molestie eu. Fusce tristique, enim a pulvinar semper, quam est accumsan nibh, quis porttitor quam dolor
+vel quam. Morbi tempor placerat dignissim. Aliquam gravida nibh eu nisi accumsan venenatis. Mauris iaculis nulla id mauris
+eleifend maximus.
+</p>
+
+<p>
+    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam feugiat non sem non tristique.
+Sed sit amet ultricies ipsum, a sodales nunc. Quisque blandit purus nec molestie euismod. Nullam orci mauris, dictum id maximus
+sit amet, eleifend sed nibh. Nullam dapibus massa purus, id tincidunt mauris tincidunt finibus. Orci varius natoque penatibus
+et magnis dis parturient montes, nascetur ridiculus mus. Mauris eu odio ac felis tristique consectetur et et magna. Quisque ac
+sapien sit amet justo posuere fermentum.
+</p>
+
+<p>
+    Aenean facilisis enim dolor, ac faucibus urna pharetra eu. Nullam vitae convallis eros. Vivamus pretium nisl in lectus
+eleifend, in pretium erat pulvinar. Morbi gravida hendrerit ultricies. Cras ultricies finibus nisl. Curabitur ut quam lectus.
+Praesent eu erat a lacus hendrerit cursus vitae sit amet mi. Quisque ac feugiat diam. Phasellus nisl velit, tempor eget
+varius quis, finibus nec ipsum. Nunc vestibulum, nulla eu tristique pulvinar, lacus sem posuere neque, a feugiat quam eros
+et nisi. Nullam scelerisque commodo aliquet. Donec tincidunt placerat quam, vitae venenatis tellus. Nunc placerat tempor
+ex, eget aliquet odio dignissim vel. Pellentesque aliquam felis nisi, sed scelerisque lectus posuere in. Praesent hendrerit
+enim tortor, at egestas eros pharetra eu. Sed fringilla congue posuere.
+</p>
+
+<p>
+    Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">5</span> detik.
+</p>
+<button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+    setTimeout(function() {
+        document.getElementById('lanjut').disabled = false;
+    }, 5000);
+    var seconds = document.getElementById("countdown").textContent;
+    var countdown = setInterval(function() {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+    </script>
+{% endblock %}
+
+
