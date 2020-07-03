@@ -23,14 +23,17 @@ class Constants(BaseConstants):
     num_rounds = 1
 
 class Subsession(BaseSubsession):
-    pass
+
+    def payoff_dataframe(self):
+        for p in self.get_players():
+            pass
 
 class Group(BaseGroup):
     pass
 
 def make_field(label):
     return models.IntegerField(
-        choices=[1,2,3,4,5,6],
+        choices=[1, 2, 3, 4, 5, 6],
         label=label,
         widget=widgets.RadioSelect,
     )
