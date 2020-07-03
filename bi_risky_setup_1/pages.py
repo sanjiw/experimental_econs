@@ -1,7 +1,7 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
-
+import random
 
 class Instruction(Page):
 
@@ -53,6 +53,7 @@ class TrainingResults(Page):
             'payoff_2_leftover': Constants.endowment - self.player.a_select,
             'payoff': self.player.payoff
         }
+
 
 
 page_sequence = [Instruction,
