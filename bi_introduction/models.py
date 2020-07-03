@@ -13,7 +13,7 @@ import csv
 import json
 from otree.models_concrete import ParticipantToPlayerLookup, RoomToSession
 
-from otree.common import (get_models_module)
+from otree.common import get_models_module
 from otree import common
 
 def get_new_sequence_of_apps(app_sequence):
