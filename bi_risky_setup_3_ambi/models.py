@@ -75,6 +75,13 @@ class Subsession(BaseSubsession):
             elif self.round_number > Constants.num_training_rounds:
                 p.participant.vars['payoff_vector_s1'].append(p.payoff)
                 p.participant.vars['game_type'].append(Constants.setup_name)
+                p.participant.vars['MPL_selector_index'].append(p.selector_index)
+                p.participant.vars["Choice_selection_G"].append(p.selected_a)
+                p.participant.vars["Choice_selection_B"].append("N/A")
+                p.participant.vars["xG_select"].append(p.selected_xG)
+                p.participant.vars["xB_select"].append("N/A")
+                p.participant.vars["unknown_prob_G"].append(p.unknown_prob)
+                p.participant.vars["unknown_prob_B"].append(0)
 
 class Group(BaseGroup):
     pass

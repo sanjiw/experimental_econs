@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Hasil Ronde Latihan
+{% endblock %}
+
+{% block content %}
+
+    Hasil acakan komputer menunjukkan angka {{ selector }}, artinya payoff Anda pada ronde ini akan
+mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua komputer menunjukkan bahwa Anda mendapat multiplier
+{{ xG_select }} untuk G dan {{ xB_select }} untuk B. Artinya, payoff Anda pada ronde ini adalah sebesar:
+
+<br>
+<br>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Poin alokasi pada G dikali multiplier</th>
+    <th class="tg-0lax">{{ choice_select_G }} * {{ xG_select }}</th>
+    <th class="tg-0lax">{{ payoff_1_multiplied }}</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Poin alokasi pada B dikali multiplier</td>
+    <td class="tg-0lax">{{ choice_select_B }} * {{ xB_select }}</td>
+    <td class="tg-0lax">{{ payoff_2_multiplied }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Sisa poin yang diterima saat ini</td>
+    <td class="tg-0lax">{{ Constants.endowment }} - {{ choice_select_G }} - {{ choice_select_B }}</td>
+    <td class="tg-0lax">{{ payoff_leftover }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"></td>
+    <td class="tg-1wig">Total poin ronde ini:</td>
+    <td class="tg-0lax">{{ payoff }}</td>
+  </tr>
+</tbody>
+</table>
+<br>
+<br>
+
+Ingat bahwa hasil pada ronde ini <b>hanya latihan</b> dan tidak akan mempengaruhi pembayaran yang Anda terima.
+
+<br>
+<br>
+
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke ronde selanjutnya</button>
+
+{% endblock %}
+
+

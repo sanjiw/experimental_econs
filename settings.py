@@ -17,16 +17,18 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment",
         'num_demo_participants': 1,
         'app_sequence': ['bi_introduction',
+                         'bi_risky_setup_1',
                          'bi_risky_setup_2',
                          'bi_risky_setup_3_ambi',
+                         'bi_risky_setup_4_ambi',
                          'bi_postquestionnaire'],
         'use_browser_bots': False
     },
     {
-        'name': 'bi_experiment_3',
-        'display_name': "BI - Experiment (Ambiguity Setup 3 Only)",
+        'name': 'bi_experiment_4',
+        'display_name': "BI - Experiment (Ambiguity Setup 4 Only)",
         'num_demo_participants': 1,
-        'app_sequence': ['bi_risky_setup_3_ambi'],
+        'app_sequence': ['bi_risky_setup_4_ambi'],
         'use_browser_bots': False
     },
     {

@@ -15,12 +15,12 @@ import random
 author = 'Putu Sanjiwacika Wibisana'
 
 doc = """
-Risky Setup - Green and Brown
+Ambiguity Setup - Green and Brown
 """
 
 class Constants(BaseConstants):
-    setup_name = 'Risky - Two Goods'
-    name_in_url = 'experiment_2'
+    setup_name = 'Partial Uncertainty - Two Goods'
+    name_in_url = 'experiment_4'
     players_per_group = None
     num_rounds = 12
     num_training_rounds = 2
@@ -54,8 +54,8 @@ class Subsession(BaseSubsession):
             self.x2B = x2Bs_training[self.round_number - 1]
             self.training_round = True
         elif self.round_number > Constants.num_training_rounds:
-            self.x1G = x1Gs[self.round_number - (1+Constants.num_training_rounds)]
-            self.x2G = x2Gs[self.round_number - (1+Constants.num_training_rounds)]
+            self.x1G = x1Gs[self.round_number - (1 + Constants.num_training_rounds)]
+            self.x2G = x2Gs[self.round_number - (1 + Constants.num_training_rounds)]
             self.x1B = x1Bs[self.round_number - (1 + Constants.num_training_rounds)]
             self.x2B = x2Bs[self.round_number - (1 + Constants.num_training_rounds)]
             self.training_round = False
@@ -70,34 +70,35 @@ class Subsession(BaseSubsession):
                    [p.a6,p.b6],
                    [p.a7,p.b7],
                    [p.a8,p.b8],
-                   [p.a9,p.b9],
-                   [p.a10,p.b10],
-                   [p.a11,p.b11]]
-            prob = np.linspace(0,1,11)
-            choice_randomizer = random.randint(1,11)
-            p.selector = choice_randomizer
-            choice_selection = seq[choice_randomizer-1]
-            p.choice_selection_G = choice_selection[0]
-            p.choice_selection_B = choice_selection[1]
+                   [p.a9,p.b9]]
+            prob = np.linspace(0,0.8,9)
+            p.selector_index = random.randint(1,9)
+            selected_a = seq[p.selector_index-1]
+            p.choice_selection_G = selected_a[0]
+            p.choice_selection_B = selected_a[1]
+            p.unknown_prob_G = round(np.random.choice(np.linspace(0, 0.2, 100)), 3)
+            p.unknown_prob_B = round(np.random.choice(np.linspace(0, 0.2, 100)), 3)
             p.xG_select = np.random.choice([self.x1G, self.x2G],
-                                         p=[prob[choice_randomizer-1], 1-prob[choice_randomizer-1]])
+                                         p=[prob[p.selector_index-1] + p.unknown_prob_G,
+                                            0.8 - prob[p.selector_index-1] + (0.2 - p.unknown_prob_G)])
             p.xB_select = np.random.choice([self.x1B, self.x2B],
-                                         p=[prob[choice_randomizer-1], 1-prob[choice_randomizer-1]])
-            p.payoff = (choice_selection[0] * p.xG_select) + \
-                       (choice_selection[1] * p.xB_select) + \
-                       (Constants.endowment - (sum(choice_selection)))
+                                         p=[prob[p.selector_index-1] + p.unknown_prob_B,
+                                            0.8 - prob[p.selector_index-1] + (0.2 - p.unknown_prob_B)])
+            p.payoff = (p.choice_selection_G * p.xG_select) + \
+                       (p.choice_selection_B * p.xB_select) + \
+                       (Constants.endowment - (sum(selected_a)))
             if self.round_number <= Constants.num_training_rounds:
                 pass
             elif self.round_number > Constants.num_training_rounds:
                 p.participant.vars['payoff_vector_s1'].append(p.payoff)
                 p.participant.vars['game_type'].append(Constants.setup_name)
-                p.participant.vars['MPL_selector_index'].append(choice_randomizer)
+                p.participant.vars['MPL_selector_index'].append(p.selector_index)
                 p.participant.vars["Choice_selection_G"].append(p.choice_selection_G)
                 p.participant.vars["Choice_selection_B"].append(p.choice_selection_B)
                 p.participant.vars["xG_select"].append(p.xG_select)
                 p.participant.vars["xB_select"].append(p.xB_select)
-                p.participant.vars["unknown_prob_G"].append(0)
-                p.participant.vars["unknown_prob_B"].append(0)
+                p.participant.vars["unknown_prob_G"].append(p.unknown_prob_G)
+                p.participant.vars["unknown_prob_B"].append(p.unknown_prob_B)
 
 class Group(BaseGroup):
     pass
@@ -109,7 +110,9 @@ class Player(BasePlayer):
     choice_selection_B = models.IntegerField()
     xG_select = models.FloatField()
     xB_select = models.FloatField()
-    selector = models.IntegerField()
+    unknown_prob_G = models.FloatField()
+    unknown_prob_B = models.FloatField()
+    selector_index = models.IntegerField()
 
     a1 = models.IntegerField(min=0, max=Constants.endowment, label="")
     a2 = models.IntegerField(min=0, max=Constants.endowment, label="")
@@ -120,8 +123,6 @@ class Player(BasePlayer):
     a7 = models.IntegerField(min=0, max=Constants.endowment, label="")
     a8 = models.IntegerField(min=0, max=Constants.endowment, label="")
     a9 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a10 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a11 = models.IntegerField(min=0, max=Constants.endowment, label="")
 
     b1 = models.IntegerField(min=0, max=Constants.endowment, label="")
     b2 = models.IntegerField(min=0, max=Constants.endowment, label="")
@@ -132,5 +133,3 @@ class Player(BasePlayer):
     b7 = models.IntegerField(min=0, max=Constants.endowment, label="")
     b8 = models.IntegerField(min=0, max=Constants.endowment, label="")
     b9 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b10 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b11 = models.IntegerField(min=0, max=Constants.endowment, label="")

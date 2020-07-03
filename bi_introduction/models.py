@@ -29,6 +29,13 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             p.participant.vars['payoff_vector_s1'] = []
             p.participant.vars['game_type'] = []
+            p.participant.vars['MPL_selector_index'] = []
+            p.participant.vars["Choice_selection_G"] = []
+            p.participant.vars["Choice_selection_B"] = []
+            p.participant.vars["xG_select"] = []
+            p.participant.vars["xB_select"] = []
+            p.participant.vars["unknown_prob_G"] = []
+            p.participant.vars["unknown_prob_B"] = []
 
 
 class Group(BaseGroup):
