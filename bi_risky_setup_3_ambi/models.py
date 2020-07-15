@@ -10,7 +10,7 @@ from otree.api import (
 )
 import numpy as np
 import random
-
+import pandas as pd
 
 author = 'Putu Sanjiwacika Wibisana'
 
@@ -26,6 +26,8 @@ class Constants(BaseConstants):
     num_training_rounds = 2
     endowment = c(25)
     endo = 25
+    with open('bi_introduction/Params.csv') as file:
+        params = pd.read_csv(file)
 
 
 class Subsession(BaseSubsession):
@@ -33,24 +35,40 @@ class Subsession(BaseSubsession):
     training_round = models.BooleanField()
     x1G = models.FloatField()
     x2G = models.FloatField()
+    t1G = models.IntegerField()
+    t2G = models.IntegerField()
+    unknown_prob_G = models.FloatField()
 
     def parameter_set(self):
         for p in self.get_players():
             p.endowment = Constants.endo
+        params = Constants.params
+        params_subgame = params[params['game_type'] == "risky_setup_3_ambi"]
         x1Gs_training = [1.5, 2]
         x2Gs_training = [0.5, 0.4]
-        x1Gs = [1.5, 2, 2.5, 3, 3.5, 1.5, 2, 2.5, 3, 3.5]
-        x2Gs = [0.5, 0.4, 0.3, 0.2, 0.1, 0.5, 0.4, 0.3, 0.2, 0.1]
+        t1Gs_training = [1, 2]
+        t2Gs_training = [2, 1]
+        x1Gs = list(params_subgame['x1G'])
+        x2Gs = list(params_subgame['x2G'])
+        t1Gs = list(params_subgame['t1G'])
+        t2Gs = list(params_subgame['t2G'])
+        unknown_prob_Gs = [float(i) for i in list(params_subgame['unknown_prob_G'])]
         if self.round_number <= Constants.num_training_rounds:
             self.x1G = x1Gs_training[self.round_number - 1]
             self.x2G = x2Gs_training[self.round_number - 1]
+            self.t1G = t1Gs_training[self.round_number - 1]
+            self.t2G = t2Gs_training[self.round_number - 1]
+            self.unknown_prob_G = unknown_prob_Gs[self.round_number - 1]
             self.training_round = True
         elif self.round_number > Constants.num_training_rounds:
-            self.x1G = x1Gs[self.round_number - (1+Constants.num_training_rounds)]
-            self.x2G = x2Gs[self.round_number - (1+Constants.num_training_rounds)]
+            self.x1G = x1Gs[self.round_number - (1 + Constants.num_training_rounds)]
+            self.x2G = x2Gs[self.round_number - (1 + Constants.num_training_rounds)]
+            self.t1G = t1Gs[self.round_number - (1 + Constants.num_training_rounds)]
+            self.t2G = t2Gs[self.round_number - (1 + Constants.num_training_rounds)]
+            self.unknown_prob_G = unknown_prob_Gs[self.round_number - (1 + Constants.num_training_rounds)]
             self.training_round = False
 
-    def payoff_realization(self):
+    def realization(self):
         for p in self.get_players():
             seq = [p.a1,
                    p.a2,
@@ -61,27 +79,21 @@ class Subsession(BaseSubsession):
                    p.a7,
                    p.a8,
                    p.a9]
-            prob = np.linspace(0,0.8,9)
-            p.selector_index = random.randint(1,9)
-            p.selected_a = seq[p.selector_index-1]
-            p.unknown_prob = round(np.random.choice(np.linspace(0,0.2,100)),3)
-            r = random.randint(1, 9) - 1
-            p.selected_xG = np.random.choice([self.x1G, self.x2G],
-                                             p=[prob[r] + p.unknown_prob,
-                                                0.8 - prob[r] + (0.2 - p.unknown_prob)])
-            p.payoff = (p.selected_a * p.selected_xG) + (Constants.endowment - p.selected_a)
             if self.round_number <= Constants.num_training_rounds:
                 pass
             elif self.round_number > Constants.num_training_rounds:
-                p.participant.vars['payoff_vector_s1'].append(p.payoff)
-                p.participant.vars['game_type'].append(Constants.setup_name)
-                p.participant.vars['MPL_selector_index'].append(p.selector_index)
-                p.participant.vars["Choice_selection_G"].append(p.selected_a)
-                p.participant.vars["Choice_selection_B"].append("N/A")
-                p.participant.vars["xG_select"].append(p.selected_xG)
-                p.participant.vars["xB_select"].append("N/A")
-                p.participant.vars["unknown_prob_G"].append(p.unknown_prob)
-                p.participant.vars["unknown_prob_B"].append(0)
+                p.participant.vars['decision_list'].append(seq)
+                p.participant.vars['game_type'].append("risky_setup_3_ambi")
+                p.participant.vars['x1G'].append(self.x1G)
+                p.participant.vars['x2G'].append(self.x2G)
+                p.participant.vars['unknown_prob_G'].append(self.unknown_prob_G)
+                p.participant.vars['x1B'].append("N/A")
+                p.participant.vars['x2B'].append("N/A")
+                p.participant.vars['unknown_prob_B'].append("N/A")
+                p.participant.vars['t1G'].append(self.t1G)
+                p.participant.vars['t2G'].append(self.t2G)
+                p.participant.vars['t1B'].append("N/A")
+                p.participant.vars['t2B'].append("N/A")
 
 class Group(BaseGroup):
     pass
@@ -89,10 +101,6 @@ class Group(BaseGroup):
 class Player(BasePlayer):
 
     endowment = models.IntegerField()
-    selected_a = models.IntegerField()
-    selected_xG = models.FloatField()
-    selector_index = models.IntegerField()
-    unknown_prob = models.FloatField()
 
     a1 = models.IntegerField(min=0, max=Constants.endowment, label="")
     a2 = models.IntegerField(min=0, max=Constants.endowment, label="")

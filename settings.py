@@ -13,7 +13,7 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'bi_experiment_1',
+        'name': 'bi_experiment',
         'display_name': "BI - Experiment",
         'num_demo_participants': 1,
         'app_sequence': ['bi_introduction',
@@ -22,6 +22,27 @@ SESSION_CONFIGS = [
                          'bi_risky_setup_3_ambi',
                          'bi_risky_setup_4_ambi',
                          'bi_postquestionnaire'],
+        'use_browser_bots': False
+    },
+    {
+        'name': 'bi_experiment_1',
+        'display_name': "BI - Experiment (Risky Setup 1 Only)",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_risky_setup_1'],
+        'use_browser_bots': False
+    },
+    {
+        'name': 'bi_experiment_2',
+        'display_name': "BI - Experiment (Risky Setup 2 Only)",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_risky_setup_2'],
+        'use_browser_bots': False
+    },
+    {
+        'name': 'bi_experiment_3',
+        'display_name': "BI - Experiment (Ambiguity Setup 3 Only)",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_risky_setup_3_ambi'],
         'use_browser_bots': False
     },
     {
@@ -37,98 +58,6 @@ SESSION_CONFIGS = [
         'num_demo_participants': 1,
         'app_sequence': ['bi_postquestionnaire'],
         'use_browser_bots': False
-    },
-    {
-        'name': 'pgg_sekar',
-        'display_name': "PG Games - Sekar Utami Setiastuti",
-        'num_demo_participants': 5,
-        'app_sequence': ['pgg_sekar'],
-        'use_browser_bots': False
-    },
-    {
-        'name': 'embezzlement_bribery',
-        'display_name': "PG Games with Embezzlement and Bribery",
-        'num_demo_participants': 3,
-        'app_sequence': ['intro_screen', 'embezzlement', 'bribery', 'post_quiz'],
-        'treatment': '0',
-        'social_cost_multiplier': 1,
-        'punishment_prob': 0.15,
-        'soc_welf_multiplier': 1.5,
-        'num_training_rounds': 3,
-        'punish_fine': 25,
-        'bribe_threshold': 5,
-        'timeout_practice': 15,  ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30,
-        'endowment': 100,
-    },
-    {
-        'name': 'slider_effort',
-        'display_name': "Real Effort Task - Slider",
-        'num_demo_participants': 1,
-        'app_sequence': ['intro_screen', 'slider_effort'],
-        'points_exact': 3,
-        'points_near': 1,
-    },
-    {
-        'name': 'embezzlement',
-        'display_name': "PG Games with Embezzlement",
-        'num_demo_participants': 3,
-        'app_sequence': ['embezzlement'],
-        'treatment': '2',
-        'social_cost_multiplier': 1,
-        'punishment_prob': 0.5,
-        'soc_welf_multiplier': 1.5,
-        'num_training_rounds': 1,
-        'punish_fine': 5,
-        'timeout_practice': None,  ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30,
-        'endowment': 40,
-    },
-    {
-        'name': 'bribery',
-        'display_name': "PG Games with Bribery",
-        'num_demo_participants': 3,
-        'app_sequence': ['bribery'],
-        'treatment': '2',
-        'social_cost_multiplier': 1,
-        'punishment_prob': 0.5,
-        'soc_welf_multiplier': 1.5,
-        'num_training_rounds': 1,
-        'punish_fine': 5,
-        'bribe_threshold': 28,
-        'timeout_practice': None,  ### Set to 'None' if you desire the game without any timeout.
-        'timeout_real': 30,
-        'endowment': 40,
-    },
-    {
-        'name': 'post_quiz',
-        'display_name': "Post Quiz",
-        'num_demo_participants': 1,
-        'app_sequence': ['post_quiz'],
-    },
-    {
-        'name': 'prisoner',
-        'display_name': "Prisoner's Dilemma",
-        'num_demo_participants': 4,
-        'app_sequence': ['prisoner', 'payment_info'],
-    },
-    {
-        'name': 'utility_elicitation',
-        'display_name': "Utility Elicitation",
-        'num_demo_participants': 1,
-        'app_sequence': ['utility_elicitation'],
-        'PE_prospect_max': 100,
-        'PE_prospect_min': 0,
-        'PE_certainamount': [90, 50, 60, 40, 10, 80, 20, 30, 70],
-        'CE_max': 100,
-        'CE_min': 0,
-        'CE_prob_P': [0.3, 0.9, 0.2, 0.6, 0.5, 0.8, 0.1, 0.7, 0.4],
-        'CE_P_points': 100,
-        'CE_cP_points': 0,
-        'TO_P': 70,
-        'TO_Rmin': 20,
-        'TO_Rmax': 80,
-        'TO_Base': 0,
     },
 ]
 # see the end of this file for the inactive session configs

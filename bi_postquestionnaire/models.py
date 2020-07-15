@@ -39,6 +39,9 @@ def make_field(label):
     )
 
 class Player(BasePlayer):
+
+    round_selector = models.IntegerField()
+
     q1_a = make_field("I support the use of eco-friendly products for toiletries and washing dishes; e.g., recycled toilet paper.")
     q1_b = make_field("I support to reduce the use of fossil energy; e.g., switch to renewable energy.")
     q1_c = make_field("I support using the eco-friendly products for fashion; e.g., reused clothes.")

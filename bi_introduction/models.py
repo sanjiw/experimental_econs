@@ -11,10 +11,13 @@ from otree.api import (
 import random
 import csv
 import json
+import pandas as pd
 from otree.models_concrete import ParticipantToPlayerLookup, RoomToSession
 
 from otree.common import get_models_module
 from otree import common
+
+
 
 def get_new_sequence_of_apps(app_sequence):
     the_rest = ['bi_risky_setup_1',
@@ -82,6 +85,8 @@ class Constants(BaseConstants):
     name_in_url = 'bi_introduction'
     players_per_group = None
     num_rounds = 1
+    with open('bi_introduction/Params.csv') as file:
+        params = pd.read_csv(file)
 
 
 class Subsession(BaseSubsession):
@@ -97,16 +102,20 @@ class Subsession(BaseSubsession):
                                                     self.session)
 
     def cross_app_vars(self):
+        self.session.vars['params'] = Constants.params
         for p in self.get_players():
-            p.participant.vars['payoff_vector_s1'] = []
+            p.participant.vars['decision_list'] = []
             p.participant.vars['game_type'] = []
-            p.participant.vars['MPL_selector_index'] = []
-            p.participant.vars["Choice_selection_G"] = []
-            p.participant.vars["Choice_selection_B"] = []
-            p.participant.vars["xG_select"] = []
-            p.participant.vars["xB_select"] = []
-            p.participant.vars["unknown_prob_G"] = []
-            p.participant.vars["unknown_prob_B"] = []
+            p.participant.vars['x1G'] = []
+            p.participant.vars['x2G'] = []
+            p.participant.vars['unknown_prob_G'] = []
+            p.participant.vars['x1B'] = []
+            p.participant.vars['x2B'] = []
+            p.participant.vars['unknown_prob_B'] = []
+            p.participant.vars['t1G'] = []
+            p.participant.vars['t2G'] = []
+            p.participant.vars['t1B'] = []
+            p.participant.vars['t2B'] = []
 
 
 class Group(BaseGroup):

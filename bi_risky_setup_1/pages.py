@@ -28,16 +28,19 @@ class Mpl(Page):
 
     def vars_for_template(self):
         return {
+            'endowment': Constants.endowment,
             'round': self.subsession.round_number if (self.subsession.training_round == True) else self.subsession.round_number - 2,
             'x1G': self.subsession.x1G,
             'x2G': self.subsession.x2G,
+            't1G': self.subsession.t1G,
+            't2G': self.subsession.t2G,
         }
 
 class wait2(WaitPage):
 
     def after_all_players_arrive(self):
         pass
-        self.subsession.payoff_realization()
+        self.subsession.realization()
 
 class TrainingResults(Page):
 
@@ -45,13 +48,25 @@ class TrainingResults(Page):
         return self.subsession.round_number <= Constants.num_training_rounds
 
     def vars_for_template(self):
+        selector = random.choice(list(range(1,12)))
+        a_select = [self.player.a1, self.player.a2, self.player.a3, self.player.a4,
+                    self.player.a5, self.player.a6, self.player.a7, self.player.a8,
+                    self.player.a9, self.player.a10, self.player.a11][selector-1]
+        param_select = random.choice([[self.subsession.x1G, self.subsession.t1G],
+                                   [self.subsession.x2G, self.subsession.t2G]])
+        xG_select = param_select[0]
+        tG_select = param_select[1]
+        payoff_1 = a_select * xG_select
+        payoff_2 = Constants.endo - a_select
+        payoff = payoff_1 + payoff_2
         return {
-            'selector': self.player.selector,
-            'a_select': self.player.a_select,
-            'xG_select': self.player.xG_select,
-            'payoff_1_multiplied': self.player.xG_select * self.player.a_select,
-            'payoff_2_leftover': Constants.endowment - self.player.a_select,
-            'payoff': self.player.payoff
+            'selector': selector,
+            'a_select': a_select,
+            'xG_select': xG_select,
+            'tG_select': tG_select,
+            'payoff_1_multiplied': payoff_1,
+            'payoff_2_leftover': payoff_2,
+            'payoff': payoff
         }
 
 

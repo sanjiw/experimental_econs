@@ -15,9 +15,9 @@ Artinya, payoff Anda pada ronde ini adalah sebesar:
 <br>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+.tg td{border-color:black;border-style:solid;border-width:1px;
   overflow:hidden;padding:10px 20px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
+.tg th{border-color:black;border-style:solid;border-width:1px;
   font-weight:normal;overflow:hidden;padding:10px 20px;word-break:normal;}
 .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
 .tg .tg-0lax{text-align:left;vertical-align:top}
@@ -28,14 +28,14 @@ Artinya, payoff Anda pada ronde ini adalah sebesar:
   <tr>
     <th class="tg-0lax">Poin alokasi pada G dikali multiplier</th>
     <th class="tg-0lax">{{ a_select }} * {{ xG_select }}</th>
-    <th class="tg-0lax">{{ payoff_1_multiplied }}</th>
+    <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan dibayar dalam {{ tG_select }} bulan ke depan.</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td class="tg-73oq">Sisa poin yang diterima saat ini</td>
-    <td class="tg-73oq">{{ Constants.endowment }} - {{ a_select }}</td>
-    <td class="tg-73oq">{{ payoff_2_leftover }}</td>
+    <td class="tg-73oq">{{ Constants.endo }} - {{ a_select }}</td>
+    <td class="tg-73oq">{{ payoff_2_leftover }} yang akan dibayar saat ini.</td>
   </tr>
   <tr>
     <td class="tg-0lax"></td>

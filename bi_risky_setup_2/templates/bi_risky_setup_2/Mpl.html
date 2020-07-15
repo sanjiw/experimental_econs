@@ -11,166 +11,200 @@
 
 {% block content %}
 
-Di dalam ronde {{round}} ini, Anda akan menghadapi kemungkinan bahwa:
-<ul>
-  <li>Mendapatkan sebesar {{ x1G }} kali lipat G dalam 9 bulan ke depan, atau </li>
-  <li>Mendapatkan sebesar {{ x2G }} kali lipat G dalam 4 bulan ke depan.</li>
-</ul>
+Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A, Opsi B, atau tetap menyimpannya.
+Jika Anda mengalokasikan token ke Opsi A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar
+{{ x1G }} kali lipat atau {{ x2G }} kali lipat dari jumlah token yang Anda alokasikan ke Opsi A. Kedua imbalan tersebut
+akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian. Jika Anda mengalokasikan token ke Opsi B, maka Anda
+akan memiliki peluang untuk mendapatkan imbalan sebesar {{ x1B }} kali lipat atau {{ x2B }} kali lipat dari jumlah token
+yang Anda alokasikan ke Opsi B. Kedua imbalan tersebut akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian.
+Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara langsung hari ini.
 
+<br>
+<br>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-pb0m{border-color:inherit;text-align:center;vertical-align:bottom}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-lqy6{text-align:right;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-nrix{text-align:center;vertical-align:middle}
+.tg .tg-1f83{text-align:center;vertical-align:middle}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 952px">
+<table class="tg" style="undefined;table-layout: fixed; width: 1566px">
 <colgroup>
-<col style="width: 38px">
-<col style="width: 74px">
-<col style="width: 74px">
-<col style="width: 74px">
-<col style="width: 74px">
-<col style="width: 95px">
-<col style="width: 95px">
-<col style="width: 95px">
-<col style="width: 300px">
+<col style="width: 30px">
+<col style="width: 400px">
+<col style="width: 400px">
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 436px">
 </colgroup>
 <thead>
   <tr>
-    <th class="tg-c3ow" rowspan="2">No.</th>
-    <th class="tg-c3ow" colspan="2">Opsi G</th>
-    <th class="tg-c3ow" colspan="2">Opsi B</th>
-    <th class="tg-c3ow" rowspan="2">Jumlah alokasi Anda di G</th>
-    <th class="tg-c3ow" rowspan="2">Jumlah alokasi Anda di B</th>
-    <th class="tg-c3ow" rowspan="2">Uang yang tersisa dari alokasi di G + B:</th>
-    <th class="tg-c3ow" rowspan="2"></th>
+    <th class="tg-amwm">No</th>
+    <th class="tg-amwm">Barang A</th>
+    <th class="tg-amwm">Barang B</th>
+    <th class="tg-amwm">Alokasi A</th>
+    <th class="tg-amwm">Alokasi B</th>
+    <th class="tg-amwm">Menyimpan Token</th>
+    <th class="tg-0lax" rowspan="12">
+      <img src="{% static "bi_experiment/treatment_1.jpg" %}" alt="Snow" style="width:100%"/>
+    </th>
   </tr>
   <tr>
-    <td class="tg-c3ow">Peluang untuk mendapat {{ x1G }}<br>kali lipat G dalam 9 bulan ke depan</td>
-    <td class="tg-c3ow">Peluang untuk mendapat {{ x2G }}<br>kali lipat G dalam 4 bulan ke depan</td>
-    <td class="tg-c3ow">Peluang untuk mendapat {{ x1B }}<br>kali lipat B dalam 12 bulan ke depan</td>
-    <td class="tg-c3ow">Peluang untuk mendapat {{ x2B }}<br>kali lipat B dalam 1 bulan ke depan</td>
+    <td class="tg-lqy6">1</td>
+    <td class="tg-baqh">Dengan pasti mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan</td>
+    <td class="tg-nrix"> {% formfield player.a1 %} </td>
+    <td class="tg-nrix"> {% formfield player.b1 %} </td>
+    <td class="tg-1f83"><p id='remainder_1'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">2</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.9 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.1 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.9 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.1 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a2 %} </td>
+    <td class="tg-nrix"> {% formfield player.b2 %} </td>
+    <td class="tg-1f83"><p id='remainder_2'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">3</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.8 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.2 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.8 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.2 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a3 %} </td>
+    <td class="tg-nrix"> {% formfield player.b3 %} </td>
+    <td class="tg-1f83"><p id='remainder_3'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">4</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.7 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.3 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.7 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.3 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a4 %} </td>
+    <td class="tg-nrix"> {% formfield player.b4 %} </td>
+    <td class="tg-1f83"><p id='remainder_4'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">5</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.6 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.4 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.6 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.4 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a5 %} </td>
+    <td class="tg-nrix"> {% formfield player.b5 %} </td>
+    <td class="tg-1f83"><p id='remainder_5'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">6</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.5 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.5 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.5 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.5 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a6 %} </td>
+    <td class="tg-nrix"> {% formfield player.b6 %} </td>
+    <td class="tg-1f83"><p id='remainder_6'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">7</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.4 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.6 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.4 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.6 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a7 %} </td>
+    <td class="tg-nrix"> {% formfield player.b7 %} </td>
+    <td class="tg-1f83"><p id='remainder_7'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">8</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.3 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.7 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.3 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.7 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a8 %} </td>
+    <td class="tg-nrix"> {% formfield player.b8 %} </td>
+    <td class="tg-1f83"><p id='remainder_8'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">9</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.2 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.8 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.2 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.8 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a9 %} </td>
+    <td class="tg-nrix"> {% formfield player.b9 %} </td>
+    <td class="tg-1f83"><p id='remainder_9'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">10</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.1 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan; <br>
+      Memiliki peluang 0.9 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.1 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada {{ t1B }} bulan ke depan; <br>
+      Memiliki peluang 0.9 untuk mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a10 %} </td>
+    <td class="tg-nrix"> {% formfield player.b10 %} </td>
+    <td class="tg-1f83"><p id='remainder_10'></p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">11</td>
+    <td class="tg-baqh">
+      Dengan pasti mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Dengan pasti mendapat {{ x2B }} kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a11 %} </td>
+    <td class="tg-nrix"> {% formfield player.b11 %} </td>
+    <td class="tg-1f83"><p id='remainder_11'></p></td>
   </tr>
 </thead>
-<tbody>
-  <tr>
-    <td class="tg-c3ow">1</td>
-    <td class="tg-c3ow">100%</td>
-    <td class="tg-c3ow">0%</td>
-    <td class="tg-c3ow">100%</td>
-    <td class="tg-c3ow">0%</td>
-    <td class="tg-c3ow">{% formfield player.a1 %}</td>
-    <td class="tg-pb0m">{% formfield player.b1 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_1'></p></td>
-    <td class="tg-c3ow" rowspan="11">
-      <img src="{% static "bi_experiment/treatment_1.jpg" %}" alt="Snow" style="width:100%"/>
-    </td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">2</td>
-    <td class="tg-c3ow">90%</td>
-    <td class="tg-c3ow">10%</td>
-    <td class="tg-c3ow">90%</td>
-    <td class="tg-c3ow">10%</td>
-    <td class="tg-c3ow">{% formfield player.a2 %}</td>
-    <td class="tg-pb0m">{% formfield player.b2 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_2'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">3</td>
-    <td class="tg-c3ow">80%</td>
-    <td class="tg-c3ow">20%</td>
-    <td class="tg-c3ow">80%</td>
-    <td class="tg-c3ow">20%</td>
-    <td class="tg-c3ow">{% formfield player.a3 %}</td>
-    <td class="tg-pb0m">{% formfield player.b3 %}   </td>
-    <td class="tg-c3ow"><p id='remainder_3'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">4</td>
-    <td class="tg-c3ow">70%</td>
-    <td class="tg-c3ow">30%</td>
-    <td class="tg-c3ow">70%</td>
-    <td class="tg-c3ow">30%</td>
-    <td class="tg-c3ow">{% formfield player.a4 %}</td>
-    <td class="tg-pb0m">{% formfield player.b4 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_4'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">5</td>
-    <td class="tg-c3ow">60%</td>
-    <td class="tg-c3ow">40%</td>
-    <td class="tg-c3ow">60%</td>
-    <td class="tg-c3ow">40%</td>
-    <td class="tg-c3ow">{% formfield player.a5 %}</td>
-    <td class="tg-pb0m">{% formfield player.b5 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_5'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">6</td>
-    <td class="tg-c3ow">50%</td>
-    <td class="tg-c3ow">50%</td>
-    <td class="tg-c3ow">50%</td>
-    <td class="tg-c3ow">50%</td>
-    <td class="tg-c3ow">{% formfield player.a6 %}</td>
-    <td class="tg-pb0m">{% formfield player.b6 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_6'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">7</td>
-    <td class="tg-c3ow">40%</td>
-    <td class="tg-c3ow">60%</td>
-    <td class="tg-c3ow">40%</td>
-    <td class="tg-c3ow">60%</td>
-    <td class="tg-c3ow">{% formfield player.a7 %}</td>
-    <td class="tg-pb0m">{% formfield player.b7 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_7'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">8</td>
-    <td class="tg-c3ow">30%</td>
-    <td class="tg-c3ow">70%</td>
-    <td class="tg-c3ow">30%</td>
-    <td class="tg-c3ow">70%</td>
-    <td class="tg-c3ow">{% formfield player.a8 %}</td>
-    <td class="tg-pb0m">{% formfield player.b8 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_8'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">9</td>
-    <td class="tg-c3ow">20%</td>
-    <td class="tg-c3ow">80%</td>
-    <td class="tg-c3ow">20%</td>
-    <td class="tg-c3ow">80%</td>
-    <td class="tg-c3ow">{% formfield player.a9 %}</td>
-    <td class="tg-pb0m">{% formfield player.b9 %}   </td>
-    <td class="tg-c3ow"><p id='remainder_9'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">10</td>
-    <td class="tg-c3ow">10%</td>
-    <td class="tg-c3ow">90%</td>
-    <td class="tg-c3ow">10%</td>
-    <td class="tg-c3ow">90%</td>
-    <td class="tg-c3ow">{% formfield player.a10 %}</td>
-    <td class="tg-pb0m">{% formfield player.b10 %}   </td>
-    <td class="tg-c3ow"><p id='remainder_10'></p></td>
-  </tr>
-  <tr>
-    <td class="tg-c3ow">11</td>
-    <td class="tg-c3ow">0%</td>
-    <td class="tg-c3ow">100%</td>
-    <td class="tg-c3ow">0%</td>
-    <td class="tg-c3ow">100%</td>
-    <td class="tg-c3ow">{% formfield player.a11 %}</td>
-    <td class="tg-pb0m">{% formfield player.b11 %}   <br></td>
-    <td class="tg-c3ow"><p id='remainder_11'></p></td>
-  </tr>
-</tbody>
 </table>
+
 
 
 <br>

@@ -27,19 +27,19 @@ mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua komputer 
   <tr>
     <th class="tg-0lax">Poin alokasi pada G dikali multiplier</th>
     <th class="tg-0lax">{{ choice_select_G }} * {{ xG_select }}</th>
-    <th class="tg-0lax">{{ payoff_1_multiplied }}</th>
+    <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima dalam {{tG_select}} bulan ke depan.</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td class="tg-0lax">Poin alokasi pada B dikali multiplier</td>
     <td class="tg-0lax">{{ choice_select_B }} * {{ xB_select }}</td>
-    <td class="tg-0lax">{{ payoff_2_multiplied }}</td>
+    <td class="tg-0lax">{{ payoff_2_multiplied }} yang akan diterima dalam {{tB_select}} bulan ke depan.</td>
   </tr>
   <tr>
     <td class="tg-0lax">Sisa poin yang diterima saat ini</td>
-    <td class="tg-0lax">{{ Constants.endowment }} - {{ choice_select_G }} - {{ choice_select_B }}</td>
-    <td class="tg-0lax">{{ payoff_leftover }}</td>
+    <td class="tg-0lax">{{ Constants.endo }} - {{ choice_select_G }} - {{ choice_select_B }}</td>
+    <td class="tg-0lax">{{ payoff_leftover }} yang akan diterima saat ini.</td>
   </tr>
   <tr>
     <td class="tg-0lax"></td>

@@ -1,0 +1,56 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Pembayaran
+{% endblock %}
+
+{% block content %}
+
+    Terima kasih atas partisipasi Anda dalam eksperimen ini. Saatnya mengacak ronde untuk pembayaran Anda:
+    <br>
+    <br>
+    <div class="card bg-light text-dark">
+    <div class="card-body">
+    <div align="center">
+
+            <tr>
+                <td>Game:</td>
+                <td><b><text id="dice" style="font-size:300%">???</text></b></td>
+            </tr>
+
+        <br>
+        <button id="roll" onclick="AniDice()" type="button">Mulai Mengacak!</button>
+        <button id="stop" onclick="stopDice()" type="button">Hentikan!</button>
+    </div>
+
+    <input type="hidden" name="round_selector" id="var" value="">
+    </div>
+    </div>
+
+    <p id="result0" style="visibility:hidden">Anda akan menerima poin dari hasil di game dan nomor ronde di atas.<br></p>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Rangkuman Hasil<br></button>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function AniDice(){
+            document.getElementById("roll").disabled = true;
+            document.getElementById("stop").disabled = false;
+            MyVar=setInterval(rolldice,20);
+        }
+        function rolldice(){
+            var ranNum = Math.floor( 1 + Math.random() * {{rand_range}} );
+            document.getElementById("dice").innerHTML = ranNum;
+            document.getElementById("var").value = ranNum;
+        }
+        function stopDice(){
+            document.getElementById("next").style.visibility = "visible";
+            document.getElementById("result0").style.visibility = "visible";
+            clearInterval(MyVar);
+        }
+    </script>
+
+{% endblock %}
