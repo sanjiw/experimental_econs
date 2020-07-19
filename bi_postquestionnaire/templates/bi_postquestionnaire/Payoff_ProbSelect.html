@@ -1,0 +1,57 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Acakan Probabilitas
+{% endblock %}
+
+{% block content %}
+
+    Ronde yang telah Anda pilih secara acak mengandung probabilitas yang tidak diketahui. Besarnya probabilitas ini adalah
+    antara 0 hingga {{ max_uncertain_prob_G }}.
+    <br>
+    <br>
+    <div class="card bg-light text-dark" id="dice1">
+    <div class="card-body">
+    <div align="center">
+
+            <tr>
+                <td>Game:</td>
+                <td><b><text id="dice" style="font-size:300%">???</text></b></td>
+            </tr>
+
+        <br>
+        <button id="roll" onclick="AniDice()" type="button">Mulai Mengacak!</button>
+        <button id="stop" onclick="stopDice()" type="button" disabled="true">Hentikan!</button>
+    </div>
+
+    <input type="hidden" name="round_selector" id="var" value="">
+    </div>
+    </div>
+
+    <p id="result0" style="visibility:hidden">Anda akan menerima poin dari hasil di nomor ronde di atas.<br></p>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Rangkuman Hasil<br></button>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function AniDice(){
+            document.getElementById("roll").disabled = true;
+            document.getElementById("stop").disabled = false;
+            MyVar=setInterval(rolldice,20);
+        }
+        function rolldice(){
+            var ranNum = Math.floor( 1 + Math.random() * {{round_range}} );
+            document.getElementById("dice").innerHTML = ranNum;
+            document.getElementById("var").value = ranNum;
+        }
+        function stopDice(){
+            document.getElementById("next").style.visibility = "visible";
+            document.getElementById("result0").style.visibility = "visible";
+            clearInterval(MyVar);
+        }
+    </script>
+
+{% endblock %}

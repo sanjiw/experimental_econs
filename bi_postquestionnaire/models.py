@@ -9,6 +9,9 @@ from otree.api import (
     currency_range,
 )
 
+import pandas as pd
+import numpy as np
+import random
 
 author = 'Your name here'
 
@@ -26,7 +29,26 @@ class Subsession(BaseSubsession):
 
     def payoff_dataframe(self):
         for p in self.get_players():
-            pass
+            p.participant.vars["player_dataframe"] = pd.DataFrame(list(zip(p.participant.vars)))
+
+    def round_selector(self):
+        for p in self.get_players():
+            p.participant.vars["round_selected"] = p.participant.vars["player_dataframe"].loc[p.round_selector-1]
+
+    def list_selector(self):
+        for p in self.get_players():
+            p.participant.vars["list_selected"] = p.participant.vars["round_selected"]["decision_list"][p.list_selector-1]
+
+    def prob_selector(self):
+        pass
+
+    def threshold_selector(self):
+        for p in self.get_players():
+            if p.participant.vars["round_selected"]["game_type"][0] == "risky_setup_1":
+                p.participant.vars["threshold_G"] = list(range(0, 101, 10))[p.list_selector-1]
+            elif p.participant.vars["round_selected"]["game_type"][0] == "risky_setup_2":
+                p.participant.vars["threshold_G"] = list(range(0, 101, 10))[p.round_selector-1]
+
 
 class Group(BaseGroup):
     pass
@@ -41,6 +63,10 @@ def make_field(label):
 class Player(BasePlayer):
 
     round_selector = models.IntegerField()
+    list_selector = models.IntegerField()
+    prob_selector_G = models.FloatField()
+    prob_selector_B = models.FloatField()
+    payment_selector = models.IntegerField()
 
     q1_a = make_field("I support the use of eco-friendly products for toiletries and washing dishes; e.g., recycled toilet paper.")
     q1_b = make_field("I support to reduce the use of fossil energy; e.g., switch to renewable energy.")
