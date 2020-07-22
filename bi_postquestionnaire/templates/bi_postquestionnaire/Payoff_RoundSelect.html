@@ -7,8 +7,11 @@
 
 {% block content %}
 
-    Terima kasih atas partisipasi Anda dalam eksperimen ini. Saat ini Anda akan memilih secara acak dari {{ round_range }}
-ronde yang telah Anda mainkan sebagai dasar pembayaran. Klik tombol 'mulai mengacak' untuk memulai.
+    Terima kasih atas partisipasi Anda dalam eksperimen ini. Sesuai instruksi, saat ini Anda akan memilih secara acak
+dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembayaran.
+<br>
+<br>
+Klik tombol 'mulai mengacak' untuk memulai.
     <br>
     <br>
     <div class="card bg-light text-dark" id="dice1">
@@ -30,7 +33,9 @@ ronde yang telah Anda mainkan sebagai dasar pembayaran. Klik tombol 'mulai menga
     </div>
 
     <p id="result0" style="visibility:hidden">Nomor di atas akan menjadi ronde terpilih untuk pembayaran Anda.<br></p>
-    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Acakan Berikutnya<br></button>
+    <br>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">
+        Lanjutkan ke Acakan Berikutnya</button>
 
 {% endblock %}
 

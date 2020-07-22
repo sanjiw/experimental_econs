@@ -141,7 +141,7 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
 <br>
 
 <p>
-  Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">5</span> detik. Sembari menunggu, pastikan
+  Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
   kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.
 </p>
 <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
@@ -151,7 +151,7 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
     <script type="text/javascript">
     setTimeout(function() {
         document.getElementById('lanjut').disabled = false;
-    }, 5000);
+    }, {{pagehold_timer_ths}});
     var seconds = document.getElementById("countdown").textContent;
     var countdown = setInterval(function() {
         seconds--;

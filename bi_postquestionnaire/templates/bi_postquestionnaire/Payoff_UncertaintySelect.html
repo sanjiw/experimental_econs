@@ -2,20 +2,31 @@
 {% load otree static %}
 
 {% block title %}
-    Acakan Probabilitas
+    Acakan Untuk Probabilitas Tak Tentu
 {% endblock %}
 
 {% block content %}
 
-    Ronde yang telah Anda pilih secara acak mengandung probabilitas yang tidak diketahui. Besarnya probabilitas ini adalah
-    antara 0 hingga 20 persen.
+    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Ronde ini berasal dari permainan yang mengandung
+    probabilitas yang tidak diketahui.
+    Pada ronde ini, Anda membuat keputusan untuk alokasi pada
+    {% if show_uncertain_prob_B == False %}
+    satu jenis barang, yakni barang A saja.
+    {% else %}
+    dua jenis barang, yakni barang A dan barang B. Kedua barang ini memiliki probabilitas tidak tentu yang bisa saja
+    berbeda satu sama lain.
+    {% endif %}
+    <br>
+    <br>
+    Besarnya probabilitas ini adalah antara 0 hingga 20 persen. Anda akan mengambil angka acak untuk menentukan berapa
+    besarnya probabilitas tersebut.
     <br>
     <br>
     <div class="card bg-light text-dark" id="randomizer1">
         <div class="card-body">
             <div align="center">
                     <tr>
-                        <td>Game:</td>
+                        <td>Probabilitas tidak tentu untuk barang A:</td>
                         <td><b><text id="dice1" style="font-size:300%">???</text></b></td>
                     </tr>
                 <br>
@@ -23,7 +34,7 @@
                 <button id="stop1" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
             </div>
             <input type="hidden" name="unct_selector_G" id="var1" value="">
-            <p id="result1" style="visibility:hidden">Probabilitas G yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            <p id="result1" style="visibility:hidden">Probabilitas A yang tidak pasti adalah sebesar nilai di atas.<br></p>
         </div>
     </div>
 
@@ -35,7 +46,7 @@
         <div class="card-body">
             <div align="center">
                     <tr>
-                        <td>Game:</td>
+                        <td>Probabilitas tidak tentu untuk barang B:</td>
                         <td><b><text id="dice2" style="font-size:300%">???</text></b></td>
                     </tr>
                 <br>

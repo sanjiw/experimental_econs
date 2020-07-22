@@ -7,14 +7,54 @@
 
 {% block content %}
 
-    Anda akan mengacak satu nomor yang Akan menentukan multiplier sumbangan Anda.
+    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
+{{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
+{% else %}1 jenis barang (A saja){% endif %}.
+    <br>
+    <br>
+    {% if two_allocations == False %}
+        Berikut adalah parameter dalam pilihan Anda: Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+        bulan ke depan dengan probabilitas {{threshold_G}} persen <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
+        {{t2G_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen.
+        <br>
+        Jika angka acakan A di bawah besarnya kurang dari atau sama dengan {{threshold_G}}, maka Anda akan mendapatkan {{x1G_selected}} kali lipat alokasi A
+        dalam {{t1G_selected}} bulan ke depan. Jika lebih dari {{threshold_G}}, maka Anda akan mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
+        {{t2G_selected}} bulan ke depan.
+
+    {% else %}
+        Berikut adalah parameter dalam pilihan Anda:
+            <ul>
+            <li>Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+            bulan ke depan dengan probabilitas {{threshold_G}} persen <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
+            {{t2G_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen, DAN</li>
+            <li>Mendapatkan {{x1B_selected}} kali lipat alokasi A dalam {{t1B_selected}}
+            bulan ke depan dengan probabilitas {{threshold_B}} persen <i>atau</i> mendapatkan {{x2B_selected}} kali lipat alokasi A dalam
+            {{t2B_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen.</li>
+            </ul>
+        <br>
+        Berikut adalah aturan pembayaran Anda:
+            <ul>
+                <li>
+                    Jika angka acakan A di bawah besarnya kurang dari atau sama dengan {{threshold_G}}, maka Anda akan mendapatkan {{x1G_selected}} * {{allocated_G}}
+        dalam {{t1G_selected}} bulan ke depan. Jika lebih dari {{threshold_G}}, maka Anda akan mendapatkan {{x2G_selected}} * {{allocated_G}} dalam
+        {{t2G_selected}} bulan ke depan.
+                </li>
+                <li>
+                    Jika angka acakan B di bawah besarnya kurang dari atau sama dengan {{threshold_B}}, maka Anda akan mendapatkan {{x1B_selected}} * {{allocated_B}}
+        dalam {{t1B_selected}} bulan ke depan. Jika lebih dari {{threshold_B}}, maka Anda akan mendapatkan {{x2B_selected}} * {{allocated_B}} dalam
+        {{t2B_selected}} bulan ke depan.
+                </li>
+            </ul>
+
+
+    {% endif %}
     <br>
     <br>
     <div class="card bg-light text-dark" id="randomizer1">
         <div class="card-body">
             <div align="center">
                     <tr>
-                        <td>Game:</td>
+                        <td>Acakan A:</td>
                         <td><b><text id="dice1" style="font-size:300%">???</text></b></td>
                     </tr>
                 <br>
@@ -22,7 +62,7 @@
                 <button id="stop1" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
             </div>
             <input type="hidden" name="urn_G" id="var1" value="">
-            <p id="result1" style="visibility:hidden">Kontribusi Anda pada barang A akan dikalikan dengan <br></p>
+            <p id="result1" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
         </div>
     </div>
 
@@ -34,7 +74,7 @@
         <div class="card-body">
             <div align="center">
                     <tr>
-                        <td>Game:</td>
+                        <td>Acakan B:</td>
                         <td><b><text id="dice2" style="font-size:300%">???</text></b></td>
                     </tr>
                 <br>
@@ -42,7 +82,7 @@
                 <button id="stop2" onclick="stopDice2()" type="button" disabled="true">Hentikan!</button>
             </div>
             <input type="hidden" name="urn_B" id="var2" value="">
-            <p id="result2" style="visibility:hidden">Probabilitas B yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            <p id="result2" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
         </div>
     </div>
 

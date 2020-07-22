@@ -7,15 +7,33 @@
 
 {% block content %}
 
-    Sekarang, Anda perlu memilih secara acak satu dari {{ decision_range }} keputusan yang Anda telah buat di ronde tersebut.
+    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
+{{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
+{% else %}1 jenis barang (A saja){% endif %}.
     <br>
     <br>
+    {% if two_allocations == False %}
+    Berikut adalah parameter dalam pilihan Anda: Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam {{t2G_selected}} bulan ke depan.
+    {% else %}
+    Berikut adalah parameter dalam pilihan Anda:
+    <ul>
+    <li>Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam {{t2G_selected}} bulan ke depan, DAN</li>
+    <li>Mendapatkan {{x1B_selected}} kali lipat alokasi A dalam {{t1B_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2B_selected}} kali lipat alokasi A dalam {{t2B_selected}} bulan ke depan</li>
+    </ul>
+    {% endif %}
+    <br>
+    <br>
+Sekarang, Anda harus memilih satu dari {{ decision_range }} pilihan alokasi tersebut. Berikut adalah daftar alokasi Anda:
+{{ decision_list }}
     <div class="card bg-light text-dark" id="dice1">
     <div class="card-body">
     <div align="center">
 
             <tr>
-                <td>Game:</td>
+                <td>Keputusan yang terpilih:</td>
                 <td><b><text id="dice" style="font-size:300%">???</text></b></td>
             </tr>
 
@@ -28,7 +46,7 @@
     </div>
     </div>
 
-    <p id="result0" style="visibility:hidden">Anda akan menerima pembayaran berdasarkan keputusan Anda di atas.<br></p>
+    <p id="result0" style="visibility:hidden">Anda akan menerima pembayaran berdasarkan alokasi Anda pada nomor di atas.<br></p>
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Acakan Berikutnya<br></button>
 
 {% endblock %}

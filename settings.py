@@ -22,6 +22,7 @@ SESSION_CONFIGS = [
                          'bi_risky_setup_3_ambi',
                          'bi_risky_setup_4_ambi',
                          'bi_postquestionnaire'],
+        'page_halt_seconds': 1,
         'use_browser_bots': False
     },
     {

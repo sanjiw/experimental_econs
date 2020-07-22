@@ -57,9 +57,11 @@ class Payoff_UncertaintySelect(Page):
     form_fields = ["unct_selector_G",
                    "unct_selector_B"]
 
+
     def vars_for_template(self):
         round_selected = self.participant.vars["round_selected"]
         return {
+            'round_select': self.player.round_selector,
             'show_uncertain_prob_B': True if round_selected["game_type"] == "risky_setup_4_ambi" else False,
             'max_uncertain_prob_G' : round_selected["unknown_prob_G"],
             'max_uncertain_prob_B' : round_selected["unknown_prob_B"],
@@ -74,7 +76,18 @@ class Payoff_DecisionSelect(Page):
     def vars_for_template(self):
         round_selected = self.participant.vars["round_selected"]
         return {
-            'decision_range': len(round_selected["decision_list"])
+            'round_select': self.player.round_selector,
+            'two_allocations': True if (round_selected["game_type"] == "risky_setup_4_ambi") or (round_selected["game_type"] == "risky_setup_2") else False,
+            'decision_range': len(round_selected["decision_list"]),
+            'decision_list' : round_selected["decision_list"],
+            'x1G_selected'  : self.participant.vars["x1G_selected"],
+            'x2G_selected'  : self.participant.vars["x2G_selected"],
+            'x1B_selected'  : self.participant.vars["x1B_selected"],
+            'x2B_selected'  : self.participant.vars["x2B_selected"],
+            't1G_selected'  : self.participant.vars["t1G_selected"],
+            't2G_selected'  : self.participant.vars["t2G_selected"],
+            't1B_selected'  : self.participant.vars["t1B_selected"],
+            't2B_selected'  : self.participant.vars["t2B_selected"]
         }
 
     def before_next_page(self):
@@ -89,6 +102,11 @@ class Payoff_PaymentSelect(Page):
     def vars_for_template(self):
         round_selected = self.participant.vars["round_selected"]
         return {
+            'round_select': self.player.round_selector,
+            'two_allocations': True if (round_selected["game_type"] == "risky_setup_4_ambi") or (
+                        round_selected["game_type"] == "risky_setup_2") else False,
+            'decision_range': len(round_selected["decision_list"]),
+            'decision_selected': self.player.decision_selector,
             "show_uncertain_prob_B": True if round_selected["game_type"] == "risky_setup_4_ambi" else False,
             "x1G_selected": self.participant.vars["x1G_selected"],
             "x2G_selected": self.participant.vars["x2G_selected"],
@@ -98,6 +116,10 @@ class Payoff_PaymentSelect(Page):
             "x2B_selected": self.participant.vars["x2B_selected"],
             "t1B_selected": self.participant.vars["t1B_selected"],
             "t2B_selected": self.participant.vars["t2B_selected"],
+            "threshold_G" : self.participant.vars["threshold_G"],
+            "threshold_B" : self.participant.vars["threshold_B"],
+            "allocated_G" : self.participant.vars["allocated_G"],
+            "allocated_B" : self.participant.vars["allocated_B"]
         }
 
     def before_next_page(self):

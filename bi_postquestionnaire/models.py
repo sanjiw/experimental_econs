@@ -55,11 +55,11 @@ class Subsession(BaseSubsession):
             p.participant.vars["x1G_selected"] = p.participant.vars["round_selected"]["x1G"]
             p.participant.vars["x2G_selected"] = p.participant.vars["round_selected"]["x2G"]
             p.participant.vars["x1B_selected"] = p.participant.vars["round_selected"]["x1B"]
-            p.participant.vars["x2B_selected"] = p.participant.vars["round_selected"]["x1G"]
+            p.participant.vars["x2B_selected"] = p.participant.vars["round_selected"]["x2B"]
             p.participant.vars["t1G_selected"] = p.participant.vars["round_selected"]["t1G"]
             p.participant.vars["t2G_selected"] = p.participant.vars["round_selected"]["t2G"]
             p.participant.vars["t1B_selected"] = p.participant.vars["round_selected"]["t1B"]
-            p.participant.vars["t2B_selected"] = p.participant.vars["round_selected"]["t1G"]
+            p.participant.vars["t2B_selected"] = p.participant.vars["round_selected"]["t2B"]
 
     def decision_selector(self):
         for p in self.get_players():

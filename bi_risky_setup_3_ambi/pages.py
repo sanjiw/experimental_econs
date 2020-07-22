@@ -11,6 +11,13 @@ class Instruction(Page):
     def before_next_page(self):
         self.subsession.parameter_set()
 
+    def vars_for_template(self):
+        return {
+            'pagehold_timer': self.session.config['page_halt_seconds'],
+            'pagehold_timer_ths': self.session.config['page_halt_seconds'] * 1000,
+        }
+
+
 class wait1(WaitPage):
 
     def after_all_players_arrive(self):
@@ -34,6 +41,8 @@ class Mpl(Page):
             'x2G': self.subsession.x2G,
             't1G': self.subsession.t1G,
             't2G': self.subsession.t2G,
+            'pagehold_timer': self.session.config['page_halt_seconds'],
+            'pagehold_timer_ths': self.session.config['page_halt_seconds'] * 1000,
         }
 
 class wait2(WaitPage):
@@ -68,7 +77,9 @@ class TrainingResults(Page):
             'unknown_p': unknown_prob,
             'payoff_1_multiplied': payoff_1,
             'payoff_2_leftover': payoff_2,
-            'payoff': payoff
+            'payoff': payoff,
+            'pagehold_timer': self.session.config['page_halt_seconds'],
+            'pagehold_timer_ths': self.session.config['page_halt_seconds'] * 1000,
         }
 
 
