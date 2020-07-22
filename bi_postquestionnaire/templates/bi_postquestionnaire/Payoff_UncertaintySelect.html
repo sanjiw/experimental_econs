@@ -2,12 +2,13 @@
 {% load otree static %}
 
 {% block title %}
-    Acakan Pembayaran
+    Acakan Probabilitas
 {% endblock %}
 
 {% block content %}
 
-    Anda akan mengacak satu nomor yang Akan menentukan multiplier sumbangan Anda.
+    Ronde yang telah Anda pilih secara acak mengandung probabilitas yang tidak diketahui. Besarnya probabilitas ini adalah
+    antara 0 hingga 20 persen.
     <br>
     <br>
     <div class="card bg-light text-dark" id="randomizer1">
@@ -21,8 +22,8 @@
                 <button id="roll1" onclick="AniDice1()" type="button">Mulai Mengacak!</button>
                 <button id="stop1" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
             </div>
-            <input type="hidden" name="urn_G" id="var1" value="">
-            <p id="result1" style="visibility:hidden">Kontribusi Anda pada barang A akan dikalikan dengan <br></p>
+            <input type="hidden" name="unct_selector_G" id="var1" value="">
+            <p id="result1" style="visibility:hidden">Probabilitas G yang tidak pasti adalah sebesar nilai di atas.<br></p>
         </div>
     </div>
 
@@ -38,17 +39,15 @@
                         <td><b><text id="dice2" style="font-size:300%">???</text></b></td>
                     </tr>
                 <br>
-                <button id="roll2" onclick="AniDice2()" type="button">Mulai Mengacak!</button>
-                <button id="stop2" onclick="stopDice2()" type="button" disabled="true">Hentikan!</button>
+                <button id="roll2" onclick="AniDice1()" type="button">Mulai Mengacak!</button>
+                <button id="stop2" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
             </div>
-            <input type="hidden" name="urn_B" id="var2" value="">
+            <input type="hidden" name="unct_selector_B" id="var2" value="">
             <p id="result2" style="visibility:hidden">Probabilitas B yang tidak pasti adalah sebesar nilai di atas.<br></p>
         </div>
     </div>
 
-    {% else %}
-    <input type="hidden" name="urn_B" id="var2" value=0>
-    {% endif %}
+    {% else %}{% endif %}
 
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Acakan Berikutnya<br></button>
 
@@ -63,7 +62,8 @@
             MyVar1=setInterval(rolldice1,20);
         }
         function rolldice1(){
-            var ranNum = Math.floor( 1 + Math.random() * 100 );
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
             document.getElementById("dice1").innerHTML = ranNum;
             document.getElementById("var1").value = ranNum;
         }
@@ -78,7 +78,8 @@
             MyVar2=setInterval(rolldice2,20);
         }
         function rolldice2(){
-            var ranNum = Math.floor( 1 + Math.random() * 100 );
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
             document.getElementById("dice2").innerHTML = ranNum;
             document.getElementById("var2").value = ranNum;
         }

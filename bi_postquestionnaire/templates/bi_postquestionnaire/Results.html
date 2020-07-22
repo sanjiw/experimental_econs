@@ -9,11 +9,46 @@
 
 {% block content %}
 
-    Terima kasih atas partisipasi Anda dalam eksperimen ini. Berikut adalah daftar payoff Anda di masing-masing periode:
-    {{ payoff_list }}.
-    <br>
-    <br>
-    <button id="lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Selesai</button>
+    Terima kasih atas partisipasi Anda dalam eksperimen ini. Berikut adalah daftar pembayaran yang Anda akan terima.
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Deskripsi Pembayaran</th>
+    <th class="tg-0lax">Detail</th>
+    <th class="tg-0lax">Waktu Penerimaan</th>
+    <th class="tg-0lax">Total</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Acakan untuk barang A</td>
+    <td class="tg-0lax">{{ xG_final }} * {{alloc_G}}</td>
+    <td class="tg-0lax">{{ tG_final }}</td>
+    <td class="tg-0lax">{{ payoff_1 }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Acakan untuk barang A</td>
+    <td class="tg-0lax">{{ xB_final }} * {{alloc_B}}</td>
+    <td class="tg-0lax">{{ tB_final }}</td>
+    <td class="tg-0lax">{{ payoff_2 }}</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Sisa token yang disimpan</td>
+    <td class="tg-0lax">{{ payoff_leftover }}</td>
+    <td class="tg-0lax">Saat ini</td>
+    <td class="tg-0lax">{{ payoff_leftover }}</td>
+  </tr>
+</tbody>
+</table>
 
 {% endblock %}
 

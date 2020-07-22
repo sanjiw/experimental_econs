@@ -76,7 +76,7 @@ class TrainingResults(Page):
         return self.subsession.round_number <= Constants.num_training_rounds
 
     def vars_for_template(self):
-        selector = random.choice(list(range(1, 12)))
+        selector = random.choice(list(range(1, 10)))
         a_select = [self.player.a1, self.player.a2, self.player.a3, self.player.a4,
                     self.player.a5, self.player.a6, self.player.a7, self.player.a8,
                     self.player.a9][selector - 1]

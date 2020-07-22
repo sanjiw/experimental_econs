@@ -7,9 +7,7 @@
 
 {% block content %}
 
-    Anda telah memilih secara acak ronde ke-{{ chosen_round }} sebagai basis pembayaran, dimana ronde tersebut
-{% if list_range == 11%} tidak {% else %}{% endif %} mengandung probabilitas yang tidak diketahui. Sekarang, Anda perlu memilih
-secara acak satu dari {{ list_range }} keputusan yang Anda telah buat di ronde tersebut.
+    Sekarang, Anda perlu memilih secara acak satu dari {{ decision_range }} keputusan yang Anda telah buat di ronde tersebut.
     <br>
     <br>
     <div class="card bg-light text-dark" id="dice1">
@@ -26,7 +24,7 @@ secara acak satu dari {{ list_range }} keputusan yang Anda telah buat di ronde t
         <button id="stop" onclick="stopDice()" type="button" disabled="true">Hentikan!</button>
     </div>
 
-    <input type="hidden" name="round_selector" id="var" value="">
+    <input type="hidden" name="decision_selector" id="var" value="">
     </div>
     </div>
 
@@ -44,7 +42,7 @@ secara acak satu dari {{ list_range }} keputusan yang Anda telah buat di ronde t
             MyVar=setInterval(rolldice,20);
         }
         function rolldice(){
-            var ranNum = Math.floor( 1 + Math.random() * {{list_range}} );
+            var ranNum = Math.floor( 1 + Math.random() * {{decision_range}} );
             document.getElementById("dice").innerHTML = ranNum;
             document.getElementById("var").value = ranNum;
         }

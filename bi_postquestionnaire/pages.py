@@ -40,60 +40,68 @@ class Payoff_RoundSelect(Page):
 
     def vars_for_template(self):
         return {
-            'round_range': len(self.participant.vars['decision_list']),
+            'round_range': len(self.participant.vars['player_dataframe']['decision_list']),
         }
 
     def before_next_page(self):
         self.subsession.round_selector()
 
-class Payoff_ListSelect(Page):
+class Payoff_UncertaintySelect(Page):
+
+    def is_displayed(self):
+        round_selected = self.participant.vars["round_selected"]
+        return round_selected['game_type'][0] == "risky_setup_3_ambi" or \
+               round_selected['game_type'][0] == "risky_setup_4_ambi"
 
     form_model = "player"
-    form_fields = ["list_selector"]
+    form_fields = ["unct_selector_G",
+                   "unct_selector_B"]
 
     def vars_for_template(self):
         round_selected = self.participant.vars["round_selected"]
         return {
-            'chosen_round': self.player.round_selector,
-            'chosen_game': round_selected["game_type"],
-            'chosen_list': round_selected[""],
-            'list_range': len(round_selected),
+            'show_uncertain_prob_B': True if round_selected["game_type"] == "risky_setup_4_ambi" else False,
+            'max_uncertain_prob_G' : round_selected["unknown_prob_G"],
+            'max_uncertain_prob_B' : round_selected["unknown_prob_B"],
+            'ambiguous_list': Constants.Ambiguous_list
         }
 
-    def before_next_page(self):
-        self.subsession.list_selector()
-
-class Payoff_ProbSelect(Page):
-
-
-    def is_displayed(self):
-        return self.participant.vars["round_selected"]['game_type'][0] == "risky_setup_3_ambi" or \
-               self.participant.vars["round_selected"]['game_type'][0] == "risky_setup_4_ambi"
+class Payoff_DecisionSelect(Page):
 
     form_model = "player"
-    form_fields = ["prob_selector"]
+    form_fields = ["decision_selector"]
 
     def vars_for_template(self):
+        round_selected = self.participant.vars["round_selected"]
         return {
-            'max_uncertain_prob_G' : self.participant.vars["round_selected"]["unknown_prob_G"][0],
-            'max_uncertain_prob_B' : self.participant.vars["round_selected"]["unknown_prob_B"][0]
+            'decision_range': len(round_selected["decision_list"])
         }
 
     def before_next_page(self):
-        self.subsession.prob_selector()
+        self.subsession.decision_selector()
 
 class Payoff_PaymentSelect(Page):
 
     form_model = "player"
-    form_fields = ["payment_selector"]
+    form_fields = ["urn_G",
+                   "urn_B"]
 
     def vars_for_template(self):
+        round_selected = self.participant.vars["round_selected"]
         return {
-
+            "show_uncertain_prob_B": True if round_selected["game_type"] == "risky_setup_4_ambi" else False,
+            "x1G_selected": self.participant.vars["x1G_selected"],
+            "x2G_selected": self.participant.vars["x2G_selected"],
+            "t1G_selected": self.participant.vars["t1G_selected"],
+            "t2G_selected": self.participant.vars["t2G_selected"],
+            "x1B_selected": self.participant.vars["x1B_selected"],
+            "x2B_selected": self.participant.vars["x2B_selected"],
+            "t1B_selected": self.participant.vars["t1B_selected"],
+            "t2B_selected": self.participant.vars["t2B_selected"],
         }
 
     def before_next_page(self):
-        self.subsession.payment_selector()
+        self.subsession.payment_realization()
 
 class Results(Page):
 
@@ -110,14 +118,28 @@ class Results(Page):
                 "t1G"               : self.participant.vars['t1G'],
                 "t2G"               : self.participant.vars['t2G'],
                 "t1B"               : self.participant.vars['t1B'],
-                "t2B"               : self.participant.vars['t2B']
+                "t2B"               : self.participant.vars['t2B'],
+
+                "alloc_G"           : self.participant.vars["allocated_G"],
+                "thres_G"           : self.participant.vars["threshold_G"],
+                "alloc_B"           : self.participant.vars["allocated_B"],
+                "thres_B"           : self.participant.vars["threshold_B"],
+
+                "xG_final"          : self.participant.vars["xG_final"],
+                "xB_final"          : self.participant.vars["xB_final"],
+                "tG_final"          : self.participant.vars["tG_final"],
+                "tB_final"          : self.participant.vars["tB_final"],
+                "payoff_1"          : self.participant.vars["payoff_1"],
+                "payoff_2"          : self.participant.vars["payoff_2"],
+                "payoff_leftover"   : self.participant.vars["payoff_leftover"],
+                "payoff_final"      : self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"]
         }
 
 
 page_sequence = [Questionnaire,
                  Payoff_RoundSelect,
-                 Payoff_ListSelect,
-                 Payoff_ProbSelect,
+                 Payoff_UncertaintySelect,
+                 Payoff_DecisionSelect,
                  Payoff_PaymentSelect,
                  Results]
 
