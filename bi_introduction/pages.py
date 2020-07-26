@@ -8,6 +8,8 @@ class Initiation(Page):
     def before_next_page(self):
         self.subsession.cross_app_vars()
 
+class InstructionGeneral(Page):
+    pass
 
-
-page_sequence = [Initiation]
+page_sequence = [Initiation,
+                 InstructionGeneral]

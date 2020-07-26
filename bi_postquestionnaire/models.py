@@ -67,6 +67,8 @@ class Subsession(BaseSubsession):
             if x["game_type"] == "risky_setup_1":
                 p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector-1]
                 p.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][p.decision_selector - 1]
+                p.participant.vars["allocated_B"] = 0
+                p.participant.vars["threshold_B"] = 0
             elif x["game_type"] == "risky_setup_2":
                 p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1][0]
                 p.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1]
@@ -75,6 +77,8 @@ class Subsession(BaseSubsession):
             elif x["game_type"] == "risky_setup_3_ambi":
                 p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1]
                 p.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][p.decision_selector - 1] + p.unct_selector_G
+                p.participant.vars["allocated_B"] = 0
+                p.participant.vars["threshold_B"] = 0
             elif x["game_type"] == "risky_setup_4_ambi":
                 p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1][0]
                 p.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1] + p.unct_selector_G
@@ -131,6 +135,7 @@ def make_field(label):
 
 class Player(BasePlayer):
 
+    # for payments
     round_selector = models.IntegerField()
     decision_selector = models.IntegerField()
     unct_selector_G = models.IntegerField(initial=0)
@@ -138,26 +143,66 @@ class Player(BasePlayer):
     urn_G = models.IntegerField()
     urn_B = models.IntegerField()
 
-    q1_a = make_field("I support the use of eco-friendly products for toiletries and washing dishes; e.g., recycled toilet paper.")
-    q1_b = make_field("I support to reduce the use of fossil energy; e.g., switch to renewable energy.")
-    q1_c = make_field("I support using the eco-friendly products for fashion; e.g., reused clothes.")
-    q1_d = make_field("I support using the eco-friendly products for agricultural industry (e.g., organic fertiliser).")
-    q1_e = make_field("I support using the eco-friendly products for laundrette (e.g., detergent).")
-    q2_a = make_field("I would be willing to use (pay the price) the green products for my toiletries and washing dishes; e.g., recycled toilet paper, eco-friendly dishwasher and eco-friendly dish soap.")
-    q2_b = make_field("I would be willing to reduce fossil energy consumption and to switch to renewable energy; e.g., use more public transport and use solar panel.")
-    q2_c = make_field("I would be willing to use (pay the price) any kinds of green product for my fashion; e.g., recycled and reused clothes.")
-    q2_d = make_field("I would be willing to consume organic food in a regular basis; e.g., daily, or weekly or monthly shopping for organic food/groceries.")
-    q2_e = make_field("I would be willing to use (pay the price) eco-friendly detergent and eco-friendly whitener for my laundrette.")
-    q3_a = make_field("The use of renewable energy (e.g. solar panel or biodiesel) can significantly reduce the risk of public health.")
-    q3_b = make_field("An increase use of public transport can significantly reduce the environmental damages.")
-    q3_c = make_field("The environmental damages from using recycled and reused products is significantly less than using newly-branded clothes.")
-    q3_d = make_field("Chemical products used in eco products are significantly less harmful to the environment than that of non-eco-friendly products.")
-    q3_e = make_field("Consuming organic foods in a regular basis can significantly increase my health and immune.")
-    q4_a = make_field("I think the energy providers in Indonesia (PLN and Pertamina) have good intentions in managing country’s energy supply with an eco-friendly system.")
-    q4_b = make_field("I believe companies that produce eco-friendly products (e.g., refrigerator, AC and dishwasher) use environment-friendly materials.")
-    q4_c = make_field("I believe we will all move on to use more green products in the near future for a better individual health.")
-    q4_d = make_field("I trust public to do anything necessary to reduce the pollution level in my area and country.")
-    q4_e = make_field("I trust the government (both central and local) to promote more green products in the near future for a better public health.")
+    # for demographics
+    gender = models.StringField(widget=widgets.RadioSelect,
+                                label="Pilih Gender Anda",
+                                choices=["Pria","Wanita"])
+    usia = models.IntegerField(label="Tentukan Usia Anda",
+                               min=14, max=60)
+    bahasa = models.StringField(widget=widgets.RadioSelect,
+                                label="Bahasa yang Anda gunakan sehari-hari selain Indonesia",
+                                choices=["Jawa", "Sunda", "Melayu", "Bugis/Makassar", "Lainnya"])
+    domisili = models.StringField(widget=widgets.RadioSelect,
+                                  label="Domisili Anda (6 bulan terakhir yang paling lama ditinggali)",
+                                  choices=["DIY", "Pulau Jawa non-DIY","Sumatera","Kalimantan","Sulawesi","Maluku","Papua","Bali-Nusra"])
+    exp_experiment = models.IntegerField(label="Berapa kali Anda pernah mengikuti eksperimen sebelum eksperimen ini?",
+                                         min=0, max=20)
+    studi = models.StringField(widget=widgets.RadioSelect,
+                               label="Bidang Studi paling utama Anda:",
+                               choices=["Ilmu Alam",
+                                        "Teknik",
+                                        "Sosial-Budaya",
+                                        "Politik-Hukum",
+                                        "Ekonomi-Bisnis",
+                                        "Psikologi",
+                                        "Geografi",
+                                        "Filsafat",
+                                        "Medis",
+                                        "Kehutanan-Pertanian-Perikanan",
+                                        "Lainnya"])
+    educ = models.StringField(widget=widgets.RadioSelect,
+                              label="Jenjang pendidikan Anda sampai saat ini:",
+                              choices=["SMA",
+                                       "D3",
+                                       "D4/S1",
+                                       "S2",
+                                       "S3",
+                                       "Lainnya"])
+
+    # for opinion
+    q1_a = make_field("Saya mendukung penggunaan produk ramah lingkungan untuk kebutuhan kamar mandi dan mencuci piring saya; sebagai contoh tisu toilet daur ulang.")
+    q1_b = make_field("Saya mendukung penurunan penggunaan energi berbasis fosil; sebagai contoh penggunaan biosolar.")
+    q1_c = make_field("Saya mendukung penggunaan produk ramah lingkungan untuk kebutuhan pakaian saya; sebagai contoh membeli second-hand clothes.")
+    q1_d = make_field("Saya mendukung penggunaan produk ramah lingkungan untuk industri pertanian; sebagai contoh pupuk organik.")
+    q1_e = make_field("Saya mendukung penggunaan produk ramah lingkungan untuk mencuci baju; sebagai contoh deterjen ramah lingkungan.")
+
+    q2_a = make_field("Saya mau menggunakan (dan membayar harganya) produk ramah lingkungan untuk kebutuhan kamar mandi dan mencuci piring saya; sebagai contoh membeli tisu toilet daur ulang.")
+    q2_b = make_field("Saya mau (dan membayar harganya) untuk menurunkan konsumsi energi berbasis fosil dan menggantinya dengan energi terbarukan; sebagai contoh membeli biosolar dan menggunakan transportasi publik.")
+    q2_c = make_field("Saya mau menggunakan (dan membayar harganya) produk-produk ramah lingkungan untuk kebutuhan fashion saya; sebagai contoh membeli produk tas daur ulang dan baju second-hand.")
+    q2_d = make_field("Saya mau (dan membayar harganya) mengkonsumsi makanan organik secara berkala; sebagai contoh mengkonsumsi sehari-hari atau mingguan atau bulanan.")
+    q2_e = make_field("Saya mau menggunakan (dan membayar harganya) deterjen dan pemutih ramah lingkungan untuk laundri saya.")
+
+    q3_a = make_field("Penggunaan energi terbarukan (misal: panel surya dan biodiesel) dapat menurunkan risiko kesehatan masyarakat secara signfikan.")
+    q3_b = make_field("Peningkatan penggunaan transportasi publik dapat mengurangi kerusakan lingkungan secara signifikan.")
+    q3_c = make_field("Peluang untuk terjadinya kerusakan lingkungan dari penggunaan produk daur ulang lebih kecil daripada produk bukan daur ulang.")
+    q3_d = make_field("Bahan kimia yang digunakan pada produk ramah lingkungan lebih tidak merusak lingkungan daripada produk bukan ramah lingkungan.")
+    q3_e = make_field("Konsumsi makanan organik secara berkala dapat meningkatkan kesehatan dan imunitas saya secara signifikan.")
+
+    q4_a = make_field("Saya pikir penyedia energi di Indonesia (PLN dan Pertamina) memiliki integritas bagus dalam pengelolaan suplai energi melalui sistem ramah lingkungan.")
+    q4_b = make_field("Saya yakin bahwa perusahaan yang memproduksi produk ramah lingkungan (misal: kulkas, AC, dan mesin cuci) menggunakan material ramah lingkungan.")
+    q4_c = make_field("Saya yakin bahwa kita semua (Anda dan masyarakat) akan menggunakan produk-produk yang lebih ramah lingkungan dalam waktu dekat untuk meningkatkan kesehatan individu.")
+    q4_d = make_field("Saya percaya bahwa masyarakat akan melakukan hal-hal yang dibutuhkan untuk mengurangi level polusi di sekitar saya secara khusus dan di Indonesia secara umum.")
+    q4_e = make_field("Saya percaya bahwa pemerintah (daerah dan pusat) mempromosikan produk-produk ramah lingkungan dalam waktu dekat untuk meningkatkan kesehatan masyarakat.")
 
 
 

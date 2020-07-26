@@ -37,7 +37,9 @@ class Mpl(Page):
 
     def vars_for_template(self):
         return {
-            'endowment': Constants.endowment,
+            'treatment_group': self.session.config["treatment_group"],
+            'random_image_url': self.participant.vars["random_image_url"],
+            'endowment': Constants.endo,
             'round': self.subsession.round_number if (self.subsession.training_round == True) else self.subsession.round_number - 2,
             'x1G': self.subsession.x1G,
             'x2G': self.subsession.x2G,

@@ -5,5 +5,6 @@ from .models import Constants
 
 
 class PlayerBot(Bot):
-    def play_round(self):
-        yield pages.Initiation
+        def play_round(self):
+            yield pages.Initiation
+            yield pages.InstructionGeneral

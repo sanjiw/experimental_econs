@@ -6,12 +6,17 @@
 {% endblock %}
 
 {% block content %}
-
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+</style>
+<p>
     Terima kasih atas partisipasi Anda dalam eksperimen ini. Sesuai instruksi, saat ini Anda akan memilih secara acak
 dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembayaran.
-<br>
-<br>
-Klik tombol 'mulai mengacak' untuk memulai.
+</p>
+<p>
+    Klik tombol ‘Mulai Mengacak’ dan ‘Hentikan’ untuk mendapatkan angka sebagai ronde terpilih untuk pembayaran.
+</p>
     <br>
     <br>
     <div class="card bg-light text-dark" id="dice1">
@@ -19,7 +24,7 @@ Klik tombol 'mulai mengacak' untuk memulai.
     <div align="center">
 
             <tr>
-                <td>Game:</td>
+                <td>Ronde yang terpilih:</td>
                 <td><b><text id="dice" style="font-size:300%">???</text></b></td>
             </tr>
 

@@ -6,10 +6,17 @@
 {% endblock %}
 
 {% block content %}
-
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
     Hasil acakan komputer menunjukkan angka {{ selector }}, artinya payoff Anda pada ronde ini akan
-mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua komputer menunjukkan bahwa Anda mendapat multiplier
-{{ xG_select }} untuk G dan {{ xB_select }} untuk B. Artinya, payoff Anda pada ronde ini adalah sebesar:
+mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan komputer menunjukkan bahwa besarnya probabilitas yang
+tidak diketahui dalam contoh ini adalah sebesar {{ unknown_prob_G }} untuk opsi A dan {{ unknown_prob_B }} untuk opsi B.
+Acakan kedua menunjukkan multiplier sebesar {{ xG_select }} untuk opsi A dan {{ xB_select }} untuk opsi B.
+Artinya, payoff Anda pada ronde ini adalah sebesar:
 
 <br>
 <br>
@@ -25,7 +32,7 @@ mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua komputer 
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Poin alokasi pada G dikali multiplier</th>
+    <th class="tg-0lax">Poin alokasi pada A dikali multiplier</th>
     <th class="tg-0lax">{{ choice_select_G }} * {{ xG_select }}</th>
     <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima dalam {{tG_select}} bulan ke depan.</th>
   </tr>

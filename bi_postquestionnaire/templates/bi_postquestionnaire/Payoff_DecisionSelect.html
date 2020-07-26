@@ -6,12 +6,16 @@
 {% endblock %}
 
 {% block content %}
-
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+</style>
+<p>
     Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
 {{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
 {% else %}1 jenis barang (A saja){% endif %}.
-    <br>
-    <br>
+</p>
+<p>
     {% if two_allocations == False %}
     Berikut adalah parameter dalam pilihan Anda: Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
     bulan ke depan <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam {{t2G_selected}} bulan ke depan.
@@ -24,10 +28,42 @@
     bulan ke depan <i>atau</i> mendapatkan {{x2B_selected}} kali lipat alokasi A dalam {{t2B_selected}} bulan ke depan</li>
     </ul>
     {% endif %}
-    <br>
-    <br>
-Sekarang, Anda harus memilih satu dari {{ decision_range }} pilihan alokasi tersebut. Berikut adalah daftar alokasi Anda:
-{{ decision_list }}
+    Berikut adalah daftar alokasi Anda pada ronde tersebut:
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<table class="tg center">
+<thead>
+  <tr>
+        {% for i in decision_list %}
+        <th class="tg-0pky">Pilihan ke-{{ forloop.counter }}</th>
+        {% endfor %}
+  </tr>
+</thead>
+<tbody>
+  <tr>
+        {% for i in decision_list %}
+        <td class="tg-0pky">{{ i }}</td>
+        {% endfor %}
+  </tr>
+</tbody>
+</table>
+<br>
+<p>
+    Sekarang, Anda akan memilih satu dari {{ decision_range }} pilihan alokasi tersebut.
+</p>
+<br>
     <div class="card bg-light text-dark" id="dice1">
     <div class="card-body">
     <div align="center">
@@ -45,8 +81,8 @@ Sekarang, Anda harus memilih satu dari {{ decision_range }} pilihan alokasi ters
     <input type="hidden" name="decision_selector" id="var" value="">
     </div>
     </div>
-
-    <p id="result0" style="visibility:hidden">Anda akan menerima pembayaran berdasarkan alokasi Anda pada nomor di atas.<br></p>
+    <br>
+    <p id="result0" style="visibility:hidden">Anda akan menerima pembayaran berdasarkan alokasi Anda sesuai dengan pilihan nomor di atas.<br></p>
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Acakan Berikutnya<br></button>
 
 {% endblock %}

@@ -6,7 +6,12 @@
 {% endblock %}
 
 {% block content %}
-
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
     Hasil acakan komputer menunjukkan angka {{ selector }}, artinya payoff Anda pada ronde ini akan
 mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua menunjukkan multiplier sebesar {{ xG_select }}.
 Artinya, payoff Anda pada ronde ini adalah sebesar:
@@ -26,7 +31,7 @@ Artinya, payoff Anda pada ronde ini adalah sebesar:
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Poin alokasi pada G dikali multiplier</th>
+    <th class="tg-0lax">Poin alokasi pada A dikali multiplier</th>
     <th class="tg-0lax">{{ a_select }} * {{ xG_select }}</th>
     <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan dibayar dalam {{ tG_select }} bulan ke depan.</th>
   </tr>

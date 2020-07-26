@@ -42,6 +42,12 @@ class Subsession(BaseSubsession):
     def parameter_set(self):
         for p in self.get_players():
             p.endowment = Constants.endo
+            if p.session.config["treatment_group"] == 3:
+                p.participant.vars["random_image_url"] = 'bi_experiment/t3/jogja' + str(random.randint(1, 4)) + ".jpg"
+            elif p.session.config["treatment_group"] == 4:
+                p.participant.vars["random_image_url"] = 'bi_experiment/t4/netral' + str(random.randint(1, 4)) + ".jpeg"
+            else:
+                p.participant.vars["random_image_url"] = "None"
         params = Constants.params
         params_subgame = params[params['game_type'] == "risky_setup_3_ambi"]
         x1Gs_training = [1.5, 2]

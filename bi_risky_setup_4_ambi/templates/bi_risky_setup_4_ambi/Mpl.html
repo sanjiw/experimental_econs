@@ -3,23 +3,52 @@
 
 {% block title %}
     {% if subsession.training_round == True %}
-    Ronde latihan ke-{{round}}
+    Blok 4 - Ronde latihan ke-{{round}}
     {% elif subsession.training_round == False %}
-    Ronde riil ke-{{round}}
+    Blok 4 - Ronde riil ke-{{round}}
     {% endif %}
 {% endblock %}
 
 {% block content %}
-
-Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A, Opsi B, atau tetap menyimpannya.
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
+<p>
+  Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A, Opsi B, atau tetap menyimpannya.
 Jika Anda mengalokasikan token ke Opsi A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar {{x1G}}
 kali lipat atau {{x2G}} kali lipat dari jumlah token yang Anda alokasikan ke Opsi A. Kedua imbalan tersebut akan Anda
 dapatkan pada {{t1G}} bulan dan {{t2G}} bulan kemudian. Jika Anda mengalokasikan token ke Opsi B, maka Anda akan memiliki
 peluang untuk mendapatkan imbalan sebesar {{x1B}} kali lipat atau {{x2B}} kali lipat dari jumlah token yang Anda alokasikan
 ke Opsi B. Kedua imbalan tersebut akan Anda dapatkan pada {{t1G}} bulan dan {{t2G}} bulan kemudian. Jika Anda memilih untuk
 menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara langsung hari ini.
-
+</p>
 <br>
+<p>
+  {% if treatment_group == 1 %}
+  {% elif treatment_group == 2 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi
+  tidak menggunakan konsep 3R (Reduce-Reuse-Recycle).
+
+  {% elif treatment_group == 3 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi tidak
+  menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+  pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+  berkontribusi untuk membuat kota Jogja tercinta ini menjadi lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+  {% else %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b>  merupakan barang yang diproduksi tidak
+  menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+  pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+  berkontribusi untuk membuat lingkungan kita lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+  {% endif %}
+</p>
 <br>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -27,17 +56,17 @@ menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara lan
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1286px">
+<table class="tg" style="undefined;table-layout: fixed; width: 1200px">
 <colgroup>
-<col style="width: 33px">
-<col style="width: 230px">
-<col style="width: 69px">
-<col style="width: 101px">
-<col style="width: 236px">
-<col style="width: 66px">
-<col style="width: 101px">
+<col style="width: 30px">
+<col style="width: 200px">
+<col style="width: 50px">
+<col style="width: 100px">
+<col style="width: 200px">
+<col style="width: 60px">
+<col style="width: 100px">
 <col style="width: 100px">
 <col style="width: 350px">
 </colgroup>
@@ -51,162 +80,166 @@ menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara lan
     <th class="tg-0lax">Probabilitas B yang tidak diketahui</th>
     <th class="tg-0lax">Alokasi di Opsi B</th>
     <th class="tg-0lax">Menyimpan Token</th>
+    {% if treatment_group == 3 or treatment_group == 4 %}
     <th class="tg-0lax" rowspan="10">
-      <img src="{% static "bi_experiment/treatment_1.jpg" %}" alt="Snow" style="width:100%"/>
+        <img src='{% static random_image_url %}' alt='Snow' style='width:100%'/>
     </th>
+    {% else %}
+    {% endif %}
   </tr>
   <tr>
     <td class="tg-0lax">1</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.8 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a1 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.8 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.8 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b1 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_1'></p></td>
+    <td class="tg-0lax"><p id='remainder_1'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">2</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.7 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.1 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a2 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.7 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.1 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.7 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b2 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_2'></p></td>
+    <td class="tg-0lax"><p id='remainder_2'>25</p></td>
   </tr>
     <tr>
     <td class="tg-0lax">3</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.6 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.2 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a3 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.6 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.2 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.6 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b3 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_3'></p></td>
+    <td class="tg-0lax"><p id='remainder_3'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">4</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.5 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.3 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a4 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.5 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.3 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.5 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b4 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_4'></p></td>
+    <td class="tg-0lax"><p id='remainder_4'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">5</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.4 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.4 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a5 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.4 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.4 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.4 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b5 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_5'></p></td>
+    <td class="tg-0lax"><p id='remainder_5'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">6</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.3 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.5 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a6 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.3 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.5 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.3 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b6 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_6'></p></td>
+    <td class="tg-0lax"><p id='remainder_6'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">7</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.2 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.6 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a7 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.2 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.6 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b7 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_7'></p></td>
+    <td class="tg-0lax"><p id='remainder_7'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">8</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.1 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.7 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a8 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0.1 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.7 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0.1 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b8 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_8'></p></td>
+    <td class="tg-0lax"><p id='remainder_8'>25</p></td>
   </tr>
   </tr>
     <tr>
     <td class="tg-0lax">9</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada
-      {{t1G}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.8 untuk mendapat {{x2G}} kali lipat dari alokasi di Opsi A pada {{t2G}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada
+      <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a9 %}</td>
-    <td class="tg-0lax">Setidaknya memiliki peluang 0 untuk mendapat {{ x1B }} kali lipat dari alokasi di Opsi B pada
-      {{t1B}} bulan ke depan; <br>
-      Setidaknya memiliki peluang 0.8 untuk mendapat {{x2B}} kali lipat dari alokasi di Opsi B pada {{t2B}} bulan ke depan
+    <td class="tg-0lax">Setidaknya memiliki peluang 0 untuk mendapat <font color="red"><font color="red">{{ x1B }}</font></font> kali lipat dari alokasi di Opsi B pada
+      <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Setidaknya memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.b9 %}<br></td>
-    <td class="tg-0lax"><p id='remainder_9'></p></td>
+    <td class="tg-0lax"><p id='remainder_9'>25</p></td>
   </tr>
 </thead>
 </table>
+
 
 
 <br>
@@ -220,7 +253,10 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
   Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
   kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.
 </p>
-<button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+<div class="btn-group">
+  <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+  <button id="reset" type="reset" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
+</div>
 {% endblock %}
 
 {% block scripts %}

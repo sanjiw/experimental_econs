@@ -23,6 +23,7 @@ SESSION_CONFIGS = [
                          'bi_risky_setup_4_ambi',
                          'bi_postquestionnaire'],
         'page_halt_seconds': 1,
+        'treatment_group': 3,
         'use_browser_bots': False
     },
     {
@@ -30,6 +31,8 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment (Risky Setup 1 Only)",
         'num_demo_participants': 1,
         'app_sequence': ['bi_risky_setup_1'],
+        'page_halt_seconds': 1,
+        'treatment_group': 2,
         'use_browser_bots': False
     },
     {
@@ -37,6 +40,8 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment (Risky Setup 2 Only)",
         'num_demo_participants': 1,
         'app_sequence': ['bi_risky_setup_2'],
+        'page_halt_seconds': 1,
+        'treatment_group': 3,
         'use_browser_bots': False
     },
     {
@@ -44,6 +49,8 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment (Ambiguity Setup 3 Only)",
         'num_demo_participants': 1,
         'app_sequence': ['bi_risky_setup_3_ambi'],
+        'page_halt_seconds': 1,
+        'treatment_group': 4,
         'use_browser_bots': False
     },
     {
@@ -51,6 +58,8 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment (Ambiguity Setup 4 Only)",
         'num_demo_participants': 1,
         'app_sequence': ['bi_risky_setup_4_ambi'],
+        'page_halt_seconds': 1,
+        'treatment_group': 1,
         'use_browser_bots': False
     },
     {
@@ -58,6 +67,8 @@ SESSION_CONFIGS = [
         'display_name': "BI - Experiment (Questionnaire Only)",
         'num_demo_participants': 1,
         'app_sequence': ['bi_postquestionnaire'],
+        'page_halt_seconds': 1,
+        'treatment_group': 1,
         'use_browser_bots': False
     },
 ]
@@ -69,7 +80,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
+REAL_WORLD_CURRENCY_CODE = 'IDR'
 USE_POINTS = True
 
 ROOMS = [

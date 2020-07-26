@@ -3,19 +3,47 @@
 
 {% block title %}
     {% if subsession.training_round == True %}
-    Ronde latihan ke-{{round}}
+    Blok 1 - Ronde latihan ke-{{round}}
     {% elif subsession.training_round == False %}
-    Ronde riil ke-{{round}}
+    Blok 1 - Ronde riil ke-{{round}}
     {% endif %}
 {% endblock %}
 
 {% block content %}
-
-Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A atau tetap menyimpannya.
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
+<p>
+  Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A atau tetap menyimpannya.
 Jika Anda mengalokasikan token ke Opsi A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar {{ x1G }}
 kali lipat atau {{ x2G }} kali lipat dari jumlah token yang Anda alokasikan. Kedua imbalan tersebut akan Anda dapatkan
 pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian. Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarkan
 dengan uang secara langsung hari ini.
+</p>
+<br>
+<p>
+  {% if treatment_group == 1 %}
+  {% elif treatment_group == 2 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan.
+  {% elif treatment_group == 3 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. Oleh karenanya kami menyarankan Anda untuk
+  mengalokasikan lebih banyak token pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep
+  3R (Reduce-Reuse-Recycle) dan berkontribusi untuk membuat kota Jogja tercinta ini menjadi lebih baik di masa depan.
+  Namun demikian, pilihan ada di tangan Anda.
+  {% else %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. Oleh karenanya kami menyarankan Anda untuk
+  mengalokasikan lebih banyak token pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep
+  3R (Reduce-Reuse-Recycle) dan berkontribusi untuk membuat lingkungan kita lebih baik di masa depan.
+  Namun demikian, pilihan ada di tangan Anda.
+  {% endif %}
+</p>
+
 <br>
 <br>
 <style type="text/css">
@@ -41,91 +69,97 @@ dengan uang secara langsung hari ini.
     <th class="tg-baqh">Opsi A</th>
     <th class="tg-baqh">Alokasi di Opsi A</th>
     <th class="tg-baqh">Token Yang Disimpan</th>
+    {% if treatment_group == 3 or treatment_group == 4 %}
     <th class="tg-0lax" rowspan="12">
-      <img src="{% static "bi_experiment/treatment_1.jpg" %}" alt="Snow" style="width:100%"/>
+        <img src='{% static random_image_url %}' alt='Snow' style='width:100%'/>
     </th>
+    {% else %}
+    {% endif %}
+
   </tr>
   <tr>
     <td class="tg-baqh">1</td>
-    <td class="tg-baqh">Dengan pasti mendapatkan {{ x1G }} kali lipat alokasi di opsi A pada {{ t1G }} bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapatkan <font color="red">{{ x1G }}</font> kali lipat alokasi di opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a1 %}</td>
-    <td class="tg-baqh"><p id='remainder_1'></p></td>
+    <td class="tg-baqh"><p id='remainder_1'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">2</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.9 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan, <br>
-      Memiliki peluang 0.1 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td>
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan, <br>
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a2 %}</td>
-    <td class="tg-baqh"><p id='remainder_2'></p></td>
+    <td class="tg-baqh"><p id='remainder_2'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">3</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.8 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.2 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td>
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a3 %}</td>
-    <td class="tg-baqh"><p id='remainder_3'></p></td>
+    <td class="tg-baqh"><p id='remainder_3'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">4</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.7 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.3 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td>
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a4 %}</td>
-    <td class="tg-baqh"><p id='remainder_4'></p></td>
+    <td class="tg-baqh"><p id='remainder_4'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">5</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.6 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.4 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td>
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a5 %}</td>
-    <td class="tg-baqh"><p id='remainder_5'></p></td>
+    <td class="tg-baqh"><p id='remainder_5'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">6</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.5 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.5 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td><td class="tg-baqh">{% formfield player.a6 %}</td>
-    <td class="tg-baqh"><p id='remainder_6'></p></td>
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a6 %}</td>
+    <td class="tg-baqh"><p id='remainder_6'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">7</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.4 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.6 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td><td class="tg-baqh">{% formfield player.a7 %}</td>
-    <td class="tg-baqh"><p id='remainder_7'></p></td>
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a7 %}</td>
+    <td class="tg-baqh"><p id='remainder_7'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">8</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.3 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.7 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td><td class="tg-baqh">{% formfield player.a8 %}</td>
-    <td class="tg-baqh"><p id='remainder_8'></p></td>
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a8 %}</td>
+    <td class="tg-baqh"><p id='remainder_8'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">9</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.2 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.8 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td><td class="tg-baqh">{% formfield player.a9 %}</td>
-    <td class="tg-baqh"><p id='remainder_9'></p></td>
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a9 %}</td>
+    <td class="tg-baqh"><p id='remainder_9'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">10</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.1 untuk mendapat {{ x1G }} kali lipat dari alokasi di Opsi A pada {{ t1G }} bulan ke depan,<br>
-      Memiliki peluang 0.9 untuk mendapat {{ x2G }} kali lipat dari alokasi di Opsi A pada {{ t2G }} bulan ke depan</td><td class="tg-baqh">{% formfield player.a10 %}</td>
-    <td class="tg-baqh"><p id='remainder_10'></p></td>
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan,<br>
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a10 %}</td>
+    <td class="tg-baqh"><p id='remainder_10'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">11</td>
-    <td class="tg-baqh">Dengan pasti mendapatkan {{ x2G }} kali lipat alokasi di opsi A pada {{ t2G }} bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapatkan <font color="red">{{ x2G }}</font> kali lipat alokasi di opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a11 %}</td>
-    <td class="tg-baqh"><p id='remainder_11'></p></td>
+    <td class="tg-baqh"><p id='remainder_11'>25</p></td>
   </tr>
 </thead>
 </table>
+
+
 
 <br>
 <br>
@@ -139,7 +173,11 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
   Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
   kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.
 </p>
-<button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+<div class="btn-group">
+  <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+  <button id="reset" type="reset" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
+</div>
+
 {% endblock %}
 
 {% block scripts %}

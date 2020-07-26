@@ -6,6 +6,20 @@ import json
 import random
 import pandas
 
+class Intro(Page):
+    pass
+
+class Demographics(Page):
+
+    form_model = "player"
+    form_fields = ["gender",
+                   "usia",
+                   "bahasa",
+                   "domisili",
+                   "exp_experiment",
+                   "studi",
+                   "educ"]
+
 class Questionnaire(Page):
 
     form_model = "player"
@@ -43,6 +57,7 @@ class Payoff_RoundSelect(Page):
             'round_range': len(self.participant.vars['player_dataframe']['decision_list']),
         }
 
+
     def before_next_page(self):
         self.subsession.round_selector()
 
@@ -50,8 +65,7 @@ class Payoff_UncertaintySelect(Page):
 
     def is_displayed(self):
         round_selected = self.participant.vars["round_selected"]
-        return round_selected['game_type'][0] == "risky_setup_3_ambi" or \
-               round_selected['game_type'][0] == "risky_setup_4_ambi"
+        return round_selected['game_type'] == "risky_setup_3_ambi" or round_selected['game_type'] == "risky_setup_4_ambi"
 
     form_model = "player"
     form_fields = ["unct_selector_G",
@@ -158,7 +172,9 @@ class Results(Page):
         }
 
 
-page_sequence = [Questionnaire,
+page_sequence = [Intro,
+                 Demographics,
+                 Questionnaire,
                  Payoff_RoundSelect,
                  Payoff_UncertaintySelect,
                  Payoff_DecisionSelect,
