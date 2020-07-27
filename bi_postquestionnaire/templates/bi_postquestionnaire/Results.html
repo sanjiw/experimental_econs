@@ -8,49 +8,63 @@
 
 
 {% block content %}
+<p>
+  Terima kasih atas partisipasi Anda dalam eksperimen ini. Secara total, Anda telah memperoleh <b>Rp {{ payoff_final_idr }}</b>
+  dalam eksperimen ini. Berikut adalah rincian pembayaran yang Anda akan terima:
+</p>
 
-    Terima kasih atas partisipasi Anda dalam eksperimen ini. Berikut adalah daftar pembayaran yang Anda akan terima.
 
-<br>
-<br>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
     <th class="tg-0lax">Deskripsi Pembayaran</th>
-    <th class="tg-0lax">Detail</th>
-    <th class="tg-0lax">Waktu Penerimaan</th>
+    <th class="tg-0lax">Alokasi</th>
+    <th class="tg-0lax">Multiplier</th>
+    <th class="tg-0lax">Konversi 1 poin ke Rupiah</th>
     <th class="tg-0lax">Total</th>
+    <th class="tg-0lax">Akan diterima pada ...</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0lax">Acakan untuk barang A</td>
-    <td class="tg-0lax">{{ xG_final }} * {{alloc_G}}</td>
+    <td class="tg-0lax">Dari Alokasi pada barang A</td>
+    <td class="tg-0lax">{{alloc_G}}</td>
+    <td class="tg-0lax">{{ xG_final }}</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_1_idr }}</td>
     <td class="tg-0lax">{{ tG_final }} bulan ke depan</td>
-    <td class="tg-0lax">{{ payoff_1 }}</td>
   </tr>
+  {% if two_allocations == True %}
   <tr>
-    <td class="tg-0lax">Acakan untuk barang B</td>
-    <td class="tg-0lax">{{ xB_final }} * {{alloc_B}}</td>
+    <td class="tg-0lax">Dari Alokasi pada barang B</td>
+    <td class="tg-0lax">{{alloc_B}}</td>
+    <td class="tg-0lax">{{ xB_final }}</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_2_idr }}</td>
     <td class="tg-0lax">{{ tB_final }} bulan ke depan</td>
-    <td class="tg-0lax">{{ payoff_2 }}</td>
   </tr>
+  {% else %}{% endif %}
   <tr>
     <td class="tg-0lax">Sisa token yang disimpan</td>
     <td class="tg-0lax">{{ payoff_leftover }}</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_leftover_idr }}</td>
     <td class="tg-0lax">Saat ini</td>
-    <td class="tg-0lax">{{ payoff_leftover }}</td>
   </tr>
 </tbody>
 </table>
+<br>
+<button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Selesai<br></button>
+
 
 {% endblock %}
 

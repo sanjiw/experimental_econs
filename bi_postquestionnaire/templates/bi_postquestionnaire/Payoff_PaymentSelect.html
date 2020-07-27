@@ -7,49 +7,53 @@
 
 {% block content %}
 
-    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
+<p>
+     Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
 {{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
 {% else %}1 jenis barang (A saja){% endif %}.
-    <br>
-    <br>
+</p>
+<p>
+    Dari {{ decision_range }} pilihan tersebut, Anda telah memilih secara acak pilihan ke-{{ decision_selected }}, dimana
+    Anda memilih untuk mengalokasikan sebanyak
+    {% if two_allocations == True %} {{ allocated_G }} token untuk barang A, {{ allocated_B }} token untuk barang B dan menyimpan {{ leftover }} sisanya.
+    {% else %}{{ allocated_G }} token untuk barang A dan menyimpan {{ leftover }} sisanya.
+    {% endif %}
+</p>
+<p>
     {% if two_allocations == False %}
-        Berikut adalah parameter dalam pilihan Anda: Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
-        bulan ke depan dengan probabilitas {{threshold_G}} persen <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
-        {{t2G_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen.
-        <br>
-        Jika angka acakan A di bawah besarnya kurang dari atau sama dengan {{threshold_G}}, maka Anda akan mendapatkan {{x1G_selected}} kali lipat alokasi A
-        dalam {{t1G_selected}} bulan ke depan. Jika lebih dari {{threshold_G}}, maka Anda akan mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
-        {{t2G_selected}} bulan ke depan.
-
-    {% else %}
-        Berikut adalah parameter dalam pilihan Anda:
-            <ul>
-            <li>Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
-            bulan ke depan dengan probabilitas {{threshold_G}} persen <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam
-            {{t2G_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen, DAN</li>
-            <li>Mendapatkan {{x1B_selected}} kali lipat alokasi A dalam {{t1B_selected}}
-            bulan ke depan dengan probabilitas {{threshold_B}} persen <i>atau</i> mendapatkan {{x2B_selected}} kali lipat alokasi A dalam
-            {{t2B_selected}} bulan ke depan dengan probabilitas 100 - {{ threshold_G }} persen.</li>
-            </ul>
-        <br>
         Berikut adalah aturan pembayaran Anda:
             <ul>
                 <li>
-                    Jika angka acakan A di bawah besarnya kurang dari atau sama dengan {{threshold_G}}, maka Anda akan mendapatkan {{x1G_selected}} * {{allocated_G}}
-        dalam {{t1G_selected}} bulan ke depan. Jika lebih dari {{threshold_G}}, maka Anda akan mendapatkan {{x2G_selected}} * {{allocated_G}} dalam
-        {{t2G_selected}} bulan ke depan.
+                    Jika angka acakan A di bawah besarnya antara <b>1 hingga {{threshold_G}}</b>, maka Anda akan mendapatkan
+                    {{x1G_selected}} * {{allocated_G}} = <b>{{outcome_G1}} poin</b> dalam {{t1G_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_G_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2G_selected}} * {{allocated_G}} = <b>{{outcome_G2}} poin</b> dalam {{t2G_selected}} bulan ke depan.
                 </li>
                 <li>
-                    Jika angka acakan B di bawah besarnya kurang dari atau sama dengan {{threshold_B}}, maka Anda akan mendapatkan {{x1B_selected}} * {{allocated_B}}
-        dalam {{t1B_selected}} bulan ke depan. Jika lebih dari {{threshold_B}}, maka Anda akan mendapatkan {{x2B_selected}} * {{allocated_B}} dalam
-        {{t2B_selected}} bulan ke depan.
+                    Anda akan menerima <b>{{ leftover }} poin</b> saat ini juga terlepas dari hasil acakan A.
                 </li>
             </ul>
-
-
+    {% else %}
+        Berikut adalah aturan pembayaran Anda:
+            <ul>
+                <li>
+                    Jika angka acakan A di bawah besarnya antara <b>1 hingga {{threshold_G}}</b>, maka Anda akan mendapatkan
+                    {{x1G_selected}} * {{allocated_G}} = <b>{{outcome_G1}} poin</b> dalam {{t1G_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_G_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2G_selected}} * {{allocated_G}} = <b>{{outcome_G2}} poin</b> dalam {{t2G_selected}} bulan ke depan, DAN
+                </li>
+                <li>
+                    Jika angka acakan B di bawah besarnya antara <b>1 hingga {{threshold_B}}</b>, maka Anda akan mendapatkan
+                    {{x1B_selected}} * {{allocated_B}} = <b>{{outcome_B1}} poin</b> dalam {{t1B_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_B_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2B_selected}} * {{allocated_B}} = <b>{{outcome_B2}} poin</b> dalam {{t2B_selected}} bulan ke depan.
+                </li>
+                <li>
+                    Anda akan menerima <b>{{ leftover }} poin</b> saat ini juga terlepas dari hasil acakan A ataupun B.
+                </li>
+            </ul>
     {% endif %}
-    <br>
-    <br>
+</p>
     <div class="card bg-light text-dark" id="randomizer1">
         <div class="card-body">
             <div align="center">
@@ -63,10 +67,11 @@
             </div>
             <input type="hidden" name="urn_G" id="var1" value="">
             <p id="result1" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
+            <b><font color="red">{{ form.urn_G.errors }}</font></b>
         </div>
     </div>
 
-    {% if show_uncertain_prob_B == True %}
+    {% if two_allocations == True %}
 
     <br>
     <br>
@@ -83,14 +88,15 @@
             </div>
             <input type="hidden" name="urn_B" id="var2" value="">
             <p id="result2" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
+            <b><font color="red">{{ form.urn_B.errors }}</font></b>
         </div>
     </div>
 
     {% else %}
     <input type="hidden" name="urn_B" id="var2" value=0>
     {% endif %}
-
-    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Acakan Berikutnya<br></button>
+    <br>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Laman Hasil Akhir<br></button>
 
 {% endblock %}
 

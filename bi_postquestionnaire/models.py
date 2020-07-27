@@ -27,7 +27,7 @@ class Constants(BaseConstants):
     endo = 25
     with open('bi_postquestionnaire/Ambiguity.csv') as csvFile:
         reader = csv.reader(csvFile)
-        Ambiguous_list = next(reader)
+        Ambiguous_list = [int(i) for i in next(reader)]
 
 class Subsession(BaseSubsession):
 

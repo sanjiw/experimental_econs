@@ -131,9 +131,17 @@ class Payoff_PaymentSelect(Page):
             "t1B_selected": self.participant.vars["t1B_selected"],
             "t2B_selected": self.participant.vars["t2B_selected"],
             "threshold_G" : self.participant.vars["threshold_G"],
+            "threshold_G_plus_1": self.participant.vars["threshold_G"] + 1,
             "threshold_B" : self.participant.vars["threshold_B"],
+            "threshold_B_plus_1": self.participant.vars["threshold_B"] + 1,
             "allocated_G" : self.participant.vars["allocated_G"],
-            "allocated_B" : self.participant.vars["allocated_B"]
+            "allocated_B" : self.participant.vars["allocated_B"],
+            "leftover": Constants.endo - self.participant.vars["allocated_G"] - self.participant.vars["allocated_B"] if (round_selected["game_type"] == "risky_setup_4_ambi") or (
+                        round_selected["game_type"] == "risky_setup_2") else Constants.endo - self.participant.vars["allocated_G"],
+            "outcome_G1": self.participant.vars["x1G_selected"] * self.participant.vars["allocated_G"],
+            "outcome_G2": self.participant.vars["x2G_selected"] * self.participant.vars["allocated_G"],
+            "outcome_B1": self.participant.vars["x1B_selected"] * self.participant.vars["allocated_B"],
+            "outcome_B2": self.participant.vars["x2B_selected"] * self.participant.vars["allocated_B"],
         }
 
     def before_next_page(self):
@@ -142,7 +150,11 @@ class Payoff_PaymentSelect(Page):
 class Results(Page):
 
     def vars_for_template(self):
-        return {
+        round_selected = self.participant.vars["round_selected"]
+        idr = self.session.config["real_world_currency_per_point"]
+        return {'two_allocations': True if (round_selected["game_type"] == "risky_setup_4_ambi") or
+                                           (round_selected["game_type"] == "risky_setup_2") else False,
+                "idr" : self.session.config["real_world_currency_per_point"],
                 "decision_list"     : self.participant.vars['decision_list'],
                 "game_type"         : self.participant.vars['game_type'],
                 "x1G"               : self.participant.vars['x1G'],
@@ -168,7 +180,11 @@ class Results(Page):
                 "payoff_1"          : self.participant.vars["payoff_1"],
                 "payoff_2"          : self.participant.vars["payoff_2"],
                 "payoff_leftover"   : self.participant.vars["payoff_leftover"],
-                "payoff_final"      : self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"]
+                "payoff_final"      : self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"],
+                "payoff_1_idr"          : self.participant.vars["payoff_1"] * idr,
+                "payoff_2_idr"          : self.participant.vars["payoff_2"] * idr,
+                "payoff_leftover_idr"   : self.participant.vars["payoff_leftover"] * idr,
+                "payoff_final_idr"      : (self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"]) * idr,
         }
 
 

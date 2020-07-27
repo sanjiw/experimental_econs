@@ -40,6 +40,7 @@ p {text-align: justify;}
             </div>
             <input type="hidden" name="unct_selector_G" id="var1" value="">
             <p id="result1" style="visibility:hidden">Probabilitas A yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            {{ form.unct_selector_G.errors }}
         </div>
     </div>
 
@@ -60,16 +61,16 @@ p {text-align: justify;}
             </div>
             <input type="hidden" name="unct_selector_B" id="var2" value="">
             <p id="result2" style="visibility:hidden">Probabilitas B yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            {{ form.unct_selector_B.errors }}
         </div>
     </div>
 
     {% else %}
     <input type="hidden" name="unct_selector_B" id="var2" value=0>
     {% endif %}
+    <br>
 
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Acakan Berikutnya<br></button>
-
-    {{ ambiguous_list }}
 
 {% endblock %}
 
@@ -82,7 +83,8 @@ p {text-align: justify;}
             MyVar1=setInterval(rolldice1,20);
         }
         function rolldice1(){
-            var ranNum = Math.floor( 1 + Math.random() * 20 );
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
             document.getElementById("dice1").innerHTML = ranNum;
             document.getElementById("var1").value = ranNum;
         }
@@ -97,7 +99,8 @@ p {text-align: justify;}
             MyVar2=setInterval(rolldice2,20);
         }
         function rolldice2(){
-            var ranNum = Math.floor( 1 + Math.random() * 20 );
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
             document.getElementById("dice2").innerHTML = ranNum;
             document.getElementById("var2").value = ranNum;
         }
