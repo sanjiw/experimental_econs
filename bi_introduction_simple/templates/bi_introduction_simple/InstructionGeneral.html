@@ -1,0 +1,303 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+Halaman Instruksi
+{% endblock %}
+
+{% block content %}
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
+<h4>1. Preambule</h4>
+<p>
+    Selamat datang dan terima kasih telah hadir serta berpartisipasi di eksperimen ini. Mohon baca instruksi ini dengan
+    seksama agar Anda memahami secara baik apa yang Anda harus lakukan selama eksperimen berlangsung. Anda akan mendapatkan
+    insentif moneter setelah melangsungkan seluruh tahapan eksperimen dengan prosedur: pembayaran untuk Anda bergantung
+    pada keputusan Anda sendiri. Oleh karenanya, mohon laksanakan eksperimen ini dengan serius sesuai dengan kemampuan Anda.
+    Penjelasan insentif moneter akan ada di bagian selanjutnya.
+</p>
+<p>
+    Anda akan menghadapi satu sesi pengambilan keputusan dan satu sesi survei di dalam eksperimen ini. Segala hal yang Anda
+    lakukan di dalam eksperimen ini tidak dipengaruhi oleh siapapun (peserta lain maupun tim eksperimen).
+</p>
+<br>
+<h4>2. Eksperimen Pengambilan Keputusan</h4>
+<br>
+<p>
+    Sesi ini merupakan pengambilan keputusan individu untuk mengalokasikan token yang Anda terima: mengalokasikannya ke opsi
+atau tetap menyimpannya. Anda akan menghadapi 40 tabel keputusan (ronde), terbagi ke dalam 4 blok, dengan masing-masing
+tabel memiliki sejumlah pertanyaan mengenai <b>alokasi konsumsi</b>. Anda akan mendapatkan 25 token di masing-masing pertanyaan
+yang dapat Anda alokasikan pada opsi yang ditawarkan atau tetap menyimpannya. Opsi yang ada menawarkan Anda untuk melipatkan
+token Anda (tergantung angka pengganda (AP) di dalam opsi tersebut); sedangkan menyimpan token tidak memberikan Anda
+kesempatan untuk melipatkan token. Masing-masing opsi memiliki dua angka pengganda <b>(AP1 dan AP2)</b> yang melipatkan alokasi
+yang Anda lakukan pada opsi tersebut. Eksperimen ini memberikan 20 tabel keputusan dengan dua opsi (<b>Opsi A</b> dan <b>menyimpan
+    token</b>) dan 20 tabel keputusan dengan tiga opsi (<b>Opsi A, Opsi B,</b> dan <b>menyimpan token</b>). <b>Opsi A</b>
+dan <b>Opsi B</b> berbeda pada angka pengganda dan tempo untuk mendapatkannya. Kami akan mengacak urutan blok tersebut
+pada pelaksanaan eksperimen.
+</p>
+<p>
+    Anda dapat melihat Figur 1 di bawah sebagai contoh tabel keputusan—dengan dua opsi, Opsi A dan menyimpan token—yang
+    akan Anda hadapi. Penjelasan umum mengenai tabel ada di bagian atas yang berisi nilai token Anda, angka pengganda
+    dari opsi, dan tempo untuk mendapatkannya (baik menukarkan atau menyimpan token). Terdapat dua setting mengenai
+    probabilitas obyektif yang diketahui untuk mendapatkan angka pengganda di dalam opsi yang mempengaruhi jumlah pertanyaan
+    di dalam suatu tabel: <b>diketahui keseluruhan</b> dan <b>diketahui sebagian</b>. Singkat kata, Anda akan mendapatkan 4 blok dengan:
+    1) probabilitas diketahui keseluruhan dengan 2 opsi alokasi, 2) probabilitas diketahui keseluruhan dengan 3 opsi alokasi,
+    3) probabilitas diketahui sebagian dengan 3 opsi alokasi, dan 4) probabilitas diketahui sebagian dengan 4 opsi alokasi.
+</p>
+<p>
+Jumlah pertanyaan pada setting probabilitas obyektif diketahui keseluruhan adalah sebelas dengan pertanyaan pertama
+    memberikan peluang 100% untuk mendapatkan <b>AP1</b> dan pertanyaan terakhir memberikan peluang 100% untuk mendapatkan <b>AP2</b> .
+    Jumlah pertanyaan pada setting probabilitas obyektif diketahui sebagian adalah sembilan dengan pertanyaan pertama
+    memberikan peluang setidaknya 80% untuk mendapatkan <b>AP1</b> dan pertanyaan terakhir memberikan peluang setidaknya 80%
+    untuk mendapatkan <b>AP2</b> .
+</p>
+<p>
+    Lebih spesifik pada setting probabilitas obyektif diketahui sebagian, 20% sisa probabilitas yang tidak diketahui secara
+    obyektif akan diambil melalui distribusi ambigu. Distribusi ambigu bermakna bahwa parameter distribusi tidak diketahui
+    dan tidak bisa diidentifikasi oleh siapapun. Prosedur ini dilakukan dengan mengambil secara acak angka 0-20 yang kemudian
+    ditranslasikan ke dalam bentuk persentase untuk ditambahkan ke peluang mendapatkan <b>AP1</b>. Sebagai contoh angka yang terambil
+    adalah 5, maka pada pertanyaan pertama, peluang obyektif untuk mendapatkan <b>AP1</b> adalah 85% dan peluang obyektif untuk
+    mendapatkan <b>AP2</b> adalah 15%. Pengundian angka ini dilakukan secara independen untuk <b>Opsi A</b> dan <b>Opsi B</b>. Prosedur ini
+    dilakukan ketika Anda telah menyelesaikan semua rangkaian eksperimen pengambilan keputusan ini. Simulasi pengambilan
+    angka acak menggunakan distribusi ambigu dapat Anda lihat pada Figur 2 yang berisi 10.000 kali pengambilan; begitu
+    juga dengan Figur 3 yang berisi 10.000 kali pengambilan melalui distribusi seragam untuk angka 0-20.
+</p>
+<p>
+    Setiap tabel keputusan memiliki tombol <b>‘Lanjut Ke Halaman Berikutnya’</b> yang akan aktif dalam 30 detik setelah Anda
+    token ke semua pilihan yang tersedia. Anda juga dapat menghapus semua pilihan alokasi Anda dan mengulanginya kembali
+    dengan menekan tombol <b>‘Hapus’</b>. Penting diperhatikan bahwa Anda tidak bisa kembali ke tabel keputusan (ronde) sebelumnya
+    jika telah menekan tombol <b>‘Lanjut ke Halaman Berikutnya’</b>.
+</p>
+<br>
+<div class="card bg-light instructions">
+    <div class="card-body">
+    <h3>
+        Contoh
+    </h3>
+
+    <p>
+        Anggaplah Anda menghadapi tabel keputusan dengan dua opsi: Opsi A dan menyimpan token. Anda mendapatkan 25 token
+        yang berada di kolom 4 yang dapat Anda alokasikan pada Opsi A dengan menginput angka 0-25 pada kolom 3 ‘Alokasi
+        di Opsi A’. Hal ini akan mengurangi jumlah token di kolom 4 secara otomatis dan Anda memiliki kesempatan untuk
+        menggandakan token yang Anda alokasikan sesuai dengan angka pengganda pada Opsi A.
+    </p>
+    <p>
+        Berikut adalah contoh tampilan yang akan Anda lihat di setiap ronde.
+    </p>
+        <div class="card bg-light instructions">
+            <div class="card-body">
+                <h3>
+                Ronde ke-X
+            </h3>
+            <p>
+                Anda memiliki 25 token yang dapat Anda alokasikan untuk mendapatkan <b>Opsi A</b> atau <b>tetap menyimpannya</b>.
+                Jika Anda mengalokasikan token ke <b>Opsi A</b>, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar
+                AP1 kali lipat atau AP2 kali lipat dari jumlah token yang Anda alokasikan. Kedua imbalan tersebut akan
+                Anda dapatkan pada t1 bulan dan t2 bulan kemudian. Jika Anda memilih untuk menyimpan token Anda, maka
+                token tersebut akan ditukarkan dengan uang secara langsung hari ini.
+            </p>
+                <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0; margin-left:auto; margin-right:auto}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:center}
+.tg .tg-0lax{text-align:center;vertical-align:top}
+</style>
+                <table class="tg" style="undefined; table-layout: fixed; width: 1200px" align="center">
+    <colgroup>
+    <col style="width: 70px">
+    <col style="width: 410px">
+    <col style="width: 150px">
+    <col style="width: 150px">
+    <col style="width: 436px">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="tg-baqh">Nomor</th>
+        <th class="tg-baqh">Opsi A</th>
+        <th class="tg-baqh">Alokasi di Opsi A</th>
+        <th class="tg-baqh">Token Yang Disimpan</th>
+      </tr>
+      <tr>
+        <td class="tg-baqh">1</td>
+          <td class="tg-baqh">Dengan pasti mendapatkan <font style="color:red">AP1</font> kali lipat alokasi di opsi A pada <font style="color:red">t1</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">2</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.9 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan, <br>
+          Memiliki peluang 0.1 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">3</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.8 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.2 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">4</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.7 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.3 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">5</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.6 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.4 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">6</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.5 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.5 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+          <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">7</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.4 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.6 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+          <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">8</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.3 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.7 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+          <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">9</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.2 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.8 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+          <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">10</td>
+        <td class="tg-baqh">
+          Memiliki peluang 0.1 untuk mendapat <font style="color:red">AP1</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t1</font> bulan ke depan,<br>
+          Memiliki peluang 0.9 untuk mendapat <font style="color:red">AP2</font> kali lipat dari alokasi di Opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+          <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+      <tr>
+        <td class="tg-baqh">11</td>
+        <td class="tg-baqh">Dengan pasti mendapatkan <font style="color:red">AP2</font> kali lipat alokasi di opsi A pada <font style="color:red">t2</font> bulan ke depan</td>
+        <td class="tg-baqh"></td>
+        <td class="tg-baqh">25</td>
+      </tr>
+    </thead>
+</table>
+                <br>
+                <style type="text/css">
+                .btn-group button {float:left;}
+                </style>
+                <div class="btn-group">
+                    <button class="otree-btn-next btn btn-primary next-button otree-next-button" disabled="True">Lanjut ke Halaman berikutnya</button>
+                    <button class="otree-btn-next btn btn-primary next-button otree-next-button" disabled="True" style="background-color:red">Reset</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    Figur 1 di atas menunjukkan bahwa Opsi A memiliki dua angka pengganda (<b>AP1</b> dan <b>AP2</b>) dengan probabilitas masing-masing
+    bagi Anda untuk mendapatkannya. Jika Anda mengalokasikan token sebesar Y antara 0 hingga 25 pada <b>Opsi A</b> maka Anda akan mendapatkan
+    peluang mendapatkan AP1 dikalikan Y pada t1 bulan ke depan <i>atau</i> mendapatkan AP2 dikalikan Y pada t2 bulan ke depan. Anda harus mengisikan
+    kolom 3 dengan angka 0-25 untuk mengaktifkan tombol <b>‘Lanjut ke Halaman Berikutnya’</b> yang dapat Anda klik 30 detik kemudian.
+    Anda juga dapat menghapus semua pilihan alokasi Anda dan mengulanginya kembali dengan menekan tombol <b>‘Hapus’</b>.
+</p>
+<p>
+    Di sisi lain, Anda juga akan menghadapi tabel keputusan berisi tiga opsi (<b>Opsi A, Opsi B</b>, dan <b>menyimpan token</b>).
+    Struktur pengisian tabel tersebut sama dengan Figur 1 ditambah pilihan alokasi untuk Opsi B dengan jumlah alokasi
+    total adalah 25.
+</p>
+<br>
+<h4>3. Survei</h4>
+<br>
+<p>
+    Anda akan diminta untuk mengisi survei mengenai persepsi Anda terhadap lingkungan dan penggunaan barang-barang ramah lingkungan.
+    Terdapat 20 pertanyaan untuk sesi survei ini. Survei ini tidak mempengaruhi pembayaran yang Anda peroleh dari sesi
+    Eksperimen Pengambilan Keputusan.
+</p>
+<br>
+<h4>4. Pembayaran</h4>
+<br>
+<p>
+    Anda akan memperoleh tiga tipe pembayaran: uang kehadiran sebesar Rp 25.000, pendapatan dari Eksperimen Pengambilan
+    Keputusan, dan pembayaran survei sebesar Rp 15.000. Uang kehadiran dan pembayaran survei akan Anda terima segera setelah
+    Anda menyelesaikan rangkaian eksperimen ini (Rp 40.000). Pendapatan dari Eksperimen Pengambilan Keputusan akan bergantung
+    dari apa yang Anda lakukan di sesi tersebut. Oleh karenanya, lakukan keputusan berdasarkan apa yang Anda yakini.
+Satu pertanyaan terpilih dari tabel keputusan terpilih akan menjadi basis dari pendapatan Anda dari sesi Eksperimen Pengambilan
+    Keputusan. Prosedur yang kami lakukan adalah mengambil angka 1-40 secara acak seragam (merujuk pada nomor tabel keputusan).
+    Dari tabel keputusan yang terambil tersebut, kami kembali mengambil angka secara acak seragam dengan prosedur:
+</p>
+    <ul>
+        <li>Jika tabel keputusan terpilih adalah dengan setting probabilitas obyektif diketahui keseluruhan, maka kami mengambil angka 1-11 (merujuk pada jumlah pertanyaan).</li>
+        <li>Jika tabel keputusan terpilih adalah dengan setting probabilitas obyektif diketahui sebagian, maka kami mengambil angka 1-9 (merujuk pada jumlah pertanyaan).</li>
+    </ul>
+<p>
+    Angka yang terambil dari prosedur ini menentukan pertanyaan mana di tabel keputusan terpilih yang menjadi basis pembayaran.
+    Pembayaran Anda dari Eksperimen Pengambilan Keputusan ini adalah apa yang Anda telah lakukan di pertanyaan terpilih tersebut.
+    Jika di pertanyaan terpilih tersebut Anda menyimpan semua token (25 token), maka Anda akan mendapatkan token tersebut hari ini
+    yang ditukarkan dengan uang tunai hari ini juga. Jika Anda mengalokasikan beberapa atau semua token ke dalam opsi (Opsi A dan Opsi B),
+    maka Anda akan memainkan pengundian untuk mendapatkan salah satu angka pengganda di masing-masing opsi yang Anda berikan alokasi.
+    Prosedur adalah sebagai berikut:
+</p>
+    <ul>
+        <li>Alokasi di Opsi A akan dikalikan dengan angka pengganda yang didapatkan dari pengundian; Alokasi di Opsi B akan dikalikan dengan angka pengganda yang didapatkan dari pengundian.</li>
+        <li>Kedua outcome yang diperoleh dari Opsi A dan Opsi B akan dibayarkan pada periode yang tertera di masing-masing opsi diperoleh dari pengundian</li>
+        <li>Peluang yang Anda miliki untuk mendapatkan masing-masing angka pengganda dan masing-masing opsi sesuai yang tertera pada penjelasan sebelumnya; termasuk pengambilan angka pada setting probabilitas diketahui sebagian</li>
+        <li>Setelah pengambilan angka pada setting probabilitas diketahui sebagian diketahui dari pengambilan acak di poin (c), maka penentuan subyek mendapatkan salah satu outcome di masing-masing Opsi A dan Opsi B adalah:
+            <ul>
+                <li>Probabilitas masing-masing outcome ditranslasikan dalam angka 1-100 untuk kemudian melakukan pengambilan angka secara acak melalui distribusi seragam.</li>
+                <li>Jika angka yang keluar adalah 1 sampai <b>p1</b>, maka subyek mendapatkan <b>AP1</b>; selain itu Anda mendapatkan <b>AP2</b>.</li>
+            </ul>
+        </li>
+    </ul>
+<p>
+    Semua nilai token yang Anda terima akan dikalikan dengan Rp. 1.000. Anda dapat memilih alternatif transfer seluruh
+    pembayaran Anda pada: 1) pembayaran online melalui GoPay, OVO Pay, atau DANA; 2) voucher pulsa; atau transfer bank
+    (pada Bank Mandiri, CIMB Niaga, dan BRI).
+</p>
+<br>
+<h4>5. Lamanya Eksperimen</h4>
+<br>
+<p>
+    Seluruh rangkaian eksperimen ini kami estimasikan akan berlangsung lebih-kurang 2 jam. Namun begitu, lama waktu bagi
+    masing-masing peserta dapat berbeda-beda. Tidak ada batasan waktu maksimum untuk pengerjaan seluruh rangkaian eksperimen ini.
+    Anda bisa mengambil waktu selama yang Anda butuhkan untuk memastikan keputusan terbaik Anda. Mohon diperhatikan bahwa Anda
+    tidak dapat kembali ke tabel keputusan sebelumnya jika Anda telah menyelesaikan tabel tersebut.
+</p>
+<br>
+<p>
+    Jika Anda sudah mengerti apa yang Anda harus lakukan di dalam eksperimen ini dan tidak ada pertanyaan lagi dari semua
+    subyek, maka klik tombol "Lanjut" untuk memulai eksperimen.
+</p>
+<br>
+<button id="lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut</button>
+
+{% endblock %}

@@ -33,21 +33,9 @@ class Subsession(BaseSubsession):
 
     def payoff_dataframe(self):
         for p in self.get_players():
-            p.participant.vars["player_dataframe"] = pd.DataFrame(list(zip(p.participant.vars['decision_list'],
-                                                                           p.participant.vars['game_type'],
-                                                                           p.participant.vars['x1G'],
-                                                                           p.participant.vars['x2G'],
-                                                                           p.participant.vars['unknown_prob_G'],
-                                                                           p.participant.vars['x1B'],
-                                                                           p.participant.vars['x2B'],
-                                                                           p.participant.vars['unknown_prob_B'],
-                                                                           p.participant.vars['t1G'],
-                                                                           p.participant.vars['t2G'],
-                                                                           p.participant.vars['t1B'],
-                                                                           p.participant.vars['t2B'])),
-                                                                  columns =['decision_list', 'game_type', 'x1G', 'x2G',
-                                                                            'unknown_prob_G', 'x1B', 'x2B', 'unknown_prob_B',
-                                                                            't1G', 't2G', 't1B', 't2B'])
+            x = p.participant.vars["p_app_sequence"]
+            x["decision_list"] = p.participant.vars['decision_list']
+            p.participant.vars["player_dataframe"] = x[x["training"]==False].reset_index()
 
     def round_selector(self):
         for p in self.get_players():
@@ -101,6 +89,8 @@ class Subsession(BaseSubsession):
                     p.participant.vars["xG_final"] = p.participant.vars["x2G_selected"]
                     p.participant.vars['tG_final'] = p.participant.vars["t2G_selected"]
                     p.participant.vars["payoff_1"] = alloc_G * p.participant.vars["x2G_selected"]
+                p.participant.vars["xB_final"] = 0
+                p.participant.vars['tB_final'] = 0
                 p.participant.vars["payoff_2"] = 0
                 p.participant.vars["payoff_leftover"] = Constants.endo - alloc_G
             elif x["game_type"] == "risky_setup_2" or x["game_type"] == "risky_setup_4_ambi":

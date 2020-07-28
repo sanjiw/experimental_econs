@@ -1,0 +1,137 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Acakan Pembayaran
+{% endblock %}
+
+{% block content %}
+
+<p>
+     Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
+{{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
+{% else %}1 jenis barang (A saja){% endif %}.
+</p>
+<p>
+    Dari {{ decision_range }} pilihan tersebut, Anda telah memilih secara acak pilihan ke-{{ decision_selected }}, dimana
+    Anda memilih untuk mengalokasikan sebanyak
+    {% if two_allocations == True %} {{ allocated_G }} token untuk barang A, {{ allocated_B }} token untuk barang B dan menyimpan {{ leftover }} sisanya.
+    {% else %}{{ allocated_G }} token untuk barang A dan menyimpan {{ leftover }} sisanya.
+    {% endif %}
+</p>
+<p>
+    {% if two_allocations == False %}
+        Berikut adalah aturan pembayaran Anda:
+            <ul>
+                <li>
+                    Jika angka acakan A di bawah besarnya antara <b>1 hingga {{threshold_G}}</b>, maka Anda akan mendapatkan
+                    {{x1G_selected}} * {{allocated_G}} = <b>{{outcome_G1}} poin</b> dalam {{t1G_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_G_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2G_selected}} * {{allocated_G}} = <b>{{outcome_G2}} poin</b> dalam {{t2G_selected}} bulan ke depan.
+                </li>
+                <li>
+                    Anda akan menerima <b>{{ leftover }} poin</b> saat ini juga terlepas dari hasil acakan A.
+                </li>
+            </ul>
+    {% else %}
+        Berikut adalah aturan pembayaran Anda:
+            <ul>
+                <li>
+                    Jika angka acakan A di bawah besarnya antara <b>1 hingga {{threshold_G}}</b>, maka Anda akan mendapatkan
+                    {{x1G_selected}} * {{allocated_G}} = <b>{{outcome_G1}} poin</b> dalam {{t1G_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_G_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2G_selected}} * {{allocated_G}} = <b>{{outcome_G2}} poin</b> dalam {{t2G_selected}} bulan ke depan, DAN
+                </li>
+                <li>
+                    Jika angka acakan B di bawah besarnya antara <b>1 hingga {{threshold_B}}</b>, maka Anda akan mendapatkan
+                    {{x1B_selected}} * {{allocated_B}} = <b>{{outcome_B1}} poin</b> dalam {{t1B_selected}} bulan ke depan.
+                    Jika Anda mendapat angka antara <b>{{threshold_B_plus_1}} hingga 100</b>, maka Anda akan mendapatkan
+                    {{x2B_selected}} * {{allocated_B}} = <b>{{outcome_B2}} poin</b> dalam {{t2B_selected}} bulan ke depan.
+                </li>
+                <li>
+                    Anda akan menerima <b>{{ leftover }} poin</b> saat ini juga terlepas dari hasil acakan A ataupun B.
+                </li>
+            </ul>
+    {% endif %}
+</p>
+    <div class="card bg-light text-dark" id="randomizer1">
+        <div class="card-body">
+            <div align="center">
+                    <tr>
+                        <td>Acakan A:</td>
+                        <td><b><text id="dice1" style="font-size:300%">???</text></b></td>
+                    </tr>
+                <br>
+                <button id="roll1" onclick="AniDice1()" type="button">Mulai Mengacak!</button>
+                <button id="stop1" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
+            </div>
+            <input type="hidden" name="urn_G" id="var1" value="">
+            <p id="result1" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
+            <b><font color="red">{{ form.urn_G.errors }}</font></b>
+        </div>
+    </div>
+
+    {% if two_allocations == True %}
+
+    <br>
+    <br>
+    <div class="card bg-light text-dark" id="randomizer2">
+        <div class="card-body">
+            <div align="center">
+                    <tr>
+                        <td>Acakan B:</td>
+                        <td><b><text id="dice2" style="font-size:300%">???</text></b></td>
+                    </tr>
+                <br>
+                <button id="roll2" onclick="AniDice2()" type="button">Mulai Mengacak!</button>
+                <button id="stop2" onclick="stopDice2()" type="button" disabled="true">Hentikan!</button>
+            </div>
+            <input type="hidden" name="urn_B" id="var2" value="">
+            <p id="result2" style="visibility:hidden">Simak aturan di atas untuk melihat hasil Anda.<br></p>
+            <b><font color="red">{{ form.urn_B.errors }}</font></b>
+        </div>
+    </div>
+
+    {% else %}
+    <input type="hidden" name="urn_B" id="var2" value=0>
+    {% endif %}
+    <br>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Laman Hasil Akhir<br></button>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function AniDice1(){
+            document.getElementById("roll1").disabled = true;
+            document.getElementById("stop1").disabled = false;
+            MyVar1=setInterval(rolldice1,20);
+        }
+        function rolldice1(){
+            var ranNum = Math.floor( 1 + Math.random() * 100 );
+            document.getElementById("dice1").innerHTML = ranNum;
+            document.getElementById("var1").value = ranNum;
+        }
+        function stopDice1(){
+            document.getElementById("result1").style.visibility = "visible";
+            clearInterval(MyVar1);
+        }
+
+        function AniDice2(){
+            document.getElementById("roll2").disabled = true;
+            document.getElementById("stop2").disabled = false;
+            MyVar2=setInterval(rolldice2,20);
+        }
+        function rolldice2(){
+            var ranNum = Math.floor( 1 + Math.random() * 100 );
+            document.getElementById("dice2").innerHTML = ranNum;
+            document.getElementById("var2").value = ranNum;
+        }
+        function stopDice2(){
+            document.getElementById("result2").style.visibility = "visible";
+            clearInterval(MyVar2);
+        }
+    </script>
+
+{% endblock %}

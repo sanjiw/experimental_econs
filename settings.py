@@ -7,70 +7,23 @@ from os import environ
 
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 1000,
-    'participation_fee': 3.00,
+    'participation_fee': 25000,
     'doc': "",
 }
 
 SESSION_CONFIGS = [
     {
-        'name': 'bi_experiment',
-        'display_name': "BI - Experiment",
+        'name': 'bi_experiment_reborn',
+        'display_name': "BI - Experiment (Reborn)",
         'num_demo_participants': 1,
-        'app_sequence': ['bi_introduction',
-                         'bi_risky_setup_1',
-                         'bi_risky_setup_2',
-                         'bi_risky_setup_3_ambi',
-                         'bi_risky_setup_4_ambi',
-                         'bi_postquestionnaire'],
+        'app_sequence': ['bi_introduction_simple',
+                         'bi_all_setup',
+                         'bi_postquestionnaire_simple'],
         'page_halt_seconds': 1,
         'treatment_group': 3,
         'use_browser_bots': False
     },
-    {
-        'name': 'bi_experiment_1',
-        'display_name': "BI - Experiment (Risky Setup 1 Only)",
-        'num_demo_participants': 1,
-        'app_sequence': ['bi_risky_setup_1'],
-        'page_halt_seconds': 1,
-        'treatment_group': 2,
-        'use_browser_bots': False
-    },
-    {
-        'name': 'bi_experiment_2',
-        'display_name': "BI - Experiment (Risky Setup 2 Only)",
-        'num_demo_participants': 1,
-        'app_sequence': ['bi_risky_setup_2'],
-        'page_halt_seconds': 1,
-        'treatment_group': 3,
-        'use_browser_bots': False
-    },
-    {
-        'name': 'bi_experiment_3',
-        'display_name': "BI - Experiment (Ambiguity Setup 3 Only)",
-        'num_demo_participants': 1,
-        'app_sequence': ['bi_risky_setup_3_ambi'],
-        'page_halt_seconds': 1,
-        'treatment_group': 4,
-        'use_browser_bots': False
-    },
-    {
-        'name': 'bi_experiment_4',
-        'display_name': "BI - Experiment (Ambiguity Setup 4 Only)",
-        'num_demo_participants': 1,
-        'app_sequence': ['bi_risky_setup_4_ambi'],
-        'page_halt_seconds': 1,
-        'treatment_group': 1,
-        'use_browser_bots': False
-    },
-    {
-        'name': 'bi_experiment_questionnaire',
-        'display_name': "BI - Experiment (Questionnaire Only)",
-        'num_demo_participants': 1,
-        'app_sequence': ['bi_postquestionnaire'],
-        'page_halt_seconds': 1,
-        'treatment_group': 1,
-        'use_browser_bots': False
-    },
+
 ]
 # see the end of this file for the inactive session configs
 

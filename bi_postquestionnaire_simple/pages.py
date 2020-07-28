@@ -28,22 +28,6 @@ class Questionnaire(Page):
                    "q3_a", "q3_b", "q3_c", "q3_d", "q3_e",
                    "q4_a", "q4_b", "q4_c", "q4_d", "q4_e"]
 
-    def vars_for_template(self):
-        return {
-                "decision_list"     : self.participant.vars['decision_list'],
-                "game_type"         : self.participant.vars['game_type'],
-                "x1G"               : self.participant.vars['x1G'],
-                "x2G"               : self.participant.vars['x2G'],
-                "unknown_prob_G"    : self.participant.vars['unknown_prob_G'],
-                "x1B"               : self.participant.vars['x1B'],
-                "x2B"               : self.participant.vars['x2B'],
-                "unknown_prob_B"    : self.participant.vars['unknown_prob_B'],
-                "t1G"               : self.participant.vars['t1G'],
-                "t2G"               : self.participant.vars['t2G'],
-                "t1B"               : self.participant.vars['t1B'],
-                "t2B"               : self.participant.vars['t2B']
-        }
-
     def before_next_page(self):
         self.subsession.payoff_dataframe()
 
@@ -55,6 +39,7 @@ class Payoff_RoundSelect(Page):
     def vars_for_template(self):
         return {
             'round_range': len(self.participant.vars['player_dataframe']['decision_list']),
+            'player_dataframe': self.participant.vars["player_dataframe"],
         }
 
 
@@ -155,18 +140,6 @@ class Results(Page):
         return {'two_allocations': True if (round_selected["game_type"] == "risky_setup_4_ambi") or
                                            (round_selected["game_type"] == "risky_setup_2") else False,
                 "idr" : self.session.config["real_world_currency_per_point"],
-                "decision_list"     : self.participant.vars['decision_list'],
-                "game_type"         : self.participant.vars['game_type'],
-                "x1G"               : self.participant.vars['x1G'],
-                "x2G"               : self.participant.vars['x2G'],
-                "unknown_prob_G"    : self.participant.vars['unknown_prob_G'],
-                "x1B"               : self.participant.vars['x1B'],
-                "x2B"               : self.participant.vars['x2B'],
-                "unknown_prob_B"    : self.participant.vars['unknown_prob_B'],
-                "t1G"               : self.participant.vars['t1G'],
-                "t2G"               : self.participant.vars['t2G'],
-                "t1B"               : self.participant.vars['t1B'],
-                "t2B"               : self.participant.vars['t2B'],
 
                 "alloc_G"           : self.participant.vars["allocated_G"],
                 "thres_G"           : self.participant.vars["threshold_G"],

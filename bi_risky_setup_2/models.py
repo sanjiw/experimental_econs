@@ -27,7 +27,7 @@ class Constants(BaseConstants):
     num_training_rounds = 2
     endowment = c(25)
     endo = 25
-    with open('bi_introduction/Params.csv') as file:
+    with open('bi_introduction_simple/Params.csv') as file:
         params = pd.read_csv(file)
 
 

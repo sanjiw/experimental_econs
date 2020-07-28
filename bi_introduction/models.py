@@ -82,10 +82,10 @@ Risky Setup - Green Only
 
 
 class Constants(BaseConstants):
-    name_in_url = 'bi_introduction'
+    name_in_url = 'bi_introduction_simple'
     players_per_group = None
     num_rounds = 1
-    with open('bi_introduction/Params.csv') as file:
+    with open('bi_introduction_simple/Params.csv') as file:
         params = pd.read_csv(file)
 
 

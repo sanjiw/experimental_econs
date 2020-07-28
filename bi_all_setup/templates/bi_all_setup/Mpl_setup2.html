@@ -1,0 +1,473 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    {% if round == 0 %}
+    Blok 2 - Ronde Latihan
+    {% else %}
+    Blok 2 - Ronde riil ke-{{round}}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+div {text-align: justify;}
+.otree-body {max-width:1200px}
+</style>
+<p>
+  Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A, Opsi B, atau tetap menyimpannya.
+Jika Anda mengalokasikan token ke Opsi A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar
+{{ x1G }} kali lipat atau {{ x2G }} kali lipat dari jumlah token yang Anda alokasikan ke Opsi A. Kedua imbalan tersebut
+akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian. Jika Anda mengalokasikan token ke Opsi B, maka Anda
+akan memiliki peluang untuk mendapatkan imbalan sebesar {{ x1B }} kali lipat atau {{ x2B }} kali lipat dari jumlah token
+yang Anda alokasikan ke Opsi B. Kedua imbalan tersebut akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian.
+Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara langsung hari ini.
+</p>
+<br>
+<p>
+  {% if treatment_group == 1 %}
+  {% elif treatment_group == 2 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi
+  tidak menggunakan konsep 3R (Reduce-Reuse-Recycle).
+
+  {% elif treatment_group == 3 %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi tidak
+  menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+  pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+  berkontribusi untuk membuat kota Jogja tercinta ini menjadi lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+  {% else %}
+  <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+  meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b>  merupakan barang yang diproduksi tidak
+  menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+  pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+  berkontribusi untuk membuat lingkungan kita lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+  {% endif %}
+</p>
+<br>
+<br>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-lqy6{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
+.tg .tg-nrix{text-align:center;vertical-align:middle}
+.tg .tg-1f83{text-align:center;vertical-align:middle}
+</style>
+<table class="tg center" style="undefined;table-layout: fixed; width: 1200px">
+<colgroup>
+<col style="width: 30px">
+<col style="width: 200px">
+<col style="width: 200px">
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 100px">
+<col style="width: 400px">
+</colgroup>
+<thead>
+  <tr>
+    <th class="tg-amwm">No</th>
+    <th class="tg-amwm">Barang A</th>
+    <th class="tg-amwm">Barang B</th>
+    <th class="tg-amwm">Alokasi A</th>
+    <th class="tg-amwm">Alokasi B</th>
+    <th class="tg-amwm">Menyimpan Token</th>
+    {% if treatment_group == 3 or treatment_group == 4 %}
+    <th class="tg-0lax" rowspan="12">
+        <img src='{% static random_image_url %}' alt='Snow' style='width:100%'/>
+    </th>
+    {% else %}
+    {% endif %}
+    </tr>
+  <tr>
+    <td class="tg-lqy6">1</td>
+    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan</td>
+    <td class="tg-nrix"> {% formfield player.a1 %} </td>
+    <td class="tg-nrix"> {% formfield player.b1 %} </td>
+    <td class="tg-1f83"><p id='remainder_1'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">2</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a2 %} </td>
+    <td class="tg-nrix"> {% formfield player.b2 %} </td>
+    <td class="tg-1f83"><p id='remainder_2'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">3</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a3 %} </td>
+    <td class="tg-nrix"> {% formfield player.b3 %} </td>
+    <td class="tg-1f83"><p id='remainder_3'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">4</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a4 %} </td>
+    <td class="tg-nrix"> {% formfield player.b4 %} </td>
+    <td class="tg-1f83"><p id='remainder_4'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">5</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a5 %} </td>
+    <td class="tg-nrix"> {% formfield player.b5 %} </td>
+    <td class="tg-1f83"><p id='remainder_5'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">6</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a6 %} </td>
+    <td class="tg-nrix"> {% formfield player.b6 %} </td>
+    <td class="tg-1f83"><p id='remainder_6'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">7</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a7 %} </td>
+    <td class="tg-nrix"> {% formfield player.b7 %} </td>
+    <td class="tg-1f83"><p id='remainder_7'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">8</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a8 %} </td>
+    <td class="tg-nrix"> {% formfield player.b8 %} </td>
+    <td class="tg-1f83"><p id='remainder_8'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">9</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a9 %} </td>
+    <td class="tg-nrix"> {% formfield player.b9 %} </td>
+    <td class="tg-1f83"><p id='remainder_9'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">10</td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a10 %} </td>
+    <td class="tg-nrix"> {% formfield player.b10 %} </td>
+    <td class="tg-1f83"><p id='remainder_10'>25</p></td>
+  </tr>
+  <tr>
+    <td class="tg-lqy6">11</td>
+    <td class="tg-baqh">
+      Dengan pasti mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+    </td>
+    <td class="tg-baqh">
+      Dengan pasti mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+    </td>
+    <td class="tg-nrix"> {% formfield player.a11 %} </td>
+    <td class="tg-nrix"> {% formfield player.b11 %} </td>
+    <td class="tg-1f83"><p id='remainder_11'>25</p></td>
+  </tr>
+</thead>
+</table>
+
+
+
+
+<br>
+<br>
+Tekan tombol berikut jika sudah yakin dengan jawaban Anda. Setelah Anda menekan tombol "Lanjut ke halaman berikutnya", Anda
+tidak dapat mengubah pilihan Anda pada ronde ini.
+<br>
+<br>
+
+<p>
+  Anda dapat melanjutkan ke halaman berikutnya setelah <span id="countdown">{{pagehold_timer}}</span> detik. Sembari menunggu, pastikan
+  kembali keputusan Anda benar-benar sesuai dengan keinginan Anda.
+</p>
+<div class="btn-group">
+  <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
+  <button id="reset" type="reset" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+    setTimeout(function() {
+        document.getElementById('lanjut').disabled = false;
+    }, {{pagehold_timer_ths}});
+    var seconds = document.getElementById("countdown").textContent;
+    var countdown = setInterval(function() {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+
+    $("#id_a1").focusout(function() {
+      $("#remainder_1").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a1").val();
+        var num2 = $("#id_b1").val();
+        var y = x - num1 - num2;
+      $("#remainder_1").html(y);
+    });
+
+    $("#id_a2").focusout(function() {
+      $("#remainder_2").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a2").val();
+        var num2 = $("#id_b2").val();
+        var y = x - num1 - num2;
+      $("#remainder_2").html(y);
+    });
+
+    $("#id_a3").focusout(function() {
+      $("#remainder_3").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a3").val();
+        var num2 = $("#id_b3").val();
+        var y = x - num1 - num2;
+      $("#remainder_3").html(y);
+    });
+
+    $("#id_a4").focusout(function() {
+      $("#remainder_4").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a4").val();
+        var num2 = $("#id_b4").val();
+        var y = x - num1 - num2;
+      $("#remainder_4").html(y);
+    });
+
+    $("#id_a5").focusout(function() {
+      $("#remainder_5").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a5").val();
+        var num2 = $("#id_b5").val();
+        var y = x - num1 - num2;
+      $("#remainder_5").html(y);
+    });
+
+    $("#id_a6").focusout(function() {
+      $("#remainder_6").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a6").val();
+        var num2 = $("#id_b6").val();
+        var y = x - num1 - num2;
+      $("#remainder_6").html(y);
+    });
+
+    $("#id_a7").focusout(function() {
+      $("#remainder_7").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a7").val();
+        var num2 = $("#id_b7").val();
+        var y = x - num1 - num2;
+      $("#remainder_7").html(y);
+    });
+
+    $("#id_a8").focusout(function() {
+      $("#remainder_8").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a8").val();
+        var num2 = $("#id_b8").val();
+        var y = x - num1 - num2;
+      $("#remainder_8").html(y);
+    });
+
+    $("#id_a9").focusout(function() {
+      $("#remainder_9").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a9").val();
+        var num2 = $("#id_b9").val();
+        var y = x - num1 - num2;
+      $("#remainder_9").html(y);
+    });
+
+    $("#id_a10").focusout(function() {
+      $("#remainder_10").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a10").val();
+        var num2 = $("#id_b10").val();
+        var y = x - num1 - num2;
+      $("#remainder_10").html(y);
+    });
+
+    $("#id_a11").focusout(function() {
+      $("#remainder_11").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a11").val();
+        var num2 = $("#id_b11").val();
+        var y = x - num1 - num2;
+      $("#remainder_11").html(y);
+    });
+
+    $("#id_b1").focusout(function() {
+      $("#remainder_1").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a1").val();
+        var num2 = $("#id_b1").val();
+        var y = x - num1 - num2;
+      $("#remainder_1").html(y);
+    });
+
+    $("#id_b2").focusout(function() {
+      $("#remainder_2").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a2").val();
+        var num2 = $("#id_b2").val();
+        var y = x - num1 - num2;
+      $("#remainder_2").html(y);
+    });
+
+    $("#id_b3").focusout(function() {
+      $("#remainder_3").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a3").val();
+        var num2 = $("#id_b3").val();
+        var y = x - num1 - num2;
+      $("#remainder_3").html(y);
+    });
+
+    $("#id_b4").focusout(function() {
+      $("#remainder_4").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a4").val();
+        var num2 = $("#id_b4").val();
+        var y = x - num1 - num2;
+      $("#remainder_4").html(y);
+    });
+
+    $("#id_b5").focusout(function() {
+      $("#remainder_5").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a5").val();
+        var num2 = $("#id_b5").val();
+        var y = x - num1 - num2;
+      $("#remainder_5").html(y);
+    });
+
+    $("#id_b6").focusout(function() {
+      $("#remainder_6").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a6").val();
+        var num2 = $("#id_b6").val();
+        var y = x - num1 - num2;
+      $("#remainder_6").html(y);
+    });
+
+    $("#id_b7").focusout(function() {
+      $("#remainder_7").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a7").val();
+        var num2 = $("#id_b7").val();
+        var y = x - num1 - num2;
+      $("#remainder_7").html(y);
+    });
+
+    $("#id_b8").focusout(function() {
+      $("#remainder_8").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a8").val();
+        var num2 = $("#id_b8").val();
+        var y = x - num1 - num2;
+      $("#remainder_8").html(y);
+    });
+
+    $("#id_b9").focusout(function() {
+      $("#remainder_9").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a9").val();
+        var num2 = $("#id_b9").val();
+        var y = x - num1 - num2;
+      $("#remainder_9").html(y);
+    });
+
+    $("#id_b10").focusout(function() {
+      $("#remainder_10").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a10").val();
+        var num2 = $("#id_b10").val();
+        var y = x - num1 - num2;
+      $("#remainder_10").html(y);
+    });
+
+    $("#id_b11").focusout(function() {
+      $("#remainder_11").html("");
+        let x = {{ endowment }};
+        var num1 = $("#id_a11").val();
+        var num2 = $("#id_b11").val();
+        var y = x - num1 - num2;
+      $("#remainder_11").html(y);
+    });
+
+
+    </script>
+{% endblock %}
