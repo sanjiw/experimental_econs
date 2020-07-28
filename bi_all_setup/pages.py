@@ -58,11 +58,12 @@ class Mpl_setup1(Page):
             'pagehold_timer'        : self.session.config['page_halt_seconds'],
             'pagehold_timer_ths'    : self.session.config['page_halt_seconds'] * 1000,
             'params'                : self.participant.vars["p_app_sequence"],
-            'decision_list': self.participant.vars['decision_list']
+            'decision_list'         : self.participant.vars['decision_list']
         }
 
     def before_next_page(self):
         self.subsession.decision_record()
+        self.player.decision_records()
 
 
 class Mpl_setup2(Page):
@@ -125,6 +126,7 @@ class Mpl_setup2(Page):
 
     def before_next_page(self):
         self.subsession.decision_record()
+        self.player.decision_records()
 
 
 class Mpl_setup3(Page):
@@ -162,6 +164,7 @@ class Mpl_setup3(Page):
 
     def before_next_page(self):
         self.subsession.decision_record()
+        self.player.decision_records()
 
 class Mpl_setup4(Page):
 
@@ -219,6 +222,7 @@ class Mpl_setup4(Page):
 
     def before_next_page(self):
         self.subsession.decision_record()
+        self.player.decision_records()
 
 class TrainingResults1(Page):
 

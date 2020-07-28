@@ -6,7 +6,7 @@ import random
 class Initiation(Page):
 
     def before_next_page(self):
-        self.subsession.cross_app_vars()
+        self.player.cross_app_vars()
 
 class InstructionGeneral(Page):
     pass

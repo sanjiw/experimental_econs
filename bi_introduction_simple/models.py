@@ -38,6 +38,7 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     pass
 
-
 class Player(BasePlayer):
-    pass
+
+    def cross_app_vars(self):
+        self.participant.vars['decision_list'] = []

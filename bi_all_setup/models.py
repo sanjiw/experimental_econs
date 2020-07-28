@@ -67,19 +67,6 @@ class Subsession(BaseSubsession):
             p.t1B               = p.participant.vars["p_app_sequence"]['t1B'][self.round_number-1]
             p.t2B               = p.participant.vars["p_app_sequence"]['t2B'][self.round_number-1]
 
-            seq = []
-            if p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_1":
-                seq = [p.a1, p.a2, p.a3, p.a4, p.a5, p.a6, p.a7, p.a8, p.a9, p.a10, p.a11]
-            elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1]== "risky_setup_3_ambi":
-                seq = [p.a1, p.a2, p.a3, p.a4, p.a5, p.a6, p.a7, p.a8, p.a9]
-            elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_2":
-                seq = [[p.a1, p.b1], [p.a2, p.b2], [p.a3, p.b3], [p.a4, p.b4], [p.a5, p.b5], [p.a6, p.b6],
-                       [p.a7, p.b7], [p.a8, p.b8], [p.a9, p.b9], [p.a10, p.b10], [p.a11, p.b11]]
-            elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number - 1] == "risky_setup_4_ambi":
-                seq = [[p.a1, p.b1], [p.a2, p.b2], [p.a3, p.b3], [p.a4, p.b4], [p.a5, p.b5], [p.a6, p.b6],
-                       [p.a7, p.b7], [p.a8, p.b8], [p.a9, p.b9]]
-            p.participant.vars['decision_list'].append(seq)
-
 
 class Group(BaseGroup):
     pass
@@ -87,29 +74,46 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
 
-    a1 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a2 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a3 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a4 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a5 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a6 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a7 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a8 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a9 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a10 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    a11 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    def decision_records(self):
+        if self.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_1":
+            seq = [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9, self.a10, self.a11]
+            self.participant.vars['decision_list'].append(seq)
+        elif self.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_3_ambi":
+            seq = [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9]
+            self.participant.vars['decision_list'].append(seq)
+        elif self.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_2":
+            seq = [[self.a1, self.b1], [self.a2, self.b2], [self.a3, self.b3], [self.a4, self.b4], [self.a5, self.b5], [self.a6, self.b6],
+                   [self.a7, self.b7], [self.a8, self.b8], [self.a9, self.b9], [self.a10, self.b10], [self.a11, self.b11]]
+            self.participant.vars['decision_list'].append(seq)
+        elif self.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_4_ambi":
+            seq = [[self.a1, self.b1], [self.a2, self.b2], [self.a3, self.b3], [self.a4, self.b4], [self.a5, self.b5], [self.a6, self.b6],
+                   [self.a7, self.b7], [self.a8, self.b8], [self.a9, self.b9]]
+            self.participant.vars['decision_list'].append(seq)
 
-    b1 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b2 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b3 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b4 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b5 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b6 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b7 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b8 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b9 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b10 = models.IntegerField(min=0, max=Constants.endowment, label="")
-    b11 = models.IntegerField(min=0, max=Constants.endowment, label="")
+
+    a1 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a2 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a3 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a4 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a5 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a6 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a7 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a8 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a9 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a10 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a11 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+
+    b1 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b2 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b3 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b4 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b5 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b6 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b7 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b8 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b9 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b10 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b11 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
 
     training = models.BooleanField()
 

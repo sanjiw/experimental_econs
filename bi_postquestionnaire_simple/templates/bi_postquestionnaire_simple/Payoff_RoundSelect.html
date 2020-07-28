@@ -16,6 +16,7 @@ dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembaya
 </p>
 <p>
     Klik tombol ‘Mulai Mengacak’ dan ‘Hentikan’ untuk mendapatkan angka sebagai ronde terpilih untuk pembayaran.
+    Setelah Anda mengklik 'Hentikan', aplikasi ini akan melanjutkan secara <i>otomatis</i> ke halaman berikutnya dalam 5 detik.
 </p>
     <br>
     <br>
@@ -29,7 +30,7 @@ dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembaya
             </tr>
 
         <br>
-        <button id="roll" onclick="AniDice()" type="button">Mulai Mengacak!</button>
+        <button id="roll" onclick="AniDice()" type="button ">Mulai Mengacak!</button>
         <button id="stop" onclick="stopDice()" type="button" disabled="true">Hentikan!</button>
     </div>
 
@@ -37,10 +38,14 @@ dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembaya
     </div>
     </div>
 
-    <p id="result0" style="visibility:hidden">Nomor di atas akan menjadi ronde terpilih untuk pembayaran Anda.<br></p>
+    <p id="result0" style="visibility:hidden">
+        Nomor di atas akan menjadi ronde terpilih untuk pembayaran Anda.
+        <br>
+        Aplikasi ini akan otomatis melanjutkan ke halaman berikutnya dalam <b><span id="countdown">5</span> detik</b>.
+    </p>
     <br>
     <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">
-        Lanjutkan ke Acakan Berikutnya</button>
+        Lanjut Sekarang</button>
 
 {% endblock %}
 
@@ -60,6 +65,12 @@ dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembaya
         function stopDice(){
             document.getElementById("next").style.visibility = "visible";
             document.getElementById("next").value = "Loading...";
+            var seconds = document.getElementById("countdown").textContent;
+            var countdown = setInterval(function() {
+                seconds--;
+                document.getElementById("countdown").textContent = seconds;
+                if (seconds <= 0) clearInterval(countdown);
+            }, 1000);
             setTimeout(function() {
                 form.submit();
             }, 5000);

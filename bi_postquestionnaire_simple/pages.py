@@ -29,7 +29,7 @@ class Questionnaire(Page):
                    "q4_a", "q4_b", "q4_c", "q4_d", "q4_e"]
 
     def before_next_page(self):
-        self.subsession.payoff_dataframe()
+        self.player.payoff_dataframe()
 
 class Payoff_RoundSelect(Page):
 
@@ -44,7 +44,7 @@ class Payoff_RoundSelect(Page):
 
 
     def before_next_page(self):
-        self.subsession.round_selector()
+        self.player.round_selector_code()
 
 class Payoff_UncertaintySelect(Page):
 
@@ -90,7 +90,7 @@ class Payoff_DecisionSelect(Page):
         }
 
     def before_next_page(self):
-        self.subsession.decision_selector()
+        self.player.decision_selector_code()
 
 class Payoff_PaymentSelect(Page):
 
@@ -130,7 +130,7 @@ class Payoff_PaymentSelect(Page):
         }
 
     def before_next_page(self):
-        self.subsession.payment_realization()
+        self.player.payment_realization_code()
 
 class Results(Page):
 

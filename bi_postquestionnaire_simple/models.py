@@ -30,88 +30,7 @@ class Constants(BaseConstants):
         Ambiguous_list = [int(i) for i in next(reader)]
 
 class Subsession(BaseSubsession):
-
-    def payoff_dataframe(self):
-        for p in self.get_players():
-            x = p.participant.vars["p_app_sequence"]
-            x["decision_list"] = p.participant.vars['decision_list']
-            p.participant.vars["player_dataframe"] = x[x["training"]==False].reset_index()
-
-    def round_selector(self):
-        for p in self.get_players():
-            p.participant.vars["round_selected"] = p.participant.vars["player_dataframe"].loc[p.round_selector-1]
-            p.participant.vars["x1G_selected"] = p.participant.vars["round_selected"]["x1G"]
-            p.participant.vars["x2G_selected"] = p.participant.vars["round_selected"]["x2G"]
-            p.participant.vars["x1B_selected"] = p.participant.vars["round_selected"]["x1B"]
-            p.participant.vars["x2B_selected"] = p.participant.vars["round_selected"]["x2B"]
-            p.participant.vars["t1G_selected"] = p.participant.vars["round_selected"]["t1G"]
-            p.participant.vars["t2G_selected"] = p.participant.vars["round_selected"]["t2G"]
-            p.participant.vars["t1B_selected"] = p.participant.vars["round_selected"]["t1B"]
-            p.participant.vars["t2B_selected"] = p.participant.vars["round_selected"]["t2B"]
-
-    def decision_selector(self):
-        for p in self.get_players():
-            x = p.participant.vars["round_selected"]
-            if x["game_type"] == "risky_setup_1":
-                p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector-1]
-                p.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][p.decision_selector - 1]
-                p.participant.vars["allocated_B"] = 0
-                p.participant.vars["threshold_B"] = 0
-            elif x["game_type"] == "risky_setup_2":
-                p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1][0]
-                p.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1]
-                p.participant.vars["allocated_B"] = x["decision_list"][p.decision_selector - 1][1]
-                p.participant.vars["threshold_B"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1]
-            elif x["game_type"] == "risky_setup_3_ambi":
-                p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1]
-                p.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][p.decision_selector - 1] + p.unct_selector_G
-                p.participant.vars["allocated_B"] = 0
-                p.participant.vars["threshold_B"] = 0
-            elif x["game_type"] == "risky_setup_4_ambi":
-                p.participant.vars["allocated_G"] = x["decision_list"][p.decision_selector - 1][0]
-                p.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1] + p.unct_selector_G
-                p.participant.vars["allocated_B"] = x["decision_list"][p.decision_selector - 1][1]
-                p.participant.vars["threshold_B"] = list(range(0, 81, 10))[::-1][p.decision_selector - 1] + p.unct_selector_B
-
-    def payment_realization(self):
-        for p in self.get_players():
-            x = p.participant.vars["round_selected"]
-            alloc_G = p.participant.vars["allocated_G"]
-            thres_G = p.participant.vars["threshold_G"]
-            alloc_B = p.participant.vars["allocated_B"]
-            thres_B = p.participant.vars["threshold_B"]
-            if x["game_type"] == "risky_setup_1" or x["game_type"] == "risky_setup_3_ambi":
-                if p.urn_G <= thres_G:
-                    p.participant.vars["xG_final"] = p.participant.vars["x1G_selected"]
-                    p.participant.vars['tG_final'] = p.participant.vars["t1G_selected"]
-                    p.participant.vars["payoff_1"] = alloc_G * p.participant.vars["x1G_selected"]
-                elif p.urn_G > thres_G:
-                    p.participant.vars["xG_final"] = p.participant.vars["x2G_selected"]
-                    p.participant.vars['tG_final'] = p.participant.vars["t2G_selected"]
-                    p.participant.vars["payoff_1"] = alloc_G * p.participant.vars["x2G_selected"]
-                p.participant.vars["xB_final"] = 0
-                p.participant.vars['tB_final'] = 0
-                p.participant.vars["payoff_2"] = 0
-                p.participant.vars["payoff_leftover"] = Constants.endo - alloc_G
-            elif x["game_type"] == "risky_setup_2" or x["game_type"] == "risky_setup_4_ambi":
-                if p.urn_G <= thres_G:
-                    p.participant.vars["xG_final"] = p.participant.vars["x1G_selected"]
-                    p.participant.vars['tG_final'] = p.participant.vars["t1G_selected"]
-                    p.participant.vars["payoff_1"] = alloc_G * p.participant.vars["x1G_selected"]
-                elif p.urn_G > thres_G:
-                    p.participant.vars["xG_final"] = p.participant.vars["x2G_selected"]
-                    p.participant.vars['tG_final'] = p.participant.vars["t2G_selected"]
-                    p.participant.vars["payoff_1"] = alloc_G * p.participant.vars["x2G_selected"]
-                if p.urn_B <= thres_B:
-                    p.participant.vars["xB_final"] = p.participant.vars["x1B_selected"]
-                    p.participant.vars['tB_final'] = p.participant.vars["t1B_selected"]
-                    p.participant.vars["payoff_2"] = alloc_B * p.participant.vars["x1B_selected"]
-                elif p.urn_B > thres_B:
-                    p.participant.vars["xB_final"] = p.participant.vars["x2B_selected"]
-                    p.participant.vars['tB_final'] = p.participant.vars["t2B_selected"]
-                    p.participant.vars["payoff_2"] = alloc_B * p.participant.vars["x2B_selected"]
-                p.participant.vars["payoff_leftover"] = Constants.endo - alloc_G - alloc_B
-            p.payoff = p.participant.vars["payoff_1"] + p.participant.vars["payoff_2"] + p.participant.vars["payoff_leftover"]
+    pass
 
 class Group(BaseGroup):
     pass
@@ -193,6 +112,88 @@ class Player(BasePlayer):
     q4_c = make_field("Saya yakin bahwa kita semua (Anda dan masyarakat) akan menggunakan produk-produk yang lebih ramah lingkungan dalam waktu dekat untuk meningkatkan kesehatan individu.")
     q4_d = make_field("Saya percaya bahwa masyarakat akan melakukan hal-hal yang dibutuhkan untuk mengurangi level polusi di sekitar saya secara khusus dan di Indonesia secara umum.")
     q4_e = make_field("Saya percaya bahwa pemerintah (daerah dan pusat) mempromosikan produk-produk ramah lingkungan dalam waktu dekat untuk meningkatkan kesehatan masyarakat.")
+
+    def payoff_dataframe(self):
+        x = self.participant.vars["p_app_sequence"]
+        x["decision_list"] = self.participant.vars['decision_list']
+        self.participant.vars["player_dataframe"] = x[x["training"] == False].reset_index()
+
+    def round_selector_code(self):
+        self.participant.vars["round_selected"] = self.participant.vars["player_dataframe"].loc[self.round_selector - 1]
+        self.participant.vars["x1G_selected"] = self.participant.vars["round_selected"]["x1G"]
+        self.participant.vars["x2G_selected"] = self.participant.vars["round_selected"]["x2G"]
+        self.participant.vars["x1B_selected"] = self.participant.vars["round_selected"]["x1B"]
+        self.participant.vars["x2B_selected"] = self.participant.vars["round_selected"]["x2B"]
+        self.participant.vars["t1G_selected"] = self.participant.vars["round_selected"]["t1G"]
+        self.participant.vars["t2G_selected"] = self.participant.vars["round_selected"]["t2G"]
+        self.participant.vars["t1B_selected"] = self.participant.vars["round_selected"]["t1B"]
+        self.participant.vars["t2B_selected"] = self.participant.vars["round_selected"]["t2B"]
+
+    def decision_selector_code(self):
+        x = self.participant.vars["round_selected"]
+        if x["game_type"] == "risky_setup_1":
+            self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1]
+            self.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][self.decision_selector - 1]
+            self.participant.vars["allocated_B"] = 0
+            self.participant.vars["threshold_B"] = 0
+        elif x["game_type"] == "risky_setup_2":
+            self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1][0]
+            self.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][self.decision_selector - 1]
+            self.participant.vars["allocated_B"] = x["decision_list"][self.decision_selector - 1][1]
+            self.participant.vars["threshold_B"] = list(range(0, 81, 10))[::-1][self.decision_selector - 1]
+        elif x["game_type"] == "risky_setup_3_ambi":
+            self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1]
+            self.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][
+                                                       self.decision_selector - 1] + self.unct_selector_G
+            self.participant.vars["allocated_B"] = 0
+            self.participant.vars["threshold_B"] = 0
+        elif x["game_type"] == "risky_setup_4_ambi":
+            self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1][0]
+            self.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][
+                                                       self.decision_selector - 1] + self.unct_selector_G
+            self.participant.vars["allocated_B"] = x["decision_list"][self.decision_selector - 1][1]
+            self.participant.vars["threshold_B"] = list(range(0, 81, 10))[::-1][
+                                                       self.decision_selector - 1] + self.unct_selector_B
+
+    def payment_realization_code(self):
+        x = self.participant.vars["round_selected"]
+        alloc_G = self.participant.vars["allocated_G"]
+        thres_G = self.participant.vars["threshold_G"]
+        alloc_B = self.participant.vars["allocated_B"]
+        thres_B = self.participant.vars["threshold_B"]
+        if x["game_type"] == "risky_setup_1" or x["game_type"] == "risky_setup_3_ambi":
+            if self.urn_G <= thres_G:
+                self.participant.vars["xG_final"] = self.participant.vars["x1G_selected"]
+                self.participant.vars['tG_final'] = self.participant.vars["t1G_selected"]
+                self.participant.vars["payoff_1"] = alloc_G * self.participant.vars["x1G_selected"]
+            elif self.urn_G > thres_G:
+                self.participant.vars["xG_final"] = self.participant.vars["x2G_selected"]
+                self.participant.vars['tG_final'] = self.participant.vars["t2G_selected"]
+                self.participant.vars["payoff_1"] = alloc_G * self.participant.vars["x2G_selected"]
+            self.participant.vars["xB_final"] = 0
+            self.participant.vars['tB_final'] = 0
+            self.participant.vars["payoff_2"] = 0
+            self.participant.vars["payoff_leftover"] = Constants.endo - alloc_G
+        elif x["game_type"] == "risky_setup_2" or x["game_type"] == "risky_setup_4_ambi":
+            if self.urn_G <= thres_G:
+                self.participant.vars["xG_final"] = self.participant.vars["x1G_selected"]
+                self.participant.vars['tG_final'] = self.participant.vars["t1G_selected"]
+                self.participant.vars["payoff_1"] = alloc_G * self.participant.vars["x1G_selected"]
+            elif self.urn_G > thres_G:
+                self.participant.vars["xG_final"] = self.participant.vars["x2G_selected"]
+                self.participant.vars['tG_final'] = self.participant.vars["t2G_selected"]
+                self.participant.vars["payoff_1"] = alloc_G * self.participant.vars["x2G_selected"]
+            if self.urn_B <= thres_B:
+                self.participant.vars["xB_final"] = self.participant.vars["x1B_selected"]
+                self.participant.vars['tB_final'] = self.participant.vars["t1B_selected"]
+                self.participant.vars["payoff_2"] = alloc_B * self.participant.vars["x1B_selected"]
+            elif self.urn_B > thres_B:
+                self.participant.vars["xB_final"] = self.participant.vars["x2B_selected"]
+                self.participant.vars['tB_final'] = self.participant.vars["t2B_selected"]
+                self.participant.vars["payoff_2"] = alloc_B * self.participant.vars["x2B_selected"]
+            self.participant.vars["payoff_leftover"] = Constants.endo - alloc_G - alloc_B
+        self.payoff = self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars[
+            "payoff_leftover"]
 
 
 

@@ -83,8 +83,15 @@ p {text-align: justify;}
     </div>
     </div>
     <br>
-    <p id="result0" style="visibility:hidden">Anda akan menerima pembayaran berdasarkan alokasi Anda sesuai dengan pilihan nomor di atas.<br></p>
-    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">Lanjutkan ke Acakan Berikutnya<br></button>
+    <p id="result0" style="visibility:hidden">
+        Nomor di atas akan menjadi keputusan terpilih untuk pembayaran Anda.
+        <br>
+        Aplikasi ini akan otomatis melanjutkan ke halaman berikutnya dalam <b><span id="countdown">5</span> detik</b>.
+    </p>
+    <br>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">
+        Lanjut Sekarang</button>
+
 
 {% endblock %}
 
@@ -103,6 +110,15 @@ p {text-align: justify;}
         }
         function stopDice(){
             document.getElementById("next").style.visibility = "visible";
+            var seconds = document.getElementById("countdown").textContent;
+            var countdown = setInterval(function() {
+                seconds--;
+                document.getElementById("countdown").textContent = seconds;
+                if (seconds <= 0) clearInterval(countdown);
+            }, 1000);
+            setTimeout(function() {
+                form.submit();
+            }, 5000);
             document.getElementById("result0").style.visibility = "visible";
             clearInterval(MyVar);
         }
