@@ -99,6 +99,30 @@ class Mpl_setup2(Page):
             'decision_list': self.participant.vars['decision_list']
         }
 
+    def error_message(self, values):
+        if values['a1'] + values['b1'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a2'] + values['b2'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a3'] + values['b3'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a4'] + values['b4'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a5'] + values['b5'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a6'] + values['b6'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a7'] + values['b7'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a8'] + values['b8'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a9'] + values['b9'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a10'] + values['b10'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a11'] + values['b11'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+
     def before_next_page(self):
         self.subsession.decision_record()
 
@@ -172,6 +196,26 @@ class Mpl_setup4(Page):
             'params': self.participant.vars["p_app_sequence"],
             'decision_list': self.participant.vars['decision_list']
         }
+
+    def error_message(self, values):
+        if values['a1'] + values['b1'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a2'] + values['b2'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a3'] + values['b3'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a4'] + values['b4'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a5'] + values['b5'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a6'] + values['b6'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a7'] + values['b7'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a8'] + values['b8'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
+        if values['a9'] + values['b9'] > Constants.endo:
+            return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
 
     def before_next_page(self):
         self.subsession.decision_record()

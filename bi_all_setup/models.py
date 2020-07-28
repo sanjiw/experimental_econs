@@ -55,20 +55,31 @@ class Subsession(BaseSubsession):
 
     def decision_record(self):
         for p in self.get_players():
+            p.game_type         = p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1]
+            p.x1G               = p.participant.vars["p_app_sequence"]['x1G'][self.round_number-1]
+            p.x2G               = p.participant.vars["p_app_sequence"]['x2G'][self.round_number-1]
+            p.unknown_prob_G    = p.participant.vars["p_app_sequence"]['unknown_prob_G'][self.round_number-1]
+            p.t1G               = p.participant.vars["p_app_sequence"]['t1G'][self.round_number-1]
+            p.t2G               = p.participant.vars["p_app_sequence"]['t2G'][self.round_number-1]
+            p.x1B               = p.participant.vars["p_app_sequence"]['x1B'][self.round_number-1]
+            p.x2B               = p.participant.vars["p_app_sequence"]['x2B'][self.round_number-1]
+            p.unknown_prob_B    = p.participant.vars["p_app_sequence"]['unknown_prob_B'][self.round_number-1]
+            p.t1B               = p.participant.vars["p_app_sequence"]['t1B'][self.round_number-1]
+            p.t2B               = p.participant.vars["p_app_sequence"]['t2B'][self.round_number-1]
+
+            seq = []
             if p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_1":
                 seq = [p.a1, p.a2, p.a3, p.a4, p.a5, p.a6, p.a7, p.a8, p.a9, p.a10, p.a11]
-                p.participant.vars['decision_list'].append(seq)
             elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1]== "risky_setup_3_ambi":
                 seq = [p.a1, p.a2, p.a3, p.a4, p.a5, p.a6, p.a7, p.a8, p.a9]
-                p.participant.vars['decision_list'].append(seq)
             elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number-1] == "risky_setup_2":
                 seq = [[p.a1, p.b1], [p.a2, p.b2], [p.a3, p.b3], [p.a4, p.b4], [p.a5, p.b5], [p.a6, p.b6],
                        [p.a7, p.b7], [p.a8, p.b8], [p.a9, p.b9], [p.a10, p.b10], [p.a11, p.b11]]
-                p.participant.vars['decision_list'].append(seq)
             elif p.participant.vars["p_app_sequence"]['game_type'][self.round_number - 1] == "risky_setup_4_ambi":
                 seq = [[p.a1, p.b1], [p.a2, p.b2], [p.a3, p.b3], [p.a4, p.b4], [p.a5, p.b5], [p.a6, p.b6],
                        [p.a7, p.b7], [p.a8, p.b8], [p.a9, p.b9]]
-                p.participant.vars['decision_list'].append(seq)
+            p.participant.vars['decision_list'].append(seq)
+
 
 class Group(BaseGroup):
     pass
@@ -101,6 +112,8 @@ class Player(BasePlayer):
     b11 = models.IntegerField(min=0, max=Constants.endowment, label="")
 
     training = models.BooleanField()
+
+    game_type = models.StringField()
 
     # keeping all the parameters for B
     x1G = models.FloatField()

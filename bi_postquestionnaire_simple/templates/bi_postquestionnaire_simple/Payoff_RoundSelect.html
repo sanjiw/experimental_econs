@@ -59,6 +59,10 @@ dari {{ round_range }} ronde yang telah Anda mainkan untuk menjadi dasar pembaya
         }
         function stopDice(){
             document.getElementById("next").style.visibility = "visible";
+            document.getElementById("next").value = "Loading...";
+            setTimeout(function() {
+                form.submit();
+            }, 5000);
             document.getElementById("result0").style.visibility = "visible";
             clearInterval(MyVar);
         }
