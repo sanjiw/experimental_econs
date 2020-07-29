@@ -17,13 +17,14 @@ div {text-align: justify;}
 .otree-body {max-width:1200px}
 </style>
 <p>
-  Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan Opsi A, Opsi B, atau tetap menyimpannya.
-Jika Anda mengalokasikan token ke Opsi A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar
-{{ x1G }} kali lipat atau {{ x2G }} kali lipat dari jumlah token yang Anda alokasikan ke Opsi A. Kedua imbalan tersebut
-akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian. Jika Anda mengalokasikan token ke Opsi B, maka Anda
-akan memiliki peluang untuk mendapatkan imbalan sebesar {{ x1B }} kali lipat atau {{ x2B }} kali lipat dari jumlah token
-yang Anda alokasikan ke Opsi B. Kedua imbalan tersebut akan Anda dapatkan pada {{ t1G }} bulan dan {{ t2G }} bulan kemudian.
+  Anda memiliki <b>{{ endowment }}</b> token yang dapat Anda alokasikan untuk mendapatkan {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, atau tetap menyimpannya.
+Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar
+<b>{{ x1G }}</b> kali lipat atau <b>{{ x2G }}</b> kali lipat dari jumlah token yang Anda alokasikan ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A. Kedua imbalan tersebut
+akan Anda dapatkan pada <b>{{ t1G }}</b> bulan dan <b>{{ t2G }}</b> bulan kemudian. Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, maka Anda
+akan memiliki peluang untuk mendapatkan imbalan sebesar <b>{{ x1B }}</b> kali lipat atau <b>{{ x2B }}</b> kali lipat dari jumlah token
+yang Anda alokasikan ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B. Kedua imbalan tersebut akan Anda dapatkan pada <b>{{ t1G }}</b> bulan dan <b>{{ t2G }}</b> bulan kemudian.
 Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara langsung hari ini.
+
 </p>
 <br>
 <p>
@@ -77,8 +78,8 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
 <thead>
   <tr>
     <th class="tg-amwm">No</th>
-    <th class="tg-amwm">Barang A</th>
-    <th class="tg-amwm">Barang B</th>
+    <th class="tg-amwm">{% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A</th>
+    <th class="tg-amwm">{% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B</th>
     <th class="tg-amwm">Alokasi A</th>
     <th class="tg-amwm">Alokasi B</th>
     <th class="tg-amwm">Menyimpan Token</th>
@@ -91,8 +92,8 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
     </tr>
   <tr>
     <td class="tg-lqy6">1</td>
-    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan</td>
-    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan</td>
+    <td class="tg-baqh">Dengan pasti mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan</td>
     <td class="tg-nrix"> {% formfield player.a1 %} </td>
     <td class="tg-nrix"> {% formfield player.b1 %} </td>
     <td class="tg-1f83"><p id='remainder_1'>25</p></td>
@@ -100,12 +101,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">2</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.9</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.1</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.9</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.1</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a2 %} </td>
     <td class="tg-nrix"> {% formfield player.b2 %} </td>
@@ -114,12 +115,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">3</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.8</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.2</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.8</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.2</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a3 %} </td>
     <td class="tg-nrix"> {% formfield player.b3 %} </td>
@@ -128,12 +129,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">4</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.7</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.3</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.7</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.3</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a4 %} </td>
     <td class="tg-nrix"> {% formfield player.b4 %} </td>
@@ -142,12 +143,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">5</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.6</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.4</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.6</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.4</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a5 %} </td>
     <td class="tg-nrix"> {% formfield player.b5 %} </td>
@@ -156,12 +157,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">6</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.5</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.5</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.5 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t2B }}</font> bulan ke depan
+      Memiliki peluang <b>0.5</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.5</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t2B }}</font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a6 %} </td>
     <td class="tg-nrix"> {% formfield player.b6 %} </td>
@@ -170,12 +171,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">7</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.4</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.6</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.4 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.6 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada {{ t2B }} bulan ke depan
+      Memiliki peluang <b>0.4</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.6</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada {{ t2B }} bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a7 %} </td>
     <td class="tg-nrix"> {% formfield player.b7 %} </td>
@@ -184,12 +185,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">8</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.3</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.7</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.3 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.7 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.3</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.7</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a8 %} </td>
     <td class="tg-nrix"> {% formfield player.b8 %} </td>
@@ -198,12 +199,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">9</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.2</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.8</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.2 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.8 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.2</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.8</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a9 %} </td>
     <td class="tg-nrix"> {% formfield player.b9 %} </td>
@@ -212,12 +213,12 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">10</td>
     <td class="tg-baqh">
-      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Memiliki peluang <b>0.1</b> untuk mendapat <font color="red">{{ x1G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t1G }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.9</b> untuk mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Memiliki peluang 0.1 untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
-      Memiliki peluang 0.9 untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Memiliki peluang <b>0.1</b> untuk mendapat <font color="red">{{ x1B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red">{{ t1B }}</font> bulan ke depan; <br>
+      Memiliki peluang <b>0.9</b> untuk mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a10 %} </td>
     <td class="tg-nrix"> {% formfield player.b10 %} </td>
@@ -226,10 +227,10 @@ Jika Anda memilih untuk menyimpan token Anda, maka token tersebut akan ditukarka
   <tr>
     <td class="tg-lqy6">11</td>
     <td class="tg-baqh">
-      Dengan pasti mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di Opsi A pada <font color="red">{{ t2G }}</font> bulan ke depan
+      Dengan pasti mendapat <font color="red">{{ x2G }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red">{{ t2G }}</font> bulan ke depan
     </td>
     <td class="tg-baqh">
-      Dengan pasti mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di Opsi B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
+      Dengan pasti mendapat <font color="red">{{ x2B }}</font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B pada <font color="red"><font color="red">{{ t2B }}</font></font> bulan ke depan
     </td>
     <td class="tg-nrix"> {% formfield player.a11 %} </td>
     <td class="tg-nrix"> {% formfield player.b11 %} </td>
@@ -471,3 +472,4 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
 
     </script>
 {% endblock %}
+

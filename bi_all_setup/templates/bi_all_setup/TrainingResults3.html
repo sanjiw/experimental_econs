@@ -33,20 +33,20 @@ Artinya, payoff Anda pada ronde ini adalah sebesar:
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Poin alokasi pada A dikali multiplier</th>
+    <th class="tg-0lax">Token alokasi pada A dikali multiplier</th>
     <th class="tg-0lax">{{ a_select }} * {{ xG_select }}</th>
     <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima dalam {{ tG_select }} bulan ke depan.</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-73oq">Sisa poin yang diterima saat ini</td>
+    <td class="tg-73oq">Sisa token yang diterima saat ini</td>
     <td class="tg-73oq">{{ Constants.endo }} - {{ a_select }}</td>
     <td class="tg-73oq">{{ payoff_2_leftover }} yang akan diterima saat ini.</td>
   </tr>
   <tr>
     <td class="tg-0lax"></td>
-    <td class="tg-1wig">Total poin ronde ini:</td>
+    <td class="tg-1wig">Total token ronde ini:</td>
     <td class="tg-0lax">{{ payoff }}</td>
   </tr>
 </tbody>
@@ -62,5 +62,6 @@ Ingat bahwa hasil pada ronde ini <b>hanya latihan</b> dan tidak akan mempengaruh
 <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke ronde selanjutnya</button>
 
 {% endblock %}
+
 
 

@@ -16,9 +16,29 @@ div {text-align: justify;}
 <div class="card bg-light">
     <div class="card-body">
         <p>
-        Anda akan menghadapi situasi dimana Anda harus mengalokasikan token yang Anda miliki pada 2 opsi: Opsi A
-        dan menyimpan token yang dimiliki. Jika Anda masih memiliki pertanyaan, mohon hubungi eksperimenter. Jika tidak,
-        mohon untuk klik tombol <b>Lanjut ke Latihan</b>.
+              {% if treatment_group == 1 %}
+
+
+              {% elif treatment_group == 2 %}
+              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi
+              tidak menggunakan konsep 3R (Reduce-Reuse-Recycle).
+
+              {% elif treatment_group == 3 %}
+              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi tidak
+              menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+              pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+              berkontribusi untuk membuat kota Jogja tercinta ini menjadi lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+              {% else %}
+              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
+              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b>  merupakan barang yang diproduksi tidak
+              menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
+              pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
+              berkontribusi untuk membuat lingkungan kita lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
+
+              {% endif %}
         </p>
     </div>
 

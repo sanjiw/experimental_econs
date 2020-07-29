@@ -31,25 +31,25 @@ mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan kedua komputer 
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Poin alokasi pada A dikali multiplier</th>
+    <th class="tg-0lax">Token alokasi pada A dikali multiplier</th>
     <th class="tg-0lax">{{ choice_select_G }} * {{ xG_select }}</th>
     <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima pada {{ tG_select }} bulan ke depan.</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0lax">Poin alokasi pada B dikali multiplier</td>
+    <td class="tg-0lax">Token alokasi pada B dikali multiplier</td>
     <td class="tg-0lax">{{ choice_select_B }} * {{ xB_select }}</td>
     <td class="tg-0lax">{{ payoff_2_multiplied }} yang akan diterima pada {{ tB_select }} bulan ke depan.</td>
   </tr>
   <tr>
-    <td class="tg-0lax">Sisa poin yang diterima saat ini</td>
+    <td class="tg-0lax">Sisa Token yang diterima saat ini</td>
     <td class="tg-0lax">{{ Constants.endo }} - {{ choice_select_G }} - {{ choice_select_B }}</td>
     <td class="tg-0lax">{{ payoff_leftover }} yang akan diterima pada saat ini.</td>
   </tr>
   <tr>
     <td class="tg-0lax"></td>
-    <td class="tg-1wig">Total poin ronde ini:</td>
+    <td class="tg-1wig">Total Token ronde ini:</td>
     <td class="tg-0lax">{{ payoff }}</td>
   </tr>
 </tbody>
@@ -65,5 +65,6 @@ Ingat bahwa hasil pada ronde ini <b>hanya latihan</b> dan tidak akan mempengaruh
 <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke ronde selanjutnya</button>
 
 {% endblock %}
+
 
 
