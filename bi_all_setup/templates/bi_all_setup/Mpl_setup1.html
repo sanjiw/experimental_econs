@@ -184,7 +184,7 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
     <script type="text/javascript">
     setTimeout(function() {
         document.getElementById('lanjut').disabled = false;
-    }, <b>{{pagehold_timer_ths}}</b>);
+    }, {{pagehold_timer_ths}});
     var seconds = document.getElementById("countdown").textContent;
     var countdown = setInterval(function() {
         seconds--;
@@ -192,93 +192,94 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
         if (seconds <= 0) clearInterval(countdown);
     }, 1000);
 
-    $("#id_a1").focusout(function() {
-      $("#remainder_1").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num1 = $("#id_a1").val();
-        var y = x - num1;
-      $("#remainder_1").html(y);
-    });
+  $("#id_a1").focusout(function() {
+    $("#remainder_1").html("");
+      let x = {{ endowment }};
+      var num1 = $("#id_a1").val();
+      var y = x - num1;
+    $("#remainder_1").html(y);
+  });
 
-    $("#id_a2").focusout(function() {
-      $("#remainder_2").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num2 = $("#id_a2").val();
-        var y = x - num2;
-      $("#remainder_2").html(y);
-    });
+  $("#id_a2").focusout(function() {
+    $("#remainder_2").html("");
+      let x = {{ endowment }};
+      var num2 = $("#id_a2").val();
+      var y = x - num2;
+    $("#remainder_2").html(y);
+  });
 
-    $("#id_a3").focusout(function() {
-      $("#remainder_3").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num3 = $("#id_a3").val();
-        var y = x - num3;
-      $("#remainder_3").html(y);
-    });
+  $("#id_a3").focusout(function() {
+    $("#remainder_3").html("");
+      let x = {{ endowment }};
+      var num3 = $("#id_a3").val();
+      var y = x - num3;
+    $("#remainder_3").html(y);
+  });
 
-    $("#id_a4").focusout(function() {
-      $("#remainder_4").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num4 = $("#id_a4").val();
-        var y = x - num4;
-      $("#remainder_4").html(y);
-    });
+  $("#id_a4").focusout(function() {
+    $("#remainder_4").html("");
+      let x = {{ endowment }};
+      var num4 = $("#id_a4").val();
+      var y = x - num4;
+    $("#remainder_4").html(y);
+  });
 
-    $("#id_a5").focusout(function() {
-      $("#remainder_5").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num5 = $("#id_a5").val();
-        var y = x - num5;
-      $("#remainder_5").html(y);
-    });
+  $("#id_a5").focusout(function() {
+    $("#remainder_5").html("");
+      let x = {{ endowment }};
+      var num5 = $("#id_a5").val();
+      var y = x - num5;
+    $("#remainder_5").html(y);
+  });
 
-    $("#id_a6").focusout(function() {
-      $("#remainder_6").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num6 = $("#id_a6").val();
-        var y = x - num6;
-      $("#remainder_6").html(y);
-    });
+  $("#id_a6").focusout(function() {
+    $("#remainder_6").html("");
+      let x = {{ endowment }};
+      var num6 = $("#id_a6").val();
+      var y = x - num6;
+    $("#remainder_6").html(y);
+  });
 
-    $("#id_a7").focusout(function() {
-      $("#remainder_7").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num7 = $("#id_a7").val();
-        var y = x - num7;
-      $("#remainder_7").html(y);
-    });
+  $("#id_a7").focusout(function() {
+    $("#remainder_7").html("");
+      let x = {{ endowment }};
+      var num7 = $("#id_a7").val();
+      var y = x - num7;
+    $("#remainder_7").html(y);
+  });
 
-    $("#id_a8").focusout(function() {
-      $("#remainder_8").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num8 = $("#id_a8").val();
-        var y = x - num8;
-      $("#remainder_8").html(y);
-    });
+  $("#id_a8").focusout(function() {
+    $("#remainder_8").html("");
+      let x = {{ endowment }};
+      var num8 = $("#id_a8").val();
+      var y = x - num8;
+    $("#remainder_8").html(y);
+  });
 
-    $("#id_a9").focusout(function() {
-      $("#remainder_9").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num9 = $("#id_a9").val();
-        var y = x - num9;
-      $("#remainder_9").html(y);
-    });
+  $("#id_a9").focusout(function() {
+    $("#remainder_9").html("");
+      let x = {{ endowment }};
+      var num9 = $("#id_a9").val();
+      var y = x - num9;
+    $("#remainder_9").html(y);
+  });
 
-    $("#id_a10").focusout(function() {
-      $("#remainder_10").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num10 = $("#id_a10").val();
-        var y = x - num10;
-      $("#remainder_10").html(y);
-    });
+  $("#id_a10").focusout(function() {
+    $("#remainder_10").html("");
+      let x = {{ endowment }};
+      var num10 = $("#id_a10").val();
+      var y = x - num10;
+    $("#remainder_10").html(y);
+  });
 
-    $("#id_a11").focusout(function() {
-      $("#remainder_11").html("");
-        let x = <b>{{ endowment }}</b>;
-        var num11 = $("#id_a11").val();
-        var y = x - num11;
-      $("#remainder_11").html(y);
-    });
+  $("#id_a11").focusout(function() {
+    $("#remainder_11").html("");
+      let x = {{ endowment }};
+      var num11 = $("#id_a11").val();
+      var y = x - num11;
+    $("#remainder_11").html(y);
+  });
+
 
     </script>
 {% endblock %}
