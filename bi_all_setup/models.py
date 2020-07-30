@@ -46,9 +46,9 @@ class Subsession(BaseSubsession):
             player_params = player_sequence[0].append(player_sequence[1], ignore_index = True).append(player_sequence[2], ignore_index = True).append(player_sequence[3],ignore_index = True)
             image_urls = []
             if self.session.config["treatment_group"] == 3:
-                image_urls = ['bi_experiment/t3/jogja' + str(i) + ".jpg" for i in [1, 2, 3, 4]]
+                image_urls = ['bi_experiment/t3/Jogja' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
             elif self.session.config["treatment_group"] == 4:
-                image_urls = ['bi_experiment/t4/netral' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
+                image_urls = ['bi_experiment/t4/Netral' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
             player_params['random_image_urls'] = random.choices(image_urls, k=48)
             player_params['treatment_group'] = [self.session.config["treatment_group"]] * 48
             p.participant.vars["p_app_sequence"] = player_params                                                        # Contains the dataframe for all parameters for all players
