@@ -15,38 +15,43 @@ div {text-align: justify;}
 <p>
     Hasil acakan komputer menunjukkan angka {{ selector }}, artinya payoff Anda pada ronde ini akan
 mengikuti pilihan Anda pada pada baris ke-{{ selector }}. Acakan komputer menunjukkan bahwa besarnya probabilitas yang
-tidak diketahui dalam contoh ini adalah sebesar {{ unknown_p }}. Acakan kedua menunjukkan multiplier sebesar {{ xG_select }}.
+tidak diketahui dalam contoh ini adalah sebesar {{ unknown_prob_G }} untuk opsi A dan {{ unknown_prob_B }} untuk opsi B.
+Acakan kedua menunjukkan multiplier sebesar {{ xG_select }} untuk opsi A dan {{ xB_select }} untuk opsi B.
 Artinya, payoff Anda pada ronde ini adalah sebesar:
 </p>
 <br>
 <br>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-size:14px;
-  overflow:hidden;padding:10px 20px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 20px;word-break:normal;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg .tg-1wig{font-weight:bold;text-align:left;vertical-align:top}
 .tg .tg-0lax{text-align:left;vertical-align:top}
-.tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Token alokasi pada A dikali multiplier</th>
-    <th class="tg-0lax">{{ a_select }} * {{ xG_select }}</th>
-    <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima dalam {{ tG_select }} bulan ke depan.</th>
+    <th class="tg-0lax">Poin alokasi pada A dikali multiplier</th>
+    <th class="tg-0lax">{{ choice_select_G }} * {{ xG_select }}</th>
+    <th class="tg-0lax">{{ payoff_1_multiplied }} yang akan diterima dalam {{tG_select}} bulan ke depan.</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-73oq">Sisa token yang diterima saat ini</td>
-    <td class="tg-73oq">{{ Constants.endo }} - {{ a_select }}</td>
-    <td class="tg-73oq">{{ payoff_2_leftover }} yang akan diterima saat ini.</td>
+    <td class="tg-0lax">Poin alokasi pada B dikali multiplier</td>
+    <td class="tg-0lax">{{ choice_select_B }} * {{ xB_select }}</td>
+    <td class="tg-0lax">{{ payoff_2_multiplied }} yang akan diterima dalam {{tB_select}} bulan ke depan.</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Sisa poin yang diterima saat ini</td>
+    <td class="tg-0lax">{{ Constants.endo }} - {{ choice_select_G }} - {{ choice_select_B }}</td>
+    <td class="tg-0lax">{{ payoff_leftover }} yang akan diterima saat ini.</td>
   </tr>
   <tr>
     <td class="tg-0lax"></td>
-    <td class="tg-1wig">Total token ronde ini:</td>
+    <td class="tg-1wig">Total poin ronde ini:</td>
     <td class="tg-0lax">{{ payoff }}</td>
   </tr>
 </tbody>
@@ -62,6 +67,5 @@ Ingat bahwa hasil pada ronde ini <b>hanya latihan</b> dan tidak akan mempengaruh
 <button class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke ronde selanjutnya</button>
 
 {% endblock %}
-
 
 

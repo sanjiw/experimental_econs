@@ -46,9 +46,9 @@ class Subsession(BaseSubsession):
             player_params = player_sequence[0].append(player_sequence[1], ignore_index = True).append(player_sequence[2], ignore_index = True).append(player_sequence[3],ignore_index = True)
             image_urls = []
             if self.session.config["treatment_group"] == 3:
-                image_urls = ['bi_experiment/t3/Jogja' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
+                image_urls = ['bi_experiment/t3/Jogja ' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
             elif self.session.config["treatment_group"] == 4:
-                image_urls = ['bi_experiment/t4/Netral' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
+                image_urls = ['bi_experiment/t4/Netral ' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
             player_params['random_image_urls'] = random.choices(image_urls, k=48)
             player_params['treatment_group'] = [self.session.config["treatment_group"]] * 48
             p.participant.vars["p_app_sequence"] = player_params                                                        # Contains the dataframe for all parameters for all players
@@ -91,29 +91,29 @@ class Player(BasePlayer):
             self.participant.vars['decision_list'].append(seq)
 
 
-    a1 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a2 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a3 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a4 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a5 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a6 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a7 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a8 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a9 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a10 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    a11 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    a1 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a2 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a3 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a4 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a5 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a6 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a7 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a8 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a9 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a10 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    a11 = models.IntegerField(min=0, max=Constants.endowment, label="")
 
-    b1 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b2 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b3 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b4 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b5 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b6 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b7 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b8 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b9 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b10 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
-    b11 = models.IntegerField(min=0, max=Constants.endowment, label="", initial=3)
+    b1 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b2 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b3 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b4 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b5 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b6 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b7 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b8 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b9 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b10 = models.IntegerField(min=0, max=Constants.endowment, label="")
+    b11 = models.IntegerField(min=0, max=Constants.endowment, label="")
 
     training = models.BooleanField()
 
