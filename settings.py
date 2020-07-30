@@ -38,23 +38,19 @@ USE_POINTS = True
 
 ROOMS = [
     {
-        'name': 'econ101',
-        'display_name': 'Econ 101 class',
-        'participant_label_file': '_rooms/econ101.txt',
-    },
-    {
-        'name': 'live_demo',
-        'display_name': 'Room for live demo (no participant labels)',
-    },
-    {
         'name': 'pilot_n12',
         'display_name': 'Pilot (n=12)',
         'participant_label_file': '_rooms/pilot_n12.txt'
     },
     {
-        'name': 'econs_exp',
-        'display_name': 'Experiment (n=42)',
-        'participant_label_file': '_rooms/exp_n42.txt'
+        'name': 'pilot_n3',
+        'display_name': 'Pilot (n=3)',
+        'participant_label_file': '_rooms/pilot_n3.txt'
+    },
+    {
+        'name': 'exp_n40',
+        'display_name': 'Eksperimen (n=40)',
+        'participant_label_file': '_rooms/exp_n40.txt'
     }
 ]
 
