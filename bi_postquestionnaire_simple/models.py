@@ -56,7 +56,7 @@ class Player(BasePlayer):
     gender = models.StringField(widget=widgets.RadioSelect,
                                 label="Pilih Gender Anda",
                                 choices=["Pria","Wanita"])
-    usia = models.IntegerField(label="Tentukan Usia Anda",
+    usia = models.IntegerField(label="Tentukan Usia Anda (Tahun)",
                                min=14, max=60)
     bahasa = models.StringField(widget=widgets.RadioSelect,
                                 label="Bahasa yang Anda gunakan sehari-hari selain Indonesia",
@@ -87,6 +87,15 @@ class Player(BasePlayer):
                                        "S2",
                                        "S3",
                                        "Lainnya"])
+    expenditure = models.StringField(widget=widgets.RadioSelect,
+                                     label="Rata-rata Pengeluaran Bulanan Anda:",
+                                     choices=["Di bawah Rp 500.000",
+                                               "Rp 500.001 - Rp 1.000.000",
+                                               "Rp 1.000.001 - Rp 1.500.000",
+                                               "Rp 1.500.001 - Rp 2.000.000",
+                                               "Rp 2.000.001 - Rp 2.500.000",
+                                               "Rp 2.500.001 - Rp 3.000.000",
+                                               "Di atas Rp 3.000.000",])
 
     # for opinion
     q1_a = make_field("Saya mendukung penggunaan produk ramah lingkungan untuk kebutuhan kamar mandi dan mencuci piring saya; sebagai contoh tisu toilet daur ulang.")

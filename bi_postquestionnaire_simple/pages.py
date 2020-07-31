@@ -18,7 +18,8 @@ class Demographics(Page):
                    "domisili",
                    "exp_experiment",
                    "studi",
-                   "educ"]
+                   "educ",
+                   "expenditure"]
 
 class Questionnaire(Page):
 
