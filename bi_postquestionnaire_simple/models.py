@@ -51,7 +51,6 @@ class Player(BasePlayer):
     unct_selector_B = models.IntegerField(initial=0)
     urn_G = models.IntegerField()
     urn_B = models.IntegerField()
-    payoff_today = models.IntegerField()
     xG_final = models.FloatField()
     xB_final = models.FloatField()
     tG_final = models.FloatField()
