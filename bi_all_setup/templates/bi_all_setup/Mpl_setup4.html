@@ -17,13 +17,14 @@ div {text-align: justify;}
 .otree-body {max-width:1200px}
 </style>
 <p>
-  Anda memiliki {{ endowment }} token yang dapat Anda alokasikan untuk mendapatkan {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, atau tetap menyimpannya.
-Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar {{x1G}}
-kali lipat atau {{x2G}} kali lipat dari jumlah token yang Anda alokasikan ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A. Kedua imbalan tersebut akan Anda
-dapatkan pada {{t1G}} bulan dan {{t2G}} bulan kemudian. Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, maka Anda akan memiliki
-peluang untuk mendapatkan imbalan sebesar {{x1B}} kali lipat atau {{x2B}} kali lipat dari jumlah token yang Anda alokasikan
-ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B. Kedua imbalan tersebut akan Anda dapatkan pada {{t1G}} bulan dan {{t2G}} bulan kemudian. Jika Anda memilih untuk
+  Anda memiliki <b>{{ endowment }}</b> token yang dapat Anda alokasikan untuk mendapatkan {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, atau tetap menyimpannya.
+Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A, maka Anda akan memiliki peluang untuk mendapatkan imbalan sebesar <b>{{x1G}}</b>
+kali lipat atau <b>{{x2G}}</b> kali lipat dari jumlah token yang Anda alokasikan ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A. Kedua imbalan tersebut akan Anda
+dapatkan pada <b>{{t1G}}</b> bulan dan <b>{{t2G}}</b> bulan kemudian. Jika Anda mengalokasikan token ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B, maka Anda akan memiliki
+peluang untuk mendapatkan imbalan sebesar <b>{{x1B}}</b> kali lipat atau <b>{{x2B}}</b> kali lipat dari jumlah token yang Anda alokasikan
+ke {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B. Kedua imbalan tersebut akan Anda dapatkan pada <b>{{t1G}}</b> bulan dan <b>{{t2G}}</b> bulan kemudian. Jika Anda memilih untuk
 menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara langsung hari ini.
+
 </p>
 <br>
 <p>
@@ -74,10 +75,10 @@ menyimpan token Anda, maka token tersebut akan ditukarkan dengan uang secara lan
   <tr>
     <th class="tg-0lax">No.</th>
     <th class="tg-0lax">{% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A</th>
-    <th class="tg-0lax">Proba-<br>bilitas A yang tidak dike<br>tahui</th>
+    <th class="tg-0lax">Proba-<br>bilitas A yang tidak dike-<br>tahui</th>
     <th class="tg-0lax">Alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A</th>
     <th class="tg-0lax">{% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B</th>
-    <th class="tg-0lax">Proba-<br>bilitas B yang tidak dike<br>tahui</th>
+    <th class="tg-0lax">Proba-<br>bilitas B yang tidak dike-<br>tahui</th>
     <th class="tg-0lax">Alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} B</th>
     <th class="tg-0lax">Menyimpan Token</th>
     {% if treatment_group == 3 or treatment_group == 4 %}
