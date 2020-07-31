@@ -25,6 +25,8 @@ class Instruction(Page):
 
     def vars_for_template(self):
         return {
+            'setup': self.participant.vars["p_app_sequence"]['game_type'][self.round_number-1],
+            'round_number': self.subsession.round_number,
             'treatment_group': self.participant.vars["p_app_sequence"]['treatment_group'][self.round_number - 1],
             'pagehold_timer'                : self.session.config['page_halt_seconds'],
             'pagehold_timer_ths'            : self.session.config['page_halt_seconds'] * 1000,

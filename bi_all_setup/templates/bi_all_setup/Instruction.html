@@ -16,29 +16,20 @@ div {text-align: justify;}
 <div class="card bg-light">
     <div class="card-body">
         <p>
-              {% if treatment_group == 1 %}
-
-
-              {% elif treatment_group == 2 %}
-              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
-              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi
-              tidak menggunakan konsep 3R (Reduce-Reuse-Recycle).
-
-              {% elif treatment_group == 3 %}
-              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
-              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b> merupakan barang yang diproduksi tidak
-              menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
-              pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
-              berkontribusi untuk membuat kota Jogja tercinta ini menjadi lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
-
-              {% else %}
-              <b>Barang A</b> merupakan barang ramah lingkungan yang diproduksi dengan menggunakan konsep 3R (Reduce-Reuse-Recycle) dan juga
-              meminimalisir penggunaan bahan-bahan kimia yang dapat merusak lingkungan. <b>Barang B</b>  merupakan barang yang diproduksi tidak
-              menggunakan konsep 3R (Reduce-Reuse-Recycle). Oleh karenanya kami menyarankan Anda untuk mengalokasikan lebih banyak token
-              pada <b>Barang A</b>. Anda adalah bagian dari kampanye kami dalam mengimplementasikan konsep 3R (Reduce-Reuse-Recycle) dan
-              berkontribusi untuk membuat lingkungan kita lebih baik di masa depan. Namun demikian, pilihan ada di tangan Anda.
-
-              {% endif %}
+            {% if round_number != 1 %}
+            Anda telah menyelesaikan blok sebelumnya.
+            {% else %}
+            {% endif %}
+            Sekarang Anda akan menuju ke blok ke-
+            {% if setup = "risky_setup_1" %}
+            1
+            {% elif setup = "risky_setup_2" %}
+            2
+            {% elif setup = "risky_setup_3_ambi" %}
+            3
+            {% elif setup = "risky_setup_4_ambi" %}
+            4
+            {% endif %}
         </p>
     </div>
 

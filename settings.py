@@ -15,12 +15,12 @@ SESSION_CONFIGS = [
     {
         'name': 'bi_experiment_reborn',
         'display_name': "BI - Experiment",
-        'num_demo_participants': 2,
+        'num_demo_participants': 1,
         'app_sequence': ['bi_introduction_simple',
                          'bi_all_setup',
                          'bi_postquestionnaire_simple'],
         'page_halt_seconds': 1,
-        'treatment_group': 3,
+        'treatment_group': 1,
         'use_browser_bots': False
     },
 
