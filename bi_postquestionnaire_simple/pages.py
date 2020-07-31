@@ -154,14 +154,15 @@ class Results(Page):
                 "payoff_1"          : self.participant.vars["payoff_1"],
                 "payoff_2"          : self.participant.vars["payoff_2"],
                 "payoff_leftover"   : self.participant.vars["payoff_leftover"],
-                "payoff_final"      : self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"],
+                "payoff_final"      : self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars["payoff_leftover"] + Constants.quest_fee,
                 "payoff_1_idr"          : self.participant.vars["payoff_1"] * idr,
                 "payoff_2_idr"          : self.participant.vars["payoff_2"] * idr,
                 "payoff_leftover_idr"   : self.participant.vars["payoff_leftover"] * idr,
                 "payoff_final_idr"      : int(((self.participant.vars["payoff_1"] +
                                             self.participant.vars["payoff_2"] +
                                             self.participant.vars["payoff_leftover"]) * idr) +
-                                            self.session.config["participation_fee"]),
+                                            self.session.config["participation_fee"]) + Constants.quest_fee,
+                "quest_fee"             : Constants.quest_fee,
                 "show_up_fee"           : int(self.session.config["participation_fee"]),
         }
 

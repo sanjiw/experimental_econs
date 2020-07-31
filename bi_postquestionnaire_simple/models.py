@@ -23,6 +23,7 @@ import csv
 class Constants(BaseConstants):
     name_in_url = 'bi_postquestionnaire_simple'
     players_per_group = None
+    quest_fee = 15000
     num_rounds = 1
     endo = 25
     with open('bi_postquestionnaire_simple/Ambiguity.csv') as csvFile:
@@ -208,15 +209,13 @@ class Player(BasePlayer):
                 self.participant.vars['tB_final'] = self.participant.vars["t2B_selected"]
                 self.participant.vars["payoff_2"] = alloc_B * self.participant.vars["x2B_selected"]
             self.participant.vars["payoff_leftover"] = Constants.endo - alloc_G - alloc_B
-        self.payoff = self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars[
-            "payoff_leftover"]
         self.xG_final = self.participant.vars["xG_final"]
         self.xB_final = self.participant.vars["xB_final"]
         self.tG_final = self.participant.vars['tG_final']
         self.tB_final = self.participant.vars['tB_final']
-        self.payoff_A = self.participant.vars["payoff_1"]
-        self.payoff_B = self.participant.vars["payoff_2"]
-        self.payoff_now = self.participant.vars["payoff_leftover"]
+        self.payoff_A = self.participant.vars["payoff_1"] * self.session.config["real_world_currency_per_point"]
+        self.payoff_B = self.participant.vars["payoff_2"] * self.session.config["real_world_currency_per_point"]
+        self.payoff_now = (self.participant.vars["payoff_leftover"] * float(self.session.config["real_world_currency_per_point"])) + float(Constants.quest_fee)
 
 
 

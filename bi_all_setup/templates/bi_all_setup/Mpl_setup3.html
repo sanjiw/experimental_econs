@@ -85,7 +85,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a1 %}</td>
-    <td class="tg-0lax"><p id='remainder_1'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_1'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">2</td>
@@ -95,7 +95,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a2 %}</td>
-    <td class="tg-0lax"><p id='remainder_2'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_2'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">3</td>
@@ -105,7 +105,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a3 %}</td>
-    <td class="tg-0lax"><p id='remainder_3'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_3'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">4</td>
@@ -115,7 +115,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a4 %}</td>
-    <td class="tg-0lax"><p id='remainder_4'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_4'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">5</td>
@@ -125,7 +125,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a5 %}</td>
-    <td class="tg-0lax"><p id='remainder_5'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_5'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">6</td>
@@ -135,7 +135,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a6 %}</td>
-    <td class="tg-0lax"><p id='remainder_6'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_6'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">7</td>
@@ -145,7 +145,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a7 %}</td>
-    <td class="tg-0lax"><p id='remainder_7'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_7'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">8</td>
@@ -155,7 +155,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a8 %}</td>
-    <td class="tg-0lax"><p id='remainder_8'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_8'>25</p></td>
   </tr>
   <tr>
     <td class="tg-0lax">9</td>
@@ -165,7 +165,7 @@ secara langsung hari ini.
     </td>
     <td class="tg-0lax">0.2</td>
     <td class="tg-0lax">{% formfield player.a9 %}</td>
-    <td class="tg-0lax"><p id='remainder_9'>25</p></td>
+    <td class="tg-0lax"><p class="remainder" id='remainder_9'>25</p></td>
   </tr>
 </thead>
 </table>
@@ -184,12 +184,21 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
 </p>
 <div class="btn-group">
   <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
-  <button id="reset" type="reset" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
+  <button id="reset" type="reset" onclick="ResetAll()" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
 </div>
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript">
+
+    function ResetAll() {
+        x = document.getElementsByClassName("remainder");
+        console.log(x)
+        for(var i = 0; i < x.length; i++){
+        x[i].innerText={{ endowment }};
+        }
+    }
+
     setTimeout(function() {
         document.getElementById('lanjut').disabled = false;
     }, {{pagehold_timer_ths}});

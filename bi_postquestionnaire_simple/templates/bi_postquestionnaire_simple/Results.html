@@ -28,14 +28,14 @@
     <th class="tg-0lax">Deskripsi Pembayaran</th>
     <th class="tg-0lax">Alokasi</th>
     <th class="tg-0lax">Multiplier</th>
-    <th class="tg-0lax">Konversi 1 poin ke Rupiah</th>
+    <th class="tg-0lax">Konversi 1 token ke Rupiah</th>
     <th class="tg-0lax">Total</th>
     <th class="tg-0lax">Akan diterima pada ...</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0lax">Dari Alokasi pada barang A</td>
+    <td class="tg-0lax">Dari alokasi pada barang A</td>
     <td class="tg-0lax">{{alloc_G}}</td>
     <td class="tg-0lax">{{ xG_final }}</td>
     <td class="tg-0lax">{{ idr }}</td>
@@ -44,7 +44,7 @@
   </tr>
   {% if two_allocations == True %}
   <tr>
-    <td class="tg-0lax">Dari Alokasi pada barang B</td>
+    <td class="tg-0lax">Dari alokasi pada barang B</td>
     <td class="tg-0lax">{{alloc_B}}</td>
     <td class="tg-0lax">{{ xB_final }}</td>
     <td class="tg-0lax">{{ idr }}</td>
@@ -66,6 +66,14 @@
     <td class="tg-0lax">1.0</td>
     <td class="tg-0lax">1.0</td>
     <td class="tg-0lax">{{ show_up_fee }}</td>
+    <td class="tg-0lax">Saat ini</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Uang Kuisioner</td>
+    <td class="tg-0lax">{{ quest_fee }}</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">{{ quest_fee }}</td>
     <td class="tg-0lax">Saat ini</td>
   </tr>
 </tbody>

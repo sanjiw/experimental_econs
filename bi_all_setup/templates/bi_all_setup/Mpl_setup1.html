@@ -81,7 +81,7 @@ dengan uang secara langsung hari ini.
     <td class="tg-baqh">1</td>
     <td class="tg-baqh">Dengan pasti mendapatkan <font color="red"><b>{{ x1G }}</b></font> kali lipat alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a1 %}</td>
-    <td class="tg-baqh"><p id='remainder_1'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_1'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">2</td>
@@ -89,7 +89,7 @@ dengan uang secara langsung hari ini.
       Memiliki peluang <b>0.9</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan, <br>
       Memiliki peluang <b>0.1</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a2 %}</td>
-    <td class="tg-baqh"><p id='remainder_2'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_2'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">3</td>
@@ -97,7 +97,7 @@ dengan uang secara langsung hari ini.
       Memiliki peluang <b>0.8</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.2</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a3 %}</td>
-    <td class="tg-baqh"><p id='remainder_3'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_3'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">4</td>
@@ -105,7 +105,7 @@ dengan uang secara langsung hari ini.
       Memiliki peluang <b>0.7</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.3</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a4 %}</td>
-    <td class="tg-baqh"><p id='remainder_4'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_4'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">5</td>
@@ -113,48 +113,48 @@ dengan uang secara langsung hari ini.
       Memiliki peluang <b>0.6</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.4</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a5 %}</td>
-    <td class="tg-baqh"><p id='remainder_5'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_5'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">6</td>
     <td class="tg-baqh">
       Memiliki peluang <b>0.5</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.5</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a6 %}</td>
-    <td class="tg-baqh"><p id='remainder_6'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_6'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">7</td>
     <td class="tg-baqh">
       Memiliki peluang <b>0.4</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.6</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a7 %}</td>
-    <td class="tg-baqh"><p id='remainder_7'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_7'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">8</td>
     <td class="tg-baqh">
       Memiliki peluang <b>0.3</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.7</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a8 %}</td>
-    <td class="tg-baqh"><p id='remainder_8'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_8'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">9</td>
     <td class="tg-baqh">
       Memiliki peluang <b>0.2</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.8</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a9 %}</td>
-    <td class="tg-baqh"><p id='remainder_9'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_9'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">10</td>
     <td class="tg-baqh">
       Memiliki peluang <b>0.1</b> untuk mendapat <font color="red"><b>{{ x1G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t1G }}</b></font> bulan ke depan,<br>
       Memiliki peluang <b>0.9</b> untuk mendapat <font color="red"><b>{{ x2G }}</b></font> kali lipat dari alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td><td class="tg-baqh">{% formfield player.a10 %}</td>
-    <td class="tg-baqh"><p id='remainder_10'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_10'>25</p></td>
   </tr>
   <tr>
     <td class="tg-baqh">11</td>
     <td class="tg-baqh">Dengan pasti mendapatkan <font color="red"><b>{{ x2G }}</b></font> kali lipat alokasi di {% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A pada <font color="red"><b>{{ t2G }}</b></font> bulan ke depan</td>
     <td class="tg-baqh">{% formfield player.a11 %}</td>
-    <td class="tg-baqh"><p id='remainder_11'>25</p></td>
+    <td class="tg-baqh"><p class="remainder" id='remainder_11'>25</p></td>
   </tr>
 </thead>
 </table>
@@ -175,13 +175,22 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
 </p>
 <div class="btn-group">
   <button id="lanjut" disabled="disabled" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjut ke halaman berikutnya</button>
-  <button id="reset" type="reset" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
+  <button id="reset" type="reset" onclick="ResetAll()" class="otree-btn-next btn-primary btn" style="background-color:red">Reset</button>
 </div>
 
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript">
+
+    function ResetAll() {
+        x = document.getElementsByClassName("remainder");
+        console.log(x)
+        for(var i = 0; i < x.length; i++){
+        x[i].innerText={{ endowment }};
+        }
+    }
+
     setTimeout(function() {
         document.getElementById('lanjut').disabled = false;
     }, {{pagehold_timer_ths}});
@@ -191,6 +200,8 @@ tidak dapat mengubah pilihan Anda pada ronde ini.
         document.getElementById("countdown").textContent = seconds;
         if (seconds <= 0) clearInterval(countdown);
     }, 1000);
+
+
 
   $("#id_a1").focusout(function() {
     $("#remainder_1").html("");
