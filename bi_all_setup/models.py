@@ -45,7 +45,11 @@ class Subsession(BaseSubsession):
             player_sequence = random.sample(orgnl_sequence, len(orgnl_sequence))
             player_params = player_sequence[0].append(player_sequence[1], ignore_index = True).append(player_sequence[2], ignore_index = True).append(player_sequence[3],ignore_index = True)
             image_urls = []
-            if self.session.config["treatment_group"] == 3:
+            if self.session.config["treatment_group"] == 1:
+                image_urls = [""]
+            elif self.session.config["treatment_group"] == 2:
+                image_urls = [""]
+            elif self.session.config["treatment_group"] == 3:
                 image_urls = ['bi_experiment/t3/Jogja ' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]
             elif self.session.config["treatment_group"] == 4:
                 image_urls = ['bi_experiment/t4/Netral ' + str(i) + ".jpeg" for i in [1, 2, 3, 4]]

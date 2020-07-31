@@ -51,6 +51,14 @@ class Player(BasePlayer):
     unct_selector_B = models.IntegerField(initial=0)
     urn_G = models.IntegerField()
     urn_B = models.IntegerField()
+    payoff_today = models.IntegerField()
+    xG_final = models.FloatField()
+    xB_final = models.FloatField()
+    tG_final = models.FloatField()
+    tB_final = models.FloatField()
+    payoff_A = models.FloatField()
+    payoff_B = models.FloatField()
+    payoff_now = models.FloatField()
 
     # for demographics
     gender = models.StringField(widget=widgets.RadioSelect,
@@ -203,6 +211,13 @@ class Player(BasePlayer):
             self.participant.vars["payoff_leftover"] = Constants.endo - alloc_G - alloc_B
         self.payoff = self.participant.vars["payoff_1"] + self.participant.vars["payoff_2"] + self.participant.vars[
             "payoff_leftover"]
+        self.xG_final = self.participant.vars["xG_final"]
+        self.xB_final = self.participant.vars["xB_final"]
+        self.tG_final = self.participant.vars['tG_final']
+        self.tB_final = self.participant.vars['tB_final']
+        self.payoff_A = self.participant.vars["payoff_1"]
+        self.payoff_B = self.participant.vars["payoff_2"]
+        self.payoff_now = self.participant.vars["payoff_leftover"]
 
 
 
