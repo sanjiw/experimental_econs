@@ -48,23 +48,23 @@ ROOMS = [
         'participant_label_file': '_rooms/exp_n40.txt'
     },
     {
-        'name': 'Room 1',
-        'display_name': 'Eksperimen (n=40)',
+        'name': 'Room_1',
+        'display_name': 'Room 1',
         'participant_label_file': '_rooms/room1_n3.txt'
     },
     {
-        'name': 'Room 2',
-        'display_name': 'Eksperimen (n=40)',
+        'name': 'Room_2',
+        'display_name': 'Room 2',
         'participant_label_file': '_rooms/room2_n3.txt'
     },
     {
-        'name': 'Room 3',
-        'display_name': 'Eksperimen (n=40)',
+        'name': 'Room_3',
+        'display_name': 'Room 3',
         'participant_label_file': '_rooms/room3_n3.txt'
     },
     {
-        'name': 'Room 4',
-        'display_name': 'Eksperimen (n=40)',
+        'name': 'Room_4',
+        'display_name': 'Room 4',
         'participant_label_file': '_rooms/room4_n3.txt'
     }
 ]
