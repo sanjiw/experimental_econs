@@ -51,6 +51,26 @@ ROOMS = [
         'name': 'exp_n40',
         'display_name': 'Eksperimen (n=40)',
         'participant_label_file': '_rooms/exp_n40.txt'
+    },
+    {
+        'name': 'Room 1',
+        'display_name': 'Eksperimen (n=40)',
+        'participant_label_file': '_rooms/room1_n3.txt'
+    },
+    {
+        'name': 'Room 2',
+        'display_name': 'Eksperimen (n=40)',
+        'participant_label_file': '_rooms/room2_n3.txt'
+    },
+    {
+        'name': 'Room 3',
+        'display_name': 'Eksperimen (n=40)',
+        'participant_label_file': '_rooms/room3_n3.txt'
+    },
+    {
+        'name': 'Room 4',
+        'display_name': 'Eksperimen (n=40)',
+        'participant_label_file': '_rooms/room4_n3.txt'
     }
 ]
 
@@ -74,7 +94,8 @@ ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
 
 # Consider '', None, and '0' to be empty/false
-DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})
+DEBUG = (environ.get('OTREE_PRODUCTION') in {1})
+#DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})
 
 DEMO_PAGE_INTRO_HTML = """
 Here are various games implemented with 
