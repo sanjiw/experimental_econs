@@ -43,11 +43,6 @@ ROOMS = [
         'participant_label_file': '_rooms/pilot_n12.txt'
     },
     {
-        'name': 'pilot_n3',
-        'display_name': 'Pilot (n=3)',
-        'participant_label_file': '_rooms/pilot_n3.txt'
-    },
-    {
         'name': 'exp_n40',
         'display_name': 'Eksperimen (n=40)',
         'participant_label_file': '_rooms/exp_n40.txt'
