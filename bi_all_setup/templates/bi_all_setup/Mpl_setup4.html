@@ -15,6 +15,22 @@ h4 {text-align: justify;}
 p {text-align: justify;}
 div {text-align: justify;}
 .otree-body {max-width:1200px}
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
 </style>
 <p>
   Anda memiliki <b>{{ endowment }}</b> token yang dapat Anda alokasikan untuk mendapatkan <b>{% if treatment_group == 1 %}Opsi{% else %}Barang{% endif %} A</b>,
