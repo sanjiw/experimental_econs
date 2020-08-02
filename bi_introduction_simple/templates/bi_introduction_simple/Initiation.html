@@ -20,6 +20,22 @@ h1 {text-align: center;}
   margin-right: auto;
   width: 50%;
 }
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
 </style>
 <img src="{% static "bi_experiment/logo-ugm.png" %}" alt="Snow" style="max-width:100px" class="center">
 <br>
@@ -27,5 +43,15 @@ h1 {text-align: center;}
 
 <br>
 <button id="lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Masuk ke Halaman Instruksi</button>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        window.onload = function() {
+          document.getElementById('debug-info').style.display = 'none';
+        };
+    </script>
 
 {% endblock %}
