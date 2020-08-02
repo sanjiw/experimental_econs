@@ -215,7 +215,7 @@ class Player(BasePlayer):
         self.tB_final = self.participant.vars['tB_final']
         self.payoff_A = self.participant.vars["payoff_1"] * self.session.config["real_world_currency_per_point"]
         self.payoff_B = self.participant.vars["payoff_2"] * self.session.config["real_world_currency_per_point"]
-        self.payoff_now = (self.participant.vars["payoff_leftover"] * float(self.session.config["real_world_currency_per_point"])) + float(Constants.quest_fee)
+        self.payoff_now = (self.participant.vars["payoff_leftover"] * float(self.session.config["real_world_currency_per_point"])) + float(Constants.quest_fee) + float(self.session.config['participation_fee'])
 
 
 

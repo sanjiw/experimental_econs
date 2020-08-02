@@ -16,7 +16,7 @@ class Intro(Page):
         }
 
     def before_next_page(self):
-        self.subsession.sequence_setup()
+        self.player.sequence_setup()
 
 class Instruction(Page):
 
@@ -65,9 +65,8 @@ class Mpl_setup1(Page):
         }
 
     def before_next_page(self):
-        self.subsession.decision_record()
+        self.player.param_record()
         self.player.decision_records()
-
 
 class Mpl_setup2(Page):
 
@@ -128,7 +127,7 @@ class Mpl_setup2(Page):
             return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
 
     def before_next_page(self):
-        self.subsession.decision_record()
+        self.player.param_record()
         self.player.decision_records()
 
 
@@ -166,7 +165,7 @@ class Mpl_setup3(Page):
         }
 
     def before_next_page(self):
-        self.subsession.decision_record()
+        self.player.param_record()
         self.player.decision_records()
 
 class Mpl_setup4(Page):
@@ -224,7 +223,7 @@ class Mpl_setup4(Page):
             return 'Total G + B untuk seluruh kolom harus tidak lebih dari' + str(Constants.endo)
 
     def before_next_page(self):
-        self.subsession.decision_record()
+        self.player.param_record()
         self.player.decision_records()
 
 class TrainingResults1(Page):
