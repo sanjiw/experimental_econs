@@ -30,10 +30,7 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-
-    def cross_app_vars(self):
-        for p in self.get_players():
-            p.participant.vars['decision_list'] = []
+    pass
 
 class Group(BaseGroup):
     pass
