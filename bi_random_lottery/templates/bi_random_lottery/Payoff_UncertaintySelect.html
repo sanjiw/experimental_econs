@@ -1,0 +1,130 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Acakan Untuk Probabilitas Tak Tentu
+{% endblock %}
+
+{% block content %}
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+</style>
+<p>
+    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Ronde ini berasal dari permainan yang mengandung
+    probabilitas yang tidak diketahui.
+    Pada ronde ini, Anda membuat keputusan untuk alokasi pada
+    {% if show_uncertain_prob_B == False %}
+    satu jenis barang, yakni barang A saja.
+    {% else %}
+    dua jenis barang, yakni barang A dan barang B. Kedua barang ini memiliki probabilitas tidak tentu yang bisa saja
+    berbeda satu sama lain.
+    {% endif %}
+</p>
+<p>
+    Besarnya probabilitas ini adalah antara 0 hingga 20 persen. Anda akan mengambil angka acak untuk menentukan berapa
+    besarnya probabilitas tersebut.
+</p>
+    <br>
+    <br>
+    <div class="card bg-light text-dark" id="randomizer1">
+        <div class="card-body">
+            <div align="center">
+                    <tr>
+                        <td>Probabilitas tidak tentu untuk barang A:</td>
+                        <td><b><text id="dice1" style="font-size:300%">???</text></b></td>
+                    </tr>
+                <br>
+                <button id="roll1" onclick="AniDice1()" type="button">Mulai Mengacak!</button>
+                <button id="stop1" onclick="stopDice1()" type="button" disabled="true">Hentikan!</button>
+            </div>
+            <input type="hidden" name="unct_selector_G" id="var1" value="">
+            <p id="result1" style="visibility:hidden">Probabilitas A yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            {{ form.unct_selector_G.errors }}
+        </div>
+    </div>
+
+    {% if show_uncertain_prob_B == True %}
+
+    <br>
+    <br>
+    <div class="card bg-light text-dark" id="randomizer2">
+        <div class="card-body">
+            <div align="center">
+                    <tr>
+                        <td>Probabilitas tidak tentu untuk barang B:</td>
+                        <td><b><text id="dice2" style="font-size:300%">???</text></b></td>
+                    </tr>
+                <br>
+                <button id="roll2" onclick="AniDice2()" type="button">Mulai Mengacak!</button>
+                <button id="stop2" onclick="stopDice2()" type="button" disabled="true">Hentikan!</button>
+            </div>
+            <input type="hidden" name="unct_selector_B" id="var2" value="">
+            <p id="result2" style="visibility:hidden">Probabilitas B yang tidak pasti adalah sebesar nilai di atas.<br></p>
+            {{ form.unct_selector_B.errors }}
+        </div>
+    </div>
+
+    {% else %}
+    <input type="hidden" name="unct_selector_B" id="var2" value=0>
+    {% endif %}
+    <br>
+
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Lanjutkan ke Acakan Berikutnya<br></button>
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function AniDice1(){
+            document.getElementById("roll1").disabled = true;
+            document.getElementById("stop1").disabled = false;
+            MyVar1=setInterval(rolldice1,20);
+        }
+        function rolldice1(){
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
+            document.getElementById("dice1").innerHTML = ranNum;
+            document.getElementById("var1").value = ranNum;
+        }
+        function stopDice1(){
+            document.getElementById("result1").style.visibility = "visible";
+            clearInterval(MyVar1);
+        }
+
+        function AniDice2(){
+            document.getElementById("roll2").disabled = true;
+            document.getElementById("stop2").disabled = false;
+            MyVar2=setInterval(rolldice2,20);
+        }
+        function rolldice2(){
+            var ranList = {{ ambiguous_list }};
+            var ranNum = ranList[Math.floor(Math.random() * ranList.length)];
+            document.getElementById("dice2").innerHTML = ranNum;
+            document.getElementById("var2").value = ranNum;
+        }
+        function stopDice2(){
+            document.getElementById("result2").style.visibility = "visible";
+            clearInterval(MyVar2);
+        }
+    </script>
+
+
+{% endblock %}

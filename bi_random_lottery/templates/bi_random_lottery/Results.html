@@ -1,0 +1,103 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Terima kasih!
+{% endblock %}
+
+
+
+{% block content %}
+<p>
+  Terima kasih atas partisipasi Anda dalam eksperimen ini. Secara total, Anda telah memperoleh <b>Rp {{ payoff_final_idr }}</b>
+  dalam eksperimen ini. Berikut adalah rincian pembayaran yang Anda akan terima:
+</p>
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:center;vertical-align:top}
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Deskripsi Pembayaran</th>
+    <th class="tg-0lax">Alokasi</th>
+    <th class="tg-0lax">Multiplier</th>
+    <th class="tg-0lax">Konversi 1 token ke Rupiah</th>
+    <th class="tg-0lax">Total</th>
+    <th class="tg-0lax">Akan diterima pada ...</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">Dari alokasi pada barang A</td>
+    <td class="tg-0lax">{{alloc_G}}</td>
+    <td class="tg-0lax">{{ xG_final }}</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_1_idr }}</td>
+    <td class="tg-0lax">{{ tG_final }} bulan ke depan</td>
+  </tr>
+  {% if two_allocations == True %}
+  <tr>
+    <td class="tg-0lax">Dari alokasi pada barang B</td>
+    <td class="tg-0lax">{{alloc_B}}</td>
+    <td class="tg-0lax">{{ xB_final }}</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_2_idr }}</td>
+    <td class="tg-0lax">{{ tB_final }} bulan ke depan</td>
+  </tr>
+  {% else %}{% endif %}
+  <tr>
+    <td class="tg-0lax">Sisa token yang disimpan</td>
+    <td class="tg-0lax">{{ payoff_leftover }}</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">{{ idr }}</td>
+    <td class="tg-0lax">{{ payoff_leftover_idr }}</td>
+    <td class="tg-0lax">Saat ini</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Uang Partisipasi</td>
+    <td class="tg-0lax">{{ show_up_fee }}</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">{{ show_up_fee }}</td>
+    <td class="tg-0lax">Saat ini</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Uang Kuisioner</td>
+    <td class="tg-0lax">{{ quest_fee }}</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">1.0</td>
+    <td class="tg-0lax">{{ quest_fee }}</td>
+    <td class="tg-0lax">Saat ini</td>
+  </tr>
+</tbody>
+</table>
+<br>
+<button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button">Selesai<br></button>
+
+
+{% endblock %}
+
+

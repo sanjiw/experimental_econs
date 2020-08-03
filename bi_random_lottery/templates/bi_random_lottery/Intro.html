@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Terima Kasih
+{% endblock %}
+
+
+{% block content %}
+<style>
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+</style>
+<p>
+    Anda telah menyelesaikan Sesi Eksperimen Pengambilan Keputusan. Setelah ini Anda akan masuk ke dalam sesi undian untuk pembayaran.
+</p>
+{% formfield player.participant_label %}
+<br>
+<br>
+<button id="lanjut" class="otree-btn-next btn btn-primary next-button otree-next-button">Masuk ke Kuisioner</button>
+
+{% endblock %}

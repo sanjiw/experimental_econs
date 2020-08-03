@@ -1,0 +1,143 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Acakan Daftar Pilihan
+{% endblock %}
+
+{% block content %}
+
+<style>
+h4 {text-align: justify;}
+p {text-align: justify;}
+</style>
+<p>
+    Anda telah memilih ronde {{ round_select }} pada acakan pertama. Pada ronde tersebut, Anda telah membuat sebanyak
+{{ decision_range }} pilihan alokasi untuk {% if two_allocations == True %}2 jenis barang (A dan B)
+{% else %}1 jenis barang (A saja){% endif %}.
+</p>
+<p>
+    {% if two_allocations == False %}
+    Berikut adalah parameter dalam pilihan Anda: Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam {{t2G_selected}} bulan ke depan.
+    {% else %}
+    Berikut adalah parameter dalam pilihan Anda:
+    <ul>
+    <li>Mendapatkan {{x1G_selected}} kali lipat alokasi A dalam {{t1G_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2G_selected}} kali lipat alokasi A dalam {{t2G_selected}} bulan ke depan, DAN</li>
+    <li>Mendapatkan {{x1B_selected}} kali lipat alokasi B dalam {{t1B_selected}}
+    bulan ke depan <i>atau</i> mendapatkan {{x2B_selected}} kali lipat alokasi B dalam {{t2B_selected}} bulan ke depan</li>
+    </ul>
+    {% endif %}
+    Berikut adalah daftar alokasi Anda pada ronde tersebut:
+</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:center;vertical-align:top}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.debug-info{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+</style>
+<table class="tg center">
+<thead>
+  <tr>
+        {% for i in decision_list %}
+        <th class="tg-0pky">Pilihan ke-{{ forloop.counter }}</th>
+        {% endfor %}
+  </tr>
+</thead>
+<tbody>
+  <tr>
+        {% for i in decision_list %}
+        <td class="tg-0pky">{{ i }}</td>
+        {% endfor %}
+  </tr>
+</tbody>
+</table>
+<br>
+<p>
+    Sekarang, Anda akan memilih satu dari {{ decision_range }} pilihan alokasi tersebut.
+</p>
+<br>
+    <div class="card bg-light text-dark" id="dice1">
+    <div class="card-body">
+    <div align="center">
+
+            <tr>
+                <td>Keputusan yang terpilih:</td>
+                <td><b><text id="dice" style="font-size:300%">???</text></b></td>
+            </tr>
+
+        <br>
+        <button id="roll" onclick="AniDice()" type="button">Mulai Mengacak!</button>
+        <button id="stop" onclick="stopDice()" type="button" disabled="true">Hentikan!</button>
+    </div>
+
+    <input type="hidden" name="decision_selector" id="var" value="">
+    </div>
+    </div>
+    <br>
+    <p id="result0" style="visibility:hidden">
+        Nomor di atas akan menjadi keputusan terpilih untuk pembayaran Anda.
+        <br>
+        Aplikasi ini akan otomatis melanjutkan ke halaman berikutnya dalam <b><span id="countdown">5</span> detik</b>.
+    </p>
+    <br>
+    <button id="next" class="otree-btn-next btn btn-primary next-button otree-next-button" style="visibility:hidden">
+        Lanjut Sekarang</button>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script type="text/javascript">
+        function AniDice(){
+            document.getElementById("roll").disabled = true;
+            document.getElementById("stop").disabled = false;
+            MyVar=setInterval(rolldice,20);
+        }
+        function rolldice(){
+            var ranNum = Math.floor( 1 + Math.random() * {{decision_range}} );
+            document.getElementById("dice").innerHTML = ranNum;
+            document.getElementById("var").value = ranNum;
+        }
+        function stopDice(){
+            document.getElementById("next").style.visibility = "visible";
+            var seconds = document.getElementById("countdown").textContent;
+            var countdown = setInterval(function() {
+                seconds--;
+                document.getElementById("countdown").textContent = seconds;
+                if (seconds <= 0) clearInterval(countdown);
+            }, 1000);
+            setTimeout(function() {
+                form.submit();
+            }, 5000);
+            document.getElementById("result0").style.visibility = "visible";
+            clearInterval(MyVar);
+        }
+    </script>
+
+{% endblock %}

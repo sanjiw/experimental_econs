@@ -23,6 +23,13 @@ SESSION_CONFIGS = [
         'treatment_group': 1,
         'use_browser_bots': False
     },
+    {
+        'name': 'bi_random_lottery',
+        'display_name': "BI - Random Lottery",
+        'num_demo_participants': 1,
+        'app_sequence': ['bi_random_lottery'],
+        'page_halt_seconds': 1,
+    },
 
 ]
 # see the end of this file for the inactive session configs
