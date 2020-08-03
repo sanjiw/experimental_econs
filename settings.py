@@ -19,7 +19,7 @@ SESSION_CONFIGS = [
         'app_sequence': ['bi_introduction_simple',
                          'bi_all_setup',
                          'bi_postquestionnaire_simple'],
-        'page_halt_seconds': 1,
+        'page_halt_seconds': 45,
         'treatment_group': 1,
         'use_browser_bots': False
     },
