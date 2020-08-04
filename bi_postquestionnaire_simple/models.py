@@ -155,12 +155,12 @@ class Player(BasePlayer):
             self.participant.vars["threshold_B"] = 0
         elif x["game_type"] == "risky_setup_2":
             self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1][0]
-            self.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][self.decision_selector - 1]
+            self.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][self.decision_selector - 1]
             self.participant.vars["allocated_B"] = x["decision_list"][self.decision_selector - 1][1]
-            self.participant.vars["threshold_B"] = list(range(0, 81, 10))[::-1][self.decision_selector - 1]
+            self.participant.vars["threshold_B"] = list(range(0, 101, 10))[::-1][self.decision_selector - 1]
         elif x["game_type"] == "risky_setup_3_ambi":
             self.participant.vars["allocated_G"] = x["decision_list"][self.decision_selector - 1]
-            self.participant.vars["threshold_G"] = list(range(0, 101, 10))[::-1][
+            self.participant.vars["threshold_G"] = list(range(0, 81, 10))[::-1][
                                                        self.decision_selector - 1] + self.unct_selector_G
             self.participant.vars["allocated_B"] = 0
             self.participant.vars["threshold_B"] = 0
